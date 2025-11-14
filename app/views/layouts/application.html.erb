@@ -24,6 +24,60 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a href="<%= pages_home_path %>" class="navbar-brand">Zold Ceramics</a>
+                <i class="bi bi-cart ms-auto me-4 h3 mb-0"></i>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="<%= pages_home_path %>">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= pages_about_path %>">About</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="<%= pages_shop_path %>" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Shop
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Cups</a></li>
+                <li><a class="dropdown-item" href="#">Dinnerware</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <%= yield %>
+
+      <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+          <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap">
+              <i class="bi bi-cup-hot-fill h3"></i>
+            </a>
+          </div>
+          <span class="mb-3 mb-md-0 text-body-secondary">© 2025 Zold Ceramics</span>
+          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3">
+              <a class="text-body-secondary" href="#" aria-label="Instagram">
+                <i class="bi bi-instagram"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a class="text-body-secondary" href="#" aria-label="Facebook">
+                <i class="bi bi-facebook"></i>
+              </a>
+            </li>
+          </ul>
+        </footer>
+      </div>
+    </div>
   </body>
 </html>
