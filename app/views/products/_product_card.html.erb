@@ -1,0 +1,48 @@
+  <div class="container mt-5">
+    <div class="row flex-wrap justify-content-center" style="gap: 4rem">
+
+      <% if @products.any? %>
+        <% carousel_counter_number = 0 %> <!-- Allow each control to have different id -->
+        <% @products.each do |product| %>
+          <!-- CAROUSEL -->
+          <div class="card shadow d-flex justify-content-between" style="width: 25rem; height: 30rem;">
+            <div class="card-img-top">
+              <div id="carousel<%= carousel_counter_number.to_s %>" class="carousel slide">
+               <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <%= image_tag "1000014595.jpg", class: "d-block w-100",style: "max-height: 50%", alt: "" %>
+                </div>
+                <div class="carousel-item">
+                  <%= image_tag "1000014593.jpg", class: "d-block w-100", alt: "" %>
+                </div>
+                <div class="carousel-item">
+                  <%= image_tag "1000014596.jpg", class: "d-block w-100", alt: "" %>
+                </div>
+               </div>
+               <button class="carousel-control-prev" type="button" data-bs-target="#carousel<%= carousel_counter_number.to_s %>" data-bs-slide="prev">
+                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                 <span class="visually-hidden">Previous</span>
+               </button>
+               <button class="carousel-control-next" type="button" data-bs-target="#carousel<%= carousel_counter_number.to_s %>" data-bs-slide="next">
+                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                 <span class="visually-hidden">Next</span>
+               </button>
+              </div>
+            </div>
+            <!-- Product Info -->
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+              <h5 class="card-title"><%= product.title %></h5>
+              <p class="card-text mb-auto"><%= product.description %></p>
+              </div>
+              <div>
+              <p class="card-text"><%= number_to_currency(product.price).to_s %></p>
+              <a href="#" class="btn btn-warning">Add to cart</a>
+              </div>
+            </div>
+          </div>
+          <% carousel_counter_number += 1 %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
