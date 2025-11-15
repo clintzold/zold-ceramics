@@ -1,11 +1,11 @@
-  <div class="container mt-5">
-    <div class="row flex-wrap justify-content-center" style="gap: 4rem">
+  <div class="container-fluid mt-5">
+    <div class="row flex-wrap justify-content-center" style="gap: 2rem">
 
       <% if @products.any? %>
         <% carousel_counter_number = 0 %> <!-- Allow each control to have different id -->
         <% @products.each do |product| %>
           <!-- CAROUSEL -->
-          <div class="card shadow d-flex justify-content-between col-sm-12 col-md-10 col-lg-8 col-xl-6 col-xxl-4"  >
+          <div class="card shadow d-flex justify-content-between col-sm-8 col-md-4 col-lg-4 col-xl-3"  >
             <div class="card-img-top">
               <div id="carousel<%= carousel_counter_number.to_s %>" class="carousel slide">
                <div class="carousel-inner">
@@ -37,7 +37,10 @@
               </div>
               <div>
               <p class="card-text"><%= number_to_currency(product.price).to_s %></p>
-              <a href="#" class="btn btn-warning">Add to cart</a>
+              <%= form_with url: add_item_cart_path(product_id: product.id), class: "d-flex justify-content-between", method: :post do |form| %>
+                <%= form.submit "Add to cart", class: "btn btn-warning" %>
+                <%= form.number_field :num_of_items, class: "form-control", style: "width: 4rem", value: 1, min: 1, max: product.stock, step: 1 %>
+              <% end %>
               </div>
             </div>
           </div>

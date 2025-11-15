@@ -4,7 +4,8 @@
 
       <% if @cart_items.any? %>
         <% carousel_counter_number = 0 %> <!-- Allow each control to have different id -->
-        <% @cart_items.each do |product| %>
+        <% @cart_items.each do |product_id, details| %>
+          <% product = Product.find(product_id) %>
           <!-- CAROUSEL -->
           <div class="card shadow d-flex justify-content-between col-sm-12 col-md-10 col-lg-8 col-xl-6 col-xxl-4"  >
             <div class="card-img-top">
@@ -37,8 +38,11 @@
               <p class="card-text mb-auto"><%= product.description %></p>
               </div>
               <div>
-              <p class="card-text"><%= number_to_currency(product.price).to_s %></p>
-              <a href="#" class="btn btn-warning">Add to cart</a>
+                <p class="card-text mt-1">
+                  <b>Quantity: </b><%= details['quantity'] %><br>
+                  <b>Total: </b><%= number_to_currency(details['quantity'] * product.price).to_s %>
+                </p>
+                <%= button_to "Remove item", remove_item_cart_path(product_id: product.id), class: "btn btn-warning", method: :delete %>
               </div>
             </div>
           </div>
