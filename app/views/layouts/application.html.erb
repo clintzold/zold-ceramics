@@ -42,7 +42,14 @@
             <li class="nav-item">
               <a class="nav-link" href="<%= shop_path %>">Shop</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mt-2">
+
+              <% if user_signed_in? %>
+                <%= button_to "Sign Out", destroy_user_session_path, class: "btn btn-light", method: :delete %>
+              <% else %>
+                <%= button_to "Sign In", new_user_session_path, class: "btn btn-light", method: :get %>
+              <% end %>
+
             </li>
           </ul>
         </div>

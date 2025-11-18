@@ -1,0 +1,28 @@
+<div id="adminDashboard" class="container-fluid p-0">
+  <div class="row flex-wrap">
+    
+    <aside class="col-md-3 bg-secondary d-flex flex-column">
+        <h5>Welcome <small><%= @admin.email %></small></h5>
+        <div class="d-flex flex-column h-100 justify-content-center">
+          <p class="d-inline-flex gap-1">
+            <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#productsOptions" aria-expanded="false", aria-controls="productsOptions">
+              Products
+            </button>
+            <div class="collapse" id="productsOptions">
+              <div class="list-group list-group-flush">
+                <button class="list-group-item list-group-item-action active">Add Product</button>
+                <button class="list-group-item list-group-item-action">Update Product</button>
+              </div>
+            </div>
+          </p>
+        </div>
+    </aside>
+
+    <main class=" col-md-8">
+    </main>
+
+    <aside class="col-md-1">
+    </aside>
+  </div>
+</div>
+

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :admins
   devise_for :users
+  # Admin routes
+  get "admin", to: "admin#dashboard"
+
   get "home", to: "pages#home"
   get "about", to: "pages#about"
 
