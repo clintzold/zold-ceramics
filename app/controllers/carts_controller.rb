@@ -1,6 +1,15 @@
 class CartsController < ApplicationController
   def show
     @cart_items = current_cart
+
+    @order_total = 0
+
+    if @cart_items.any?
+      @cart_items.each do |product_id, details|
+        product = Product.find(product_id)
+        @order_total += product.price * details["quantity"]
+      end
+    end
   end
 
   def add_item

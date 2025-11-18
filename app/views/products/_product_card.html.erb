@@ -1,11 +1,11 @@
   <div class="container-fluid mt-5">
-    <div class="row flex-wrap justify-content-center" style="gap: 2rem">
+    <div class="row flex-wrap justify-content-center" style="gap:3rem">
 
       <% if @products.any? %>
         <% carousel_counter_number = 0 %> <!-- Allow each control to have different id -->
         <% @products.each do |product| %>
           <!-- CAROUSEL -->
-          <div class="card shadow d-flex justify-content-between col-sm-8 col-md-4 col-lg-4 col-xl-3"  >
+          <div class="card shadow d-flex justify-content-between col-sm-8 col-md-5 col-lg-4 col-xl-3"  >
             <div class="card-img-top">
               <div id="carousel<%= carousel_counter_number.to_s %>" class="carousel slide">
                <div class="carousel-inner">

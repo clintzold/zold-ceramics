@@ -1,6 +1,11 @@
 
 .carousel-item.active img, .carousel-item img {
-	max-height: 35rem;
+	max-height: 25rem;
+        object-fit: cover;
+        object-position: center;
+}
+.carousel-item.active.mainCarousel img, .carousel-item.mainCarousel img {
+	max-height: 50rem;
         object-fit: cover;
         object-position: center;
 }
