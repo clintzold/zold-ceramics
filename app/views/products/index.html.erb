@@ -1,0 +1,24 @@
+<%= turbo_frame_tag id="adminOptions" do %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Price</th>
+        <th scope="col">Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @products.any? %>
+        <%@products.each do |product| %>
+          <tr>
+            <th scope="row"><%= product.id %></th>
+            <td><%= product.title %></td>
+            <td><%= product.price %></td>
+            <td><%= product.stock %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

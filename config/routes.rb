@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   get "about", to: "pages#about"
 
   # Products routes
-  get "shop", to: "products#shop"
-  get "products/:id", to: "products#show"
-
+  resources :products, only: [ :new, :create, :edit, :index, :destroy ]
+    get "shop", to: "products#shop"
+    get "products/:id", to: "products#show"
   # Cart routes
   resource :cart, only: [ :show ] do
     post "add_item/:product_id", to: "carts#add_item", as: :add_item

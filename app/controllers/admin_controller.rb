@@ -10,6 +10,7 @@ class AdminController < ApplicationController
     @products = Product.all
   end
 
+
   private
 
   def require_admin
