@@ -18,15 +18,16 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+
     if @product.save
-      @products = Product.all
-      render :index, alert: "Product '#{@product.title}' succesfully created!"
+      redirect_to new_product_path, notice: "Product was successfully created."
     else
       render :new, status: :unprocessable_content
     end
   end
 
   def delete
+    @product = Product.find(params[:id])
     @product.destroy
   end
 
