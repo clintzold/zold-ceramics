@@ -21,6 +21,7 @@
           <%= form.label :stock, class: "form-label" %>
           <%= form.number_field :stock, class: "form-control" %>
         </div>
+        <%= render "images", form: form, product: @product %>
         <div class="mb-5">
           <%= form.submit class: "btn btn-warning" %>
         </div>

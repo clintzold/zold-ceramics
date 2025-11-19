@@ -1,0 +1,16 @@
+
+<div class="mb-3" data-controller="previews">
+  <%= form.label :main_image, class: "form-label" %>
+  <%= form.file_field :main_image, class: "form-control",
+        direct_upload: true,
+        data: { previews_target: "input", action: "change->previews#preview" } %>
+      <% if product.main_image.attached? %>
+        <%= image_tag product.main_image, data: { previews_target: "preview" }, style: "width: 100px; height: 100px" %>
+      <% else %>
+        <%= image_tag "", data: { previews_target: "preview" } %>
+      <% end %>
+</div>
+<div class="mb-3" >
+  <%= form.label :images, class: "form-label" %>
+  <%= form.file_field :images, multiple: true, class: "form-control" %>
+</div>
