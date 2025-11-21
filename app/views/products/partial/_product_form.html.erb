@@ -20,10 +20,13 @@
           <%= form.number_field :stock, class: "form-control" %>
         </div>
         <%= render "/products/partial/images", form: form, product: product %>
-        <div class="mb-5">
+        <div class="d-flex justify-content-between mb-5">
           <%= form.submit class: "btn btn-warning" %>
-        </div>
       <% end %>
+        <% if !product.id.nil? %>
+          <%= button_to "Delete Product", product_path(product.id), class: "btn btn-danger", method: :delete %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

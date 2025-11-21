@@ -10,8 +10,8 @@
       <%= image_tag product.main_image.variant(:thumb) %>
     <% end %>
   </div>
-
 </div>
+
 <div class="mb-3" data-controller="previews">
   <%= form.label :images, class: "form-label" %>
   <%= form.file_field :images, multiple: true, class: "form-control", data: { previews_target: "input", action: "change->previews#preview" } %>
@@ -23,5 +23,4 @@
       <% end %>
     <% end %>
   </div>
-
 </div>
