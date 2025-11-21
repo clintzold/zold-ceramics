@@ -4,29 +4,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["input", "preview"]	
   connect() {
-		console.log("Howdy, man!");
   }
-//	preview() {
-//		let input = this.inputTarget;
-//		let preview = this.previewTarget;
-//		let file = input.files[0];
-//		let reader = new FileReader;
-//		let imgLocation = document.getElementById("imagesInput")
-//
-//		reader.onloadend = function () {
-//			preview.style.height = "150px";
-//			preview.src = reader.result;
-//		};
-//
-//		if (file) {
-//			reader.readAsDataURL(file);
-//		} else {
-//			preview.src = "";
-//		}
-//
-//	}
-//}
-preview() {
+  preview() {
         this.previewTarget.innerHTML = "" // Clear previous previews
         Array.from(this.inputTarget.files).forEach(file => {
           const reader = new FileReader()
@@ -39,5 +18,5 @@ preview() {
           }
           reader.readAsDataURL(file)
         })
-      }
-    }
+  }
+}
