@@ -4,6 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["input", "preview"]	
   connect() {
+		console.log('hey')
   }
   preview() {
         this.previewTarget.innerHTML = "" // Clear previous previews
