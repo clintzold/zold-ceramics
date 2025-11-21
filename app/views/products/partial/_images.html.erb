@@ -4,21 +4,24 @@
   <%= form.file_field :main_image, class: "form-control",
         direct_upload: true,
         data: { previews_target: "input", action: "change->previews#preview" } %>
-      <% if product.main_image.attached? %>
-        <%= image_tag product.main_image.variant(:thumb), data: { previews_target: "preview" } %>
-      <% else %>
-        <div class="container mt-2" data-previews-target="preview"></div>
-      <% end %>
+
+  <div class="container mt-2" data-previews-target="preview">
+    <% if product.main_image.attached? %>
+      <%= image_tag product.main_image.variant(:thumb) %>
+    <% end %>
+  </div>
+
 </div>
 <div class="mb-3" data-controller="previews">
   <%= form.label :images, class: "form-label" %>
   <%= form.file_field :images, multiple: true, class: "form-control", data: { previews_target: "input", action: "change->previews#preview" } %>
 
-  <% if product.images.attached? %>
-    <% product.images.each do |image| %>
-      <%= image_tag image.variant(:thumb), data: { previews_target: "preview" } %>
+  <div class="container mt-2" data-previews-target="preview">
+    <% if product.images.attached? %>
+      <% product.images.each do |image| %>
+        <%= image_tag image.variant(:thumb), data: { previews_target: "preview" } %>
+      <% end %>
     <% end %>
-  <% else %>
-    <div class="container mt-2" data-previews-target="preview"></div>
-  <% end %>
+  </div>
+
 </div>
