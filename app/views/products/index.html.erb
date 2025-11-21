@@ -12,7 +12,7 @@
       <tbody>
         <% if @products.any? %>
           <%@products.each do |product| %>
-            <tr>
+            <tr class="clickable-row" data-href="<%= edit_product_path(product.id) %>">
               <th scope="row"><%= product.id %></th>
               <td><%= product.title %></td>
               <td><%= product.price %></td>
@@ -23,4 +23,5 @@
       </tbody>
     </table>
   </div>
+  <%= javascript_include_tag 'custom/clickable-table-rows', defer: true %>
 <% end %>

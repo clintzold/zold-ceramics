@@ -1,0 +1,8 @@
+.clickable-row:hover {
+	cursor: pointer;
+	background-color: #BAC8B1;
+}
+
+.clickable-row:hover * {
+	background-color: inherit;
+}
