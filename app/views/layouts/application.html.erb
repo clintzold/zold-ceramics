@@ -55,10 +55,9 @@
         </div>
       </nav>
 
+
       <div class="container-fluid">
-        <% flash.each do |type, msg| %>
-          <div class="alert alert-success m-0"><%= msg %></div>
-        <% end %>
+        <%= render "/layouts/alert" %>
         <%= yield %>
       </div>
 

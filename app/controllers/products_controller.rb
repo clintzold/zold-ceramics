@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   before_action :product_params, only: [ :create ]
+  before_action :validate_admin, only: [ :create, :new, :edit, :index, :update, :destroy ]
+
   def shop
     @products = Product.all
   end
@@ -49,5 +51,11 @@ class ProductsController < ApplicationController
 
   def product_params
     params.expect(product: [ :title, :description, :price, :stock, :main_image, images: [] ])
+  end
+
+  def validate_admin
+    if !current_user.admin
+      redirect_to home_path, alert: "You do not have permission to access this page."
+    end
   end
 end

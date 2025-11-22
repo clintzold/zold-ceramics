@@ -20,7 +20,7 @@ class CartsController < ApplicationController
     cart[product.id.to_s]["quantity"] += amount_to_purchase.to_i
     session[:cart] = cart
 
-    redirect_to cart_path
+    redirect_to shop_path, notice: "#{product.title} was added to cart."
   end
 
   def remove_item

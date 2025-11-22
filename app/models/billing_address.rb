@@ -1,0 +1,2 @@
+class BillingAddress < ApplicationRecord
+end
