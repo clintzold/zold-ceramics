@@ -6,4 +6,5 @@ class Product < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [ 100, 100 ]
   end
   validates :title, :description, :price, :stock, presence: true
+  has_many :order_items
 end
