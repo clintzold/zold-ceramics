@@ -9,8 +9,8 @@
             <div id="carousel<%= item_counter.to_s %>" class="carousel slide col-12 col-md-12 col-lg-6">
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <% if product.main_image.nil? %>
-                    <% main_image_url = "1000014596" %>
+                  <% if !product.main_image.attached? %>
+                    <% main_image_url = "1000014596.jpg" %>
                   <% else %>
                     <% main_image_url = product.main_image %>
                   <% end %>

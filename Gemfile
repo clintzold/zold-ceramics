@@ -70,3 +70,5 @@ end
 gem "bootstrap_icons_rails", "~> 1.113"
 
 gem "devise", "~> 4.9"
+
+gem "stripe", "~> 18.0"
