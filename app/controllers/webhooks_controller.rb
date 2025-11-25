@@ -22,12 +22,9 @@ class WebhooksController < ApplicationController
 
     # Handle the event based on its type
     case event.type
-    when "customer.created"
-      # Handle customer created event
-      puts "Customer created: #{event.data.object.id}"
     when "payment_intent.succeeded"
       # Handle successful payment intent
-      puts "Payment Intent succeeded: #{event.data.object.id}"
+      WebhookProcessingJob.perform_later(event.id)
     # ... handle other event types
     else
       puts "Unhandled event type: #{event.type}"
