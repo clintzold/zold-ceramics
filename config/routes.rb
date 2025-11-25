@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get "webhooks/create"
+  get "webhooks/show"
+  # Webhook resources and job trigger for Stripe activity
+  post "webhooks", to: "webhooks#create"
+  get "webhooks", to: "wehooks#show"
+  # User auth(only for admin currently!)
   devise_for :users
   # Admin routes
   get "admin", to: "admin#dashboard"
@@ -19,6 +25,7 @@ Rails.application.routes.draw do
 
   # Payments with Stripe
   post "checkout", to: "checkout#create"
+  get "checkout/success", to: "checkout#success"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
