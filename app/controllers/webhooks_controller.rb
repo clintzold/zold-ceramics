@@ -22,9 +22,9 @@ class WebhooksController < ApplicationController
 
     # Handle the event based on its type
     case event.type
-    when "payment_intent.succeeded"
+    when "checkout.session.completed"
       # Handle successful payment intent
-      WebhookProcessingJob.perform_later(event.id)
+      WebhookEvent.create!(payload: payload, headers: sig_header)
     # ... handle other event types
     else
       puts "Unhandled event type: #{event.type}"
