@@ -7,13 +7,14 @@ class CheckoutController < ApplicationController
     @line_items = []
     if @cart.any?
       @cart.each do |product_id, details|
-        product = Product.find(product_id)
-        quantity = details["quantity"]
-        image_url = product.main_image.attached? ? rails_blob_url(product.main_image, only_path: false, host: request.base_url) : nil
-        @line_items << {
-          price: product.stripe_price_id,
-          quantity: quantity
-        }
+        product = Product.find_by(id: product_id)
+        if product
+          quantity = details["quantity"]
+          @line_items << {
+            price: product.stripe_price_id,
+            quantity: quantity
+          }
+        end
       end
     end
 
