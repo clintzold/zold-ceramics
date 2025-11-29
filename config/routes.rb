@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  get "webhooks/create"
-  get "webhooks/show"
   # Webhook resources and job trigger for Stripe activity
   post "webhooks", to: "webhooks#create"
-  get "webhooks", to: "wehooks#show"
   # User auth(only for admin currently!)
   devise_for :users
   # Admin routes
