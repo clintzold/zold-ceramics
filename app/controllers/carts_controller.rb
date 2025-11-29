@@ -6,8 +6,8 @@ class CartsController < ApplicationController
 
     if @cart_items.any?
       @cart_items.each do |product_id, details|
-        product = Product.find(product_id)
-        @order_total += product.price * details["quantity"]
+        product = Product.find_by(id: product_id)
+        @order_total += product.price * details["quantity"] unless !product
       end
     end
   end

@@ -11,14 +11,7 @@ class CheckoutController < ApplicationController
         quantity = details["quantity"]
         image_url = product.main_image.attached? ? rails_blob_url(product.main_image, only_path: false, host: request.base_url) : nil
         @line_items << {
-          price_data: {
-            currency: "cad",
-            product_data: {
-              name: product.title,
-              images: image_url ? [ image_url ] : []
-            },
-            unit_amount: (product.price * 100).to_i
-          },
+          price: product.stripe_price_id,
           quantity: quantity
         }
       end

@@ -9,12 +9,18 @@
           <ul class="list-group">
             <% if @cart_items.any? %>
               <% @cart_items.each do |product_id, details| %>
-                <% product = Product.find(product_id) %>
-                <li class="list-group-item">
-                  <b>Name: </b><%= product.title %><br>
-                  <b>Price: </b><%= product.price %><br>
-                  <b>Quantity: </b><%= details["quantity"] %>
-                </li>
+                <% product = Product.find_by(id: product_id) %>
+                <% if product %>
+                  <li class="list-group-item">
+                    <b>Name: </b><%= product.title %><br>
+                    <b>Price: </b><%= product.price %><br>
+                    <b>Quantity: </b><%= details["quantity"] %>
+                  </li>
+                <% else %>
+                  <div class="alert alert-danger" role="alert">
+                    This product is no longer available. Check back with us again!
+                  </div>
+                <% end %>
               <% end %>
             <% end %>
             <li class="list-group-item">
