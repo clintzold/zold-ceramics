@@ -1,4 +1,4 @@
-class WebhookProcessingJob < ApplicationJob
+class CheckoutSessionProcessingJob < ApplicationJob
   queue_as :default
 
   def perform(webhook_event)

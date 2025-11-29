@@ -4,6 +4,6 @@ class WebhookEvent < ApplicationRecord
   private
 
   def process_webhook_event
-    WebhookProcessingJob.perform_later(self)
+    CheckoutSessionProcessingJob.perform_later(self)
   end
 end
