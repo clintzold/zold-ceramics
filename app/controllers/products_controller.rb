@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
         description: @product.description
       })
       stripe_price = Stripe::Price.create({
-        unit_amount: @product.price.to_i * 100,
+        unit_amount: (@product.price * 100).to_i,
         currency: "cad",
         product: stripe_product.id
       })
