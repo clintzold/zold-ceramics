@@ -9,10 +9,10 @@ class CheckoutController < ApplicationController
       @cart.each do |product_id, details|
         product = Product.find_by(id: product_id)
         if product
-          quantity = details["quantity"]
+          desired_quantity = details["quantity"]
           @line_items << {
             price: product.stripe_price_id,
-            quantity: quantity
+            quantity: desired_quantity
           }
         end
       end
@@ -25,7 +25,7 @@ class CheckoutController < ApplicationController
       automatic_tax: { enabled: true },
       shipping_address_collection: { allowed_countries: [ "CA" ] },
       success_url: checkout_success_url,
-      cancel_url: "http://localhost:3000/about"
+      cancel_url: about_url
     })
 
     redirect_to session.url, allow_other_host: true
@@ -48,7 +48,6 @@ class CheckoutController < ApplicationController
       rescue Stripe::InvalidRequestError => e
         flash[:error] = "Error retrieving checkout session: #{e.message}"
       end
-
     end
   end
 

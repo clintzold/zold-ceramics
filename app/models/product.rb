@@ -5,6 +5,8 @@ class Product < ApplicationRecord
   after_update :update_stripe_price
   before_destroy :archive_stripe_product, prepend: true
 
+  has_many :cart_items, dependent: :destroy
+  has_one :product_reservation
   # Create thumbnail variants of product images
   has_one_attached :main_image do |attachable|
     attachable.variant :thumb, resize_to_limit: [ 100, 100 ]

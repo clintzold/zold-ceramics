@@ -32,7 +32,4 @@ class WebhooksController < ApplicationController
 
     render json: { message: "success" }, status: 200
   end
-
-  def show
-  end
 end

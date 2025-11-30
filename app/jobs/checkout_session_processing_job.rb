@@ -9,14 +9,14 @@ class CheckoutSessionProcessingJob < ApplicationJob
       # Construct event from DB instead of HTTP request to Stripe(save 200 ms!)
       event = Stripe::Event.construct_from(payload).data.object
 
-      # Adjust stock values of products purchased
-      update_product_stock(event.id)
+      # Retrieve line items from session
+      line_items = Stripe::Checkout::Session.list_line_items(event.id)
 
-      # Create new customer in DB
-      customer = Customer.create!(email: event.customer_details.email, name: event.customer_details.name, phone: event.customer_details.phone)
+      # Adjust stock values of products purchased and place order
+      update_product_stock(line_items)
 
-      # Create new order in DB through new customer
-      customer.orders.create!(shipping_address: event.customer_details.address)
+      # Create a new order in DB through customer/user
+      create_order(line_items, event.customer_details.address, event.customer_details.email)
 
     rescue StandardError => e
       Rails.logger.error "Error processing webhook event #{webhook_event.data.object.id}: #{e.message}"
@@ -25,10 +25,8 @@ class CheckoutSessionProcessingJob < ApplicationJob
 
   private
 
-  def update_product_stock(checkout_session_id)
+  def update_product_stock(line_items)
     begin
-      line_items = Stripe::Checkout::Session.list_line_items(checkout_session_id)
-
       line_items.data.each do |item|
        product = Product.find_by(stripe_price_id: item.price.id)
        product.stock -= item.quantity.to_i
@@ -37,6 +35,25 @@ class CheckoutSessionProcessingJob < ApplicationJob
 
     rescue StandardError => e
       Rails.logger.error "Error during stock update operation: #{e.message}"
+    end
+  end
+
+  def create_order(line_items, shipping_address, customer_email)
+    begin
+      products_details = []
+      line_items.data.each do |item|
+        products_details << {
+          "stripe_product_id" => item.price.product,
+          "product_name" => item.description,
+          "price_per_unit" => item.price.unit_amount,
+          "quantity" => item.quantity,
+          "total_amount" => item.amount_subtotal
+        }
+      end
+      customer = User.find_by(email: customer_email)
+      customer.orders.create!(shipping_address: shipping_address, product: products_details)
+    rescue StandardError => e
+      Rails.logger.error "Error during order creation: #{e.message}"
     end
   end
 end

@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
-  shipping_address: 
-  product: 
+  cart: one
+  product: one
+  quantity: 1
 
 two:
-  user: two
-  shipping_address: 
-  product: 
+  cart: two
+  product: two
+  quantity: 1
