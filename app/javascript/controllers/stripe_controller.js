@@ -6,7 +6,6 @@ export default class extends Controller {
 	async connect() {
 		const stripe = Stripe(this.publicKeyValue);
 
-
 		const checkout = await stripe.initEmbeddedCheckout({
 			clientSecret: this.clientSecretValue
 		});
@@ -14,5 +13,8 @@ export default class extends Controller {
 		// Mount Checkout
 		checkout.mount(this.element);
 
+	}
+	disconnect() {
+		checkout.destroy
 	}
 }

@@ -11,7 +11,7 @@ class CheckoutController < ApplicationController
       mode: "payment",
       automatic_tax: { enabled: true },
       shipping_address_collection: { allowed_countries: [ "CA" ] },
-      return_url: checkout_success_url
+      return_url: checkout_success_url + "?session_id={CHECKOUT_SESSION_ID}"
     })
   end
 
@@ -25,8 +25,8 @@ class CheckoutController < ApplicationController
         @order_details = {
           customer_email: checkout_session.customer_email,
           amount_total: checkout_session.amount_total,
-          currency: checkout_session.currency,
-          shipping_address: checkout_session.shipping_details
+          currency: checkout_session.currency
+
         }
         flash[:success] = "Payment successful!"
       rescue Stripe::InvalidRequestError => e

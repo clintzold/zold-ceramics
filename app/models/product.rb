@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   validates :title, :description, :price, :stock, presence: true
 
+  after_update :check_out_of_stock
   after_update :update_stripe_product
   after_update :update_stripe_price
   before_destroy :archive_stripe_product, prepend: true
@@ -18,6 +19,17 @@ class Product < ApplicationRecord
 
 
   private
+
+  def check_out_of_stock
+    if self.stock == 0 && !self.out_of_stock
+      self.update!(out_of_stock: true)
+    elsif self.stock != 0 && self.out_of_stock
+      self.update!(out_of_stock: false)
+    else
+      nil
+    end
+  end
+
   # Updates name and description of product if change has occurred
   def update_stripe_product
     return unless stripe_product_id.present?
