@@ -1,8 +1,8 @@
 <div class="container d-flex flex-column justify-content-center mt-5" style="gap: 2em">
     <% if @cart_items.any? %>
       <% item_counter = 0 %>
-      <% @cart_items.each do |product_id, details| %>
-        <% product = Product.find_by(id: product_id) %>
+      <% @cart_items.each do |item| %>
+        <% product = Product.find_by(id: item.product_id) %>
         <% if product %>
           <div class="row">
             <div class="col-12 card" style="">
@@ -39,11 +39,11 @@
                     <h5 class="card-title"><%= product.title %></h5>
                     <p class="card-text"><b>Description: </b><%= product.description %></p>
                     <div>
-                      <p class="card-text"><b>Quantity:</b> <%= details['quantity'] %></p>
-                      <p class="card-text"><b>Total:</b> <%= number_to_currency(product.price * details['quantity'].to_i) %></p>
+                      <p class="card-text"><b>Quantity:</b> <%= item.quantity %></p>
+                      <p class="card-text"><b>Total:</b> <%= number_to_currency(product.price * item.quantity) %></p>
                     </div>
                     <div class="d-flex justify-content-end">
-                      <%= button_to "Remove Item", remove_item_cart_path(product_id), class: "btn btn-warning", method: :delete %>
+                      <%= button_to "Remove Item", remove_item_cart_path(item.product_id), class: "btn btn-warning", method: :delete %>
                     </div>
                   </div>
                 </div>

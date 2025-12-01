@@ -8,13 +8,13 @@
           <h4 class="card-title">Cart Details</h4>
           <ul class="list-group">
             <% if @cart_items.any? %>
-              <% @cart_items.each do |product_id, details| %>
-                <% product = Product.find_by(id: product_id) %>
+              <% @cart_items.each do |item| %>
+                <% product = Product.find_by(id: item.product_id) %>
                 <% if product %>
                   <li class="list-group-item">
                     <b>Name: </b><%= product.title %><br>
                     <b>Price: </b><%= product.price %><br>
-                    <b>Quantity: </b><%= details["quantity"] %>
+                    <b>Quantity: </b><%= item.quantity %>
                   </li>
                 <% else %>
                   <div class="alert alert-danger" role="alert">
@@ -27,7 +27,7 @@
               <b>Cart Total: </b> <%= number_to_currency(@order_total) %>
             </li>
           </ul>
-          <%= button_to "Checkout", checkout_path, method: :post, data: { turbo: false } %>
+          <%= button_to "Checkout", checkout_path, class: "btn btn-warning mt-3", method: :post, data: { turbo: false } %>
         </div>
       </div>
     </div>

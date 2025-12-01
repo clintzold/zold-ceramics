@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   end
 
   # Payments with Stripe
-  post "checkout", to: "checkout#create"
+  post "checkout_session_create", to: "checkout#create"
+  get "checkout", to: "checkout#new"
   get "checkout/success", to: "checkout#success"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,34 +1,18 @@
 class CheckoutController < ApplicationController
-  before_action :get_cart_items
+  before_action :get_line_items, only: [ :new ]
   include Rails.application.routes.url_helpers
 
 
-  def create
-    @line_items = []
-    if @cart.any?
-      @cart.each do |product_id, details|
-        product = Product.find_by(id: product_id)
-        if product
-          desired_quantity = details["quantity"]
-          @line_items << {
-            price: product.stripe_price_id,
-            quantity: desired_quantity
-          }
-        end
-      end
-    end
-
-    session = Stripe::Checkout::Session.create({
+  def new
+    @session = Stripe::Checkout::Session.create({
+      ui_mode: "embedded",
       payment_method_types: [ "card" ],
       line_items: @line_items,
       mode: "payment",
       automatic_tax: { enabled: true },
       shipping_address_collection: { allowed_countries: [ "CA" ] },
-      success_url: checkout_success_url,
-      cancel_url: about_url
+      return_url: checkout_success_url
     })
-
-    redirect_to session.url, allow_other_host: true
   end
 
   def success
@@ -56,7 +40,19 @@ class CheckoutController < ApplicationController
 
   private
 
-  def get_cart_items
-    @cart = session[:cart]
+  def get_line_items
+    @line_items = []
+    cart_items = current_user.cart_items
+
+    if cart_items.any?
+      cart_items.each do |item|
+        product = Product.find(item.product_id)
+        @line_items << {
+          price: product.stripe_price_id,
+          quantity: item.quantity
+        }
+      end
+    end
+    @line_items
   end
 end
