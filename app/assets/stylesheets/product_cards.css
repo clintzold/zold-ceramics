@@ -1,0 +1,14 @@
+.out_of_stock_overlay {
+  position: absolute; /* Position the overlay absolutely within its relative parent */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  z-index: 2; /* Ensure the overlay is above the image */
+  color: white; /* Text color */
+  pointer-events: none; /* Allows clicks to pass through the overlay to the underlying card if needed */
+}
