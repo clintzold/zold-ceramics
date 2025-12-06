@@ -20,7 +20,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-
     begin
       stripe_product = Stripe::Product.create({
         name: @product.title,
@@ -34,7 +33,6 @@ class ProductsController < ApplicationController
 
       @product.stripe_product_id = stripe_product.id
       @product.stripe_price_id = stripe_price.id
-
       if @product.save
         redirect_to new_product_path, notice: "Product was successfully created."
       else

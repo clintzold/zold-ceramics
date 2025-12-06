@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_01_063521) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_06_182247) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -71,6 +71,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_01_063521) do
   create_table "products", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "description"
+    t.integer "lock_version", default: 0, null: false
     t.boolean "out_of_stock", default: false
     t.decimal "price", precision: 6, scale: 2
     t.integer "stock"
@@ -78,6 +79,17 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_01_063521) do
     t.string "stripe_product_id"
     t.string "title"
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "expires_at"
+    t.bigint "product_id", null: false
+    t.integer "reserved_quantity"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["product_id"], name: "index_reservations_on_product_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -107,4 +119,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_01_063521) do
   add_foreign_key "cart_items", "products"
   add_foreign_key "carts", "users"
   add_foreign_key "orders", "users"
+  add_foreign_key "reservations", "products"
+  add_foreign_key "reservations", "users"
 end

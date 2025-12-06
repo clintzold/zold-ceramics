@@ -1,13 +1,13 @@
 class Product < ApplicationRecord
   validates :title, :description, :price, :stock, presence: true
-
+  # Triggered actions
   after_update :check_out_of_stock
   after_update :update_stripe_product
   after_update :update_stripe_price
   before_destroy :archive_stripe_product, prepend: true
-
+  # Product table DB associations
   has_many :cart_items, dependent: :destroy
-  has_one :product_reservation
+  has_many :reservations
   # Create thumbnail variants of product images
   has_one_attached :main_image do |attachable|
     attachable.variant :thumb, resize_to_limit: [ 100, 100 ]
@@ -16,10 +16,9 @@ class Product < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [ 100, 100 ]
   end
 
-
-
   private
 
+  # Toggles out-of-stock state of products
   def check_out_of_stock
     if self.stock == 0 && !self.out_of_stock
       self.update!(out_of_stock: true)
@@ -29,7 +28,6 @@ class Product < ApplicationRecord
       nil
     end
   end
-
   # Updates name and description of product if change has occurred
   def update_stripe_product
     return unless stripe_product_id.present?
@@ -43,12 +41,10 @@ class Product < ApplicationRecord
         }
       )
       end
-
     rescue Stripe::StripeError => e
       Rails.logger.error("Failed to update Stripe Product: #{e.message}")
     end
   end
-
   # Adds new price object to Stripe account
   def update_stripe_price
     return unless stripe_product_id.present?
@@ -59,27 +55,22 @@ class Product < ApplicationRecord
           unit_amount: (price * 100).to_i,
           currency: "cad"
         })
-
         Stripe::Product.update( # Syncs new price with specified Product object
           stripe_product_id,
           { default_price: new_price.id }
         )
-
         if stripe_price_id.present? # Sets old Price object to false
           Stripe::Price.update(
             stripe_price_id,
             { active: false  }
           )
         end
-
           self.update(stripe_price_id: new_price.id)
       end
-
     rescue Stripe::StripeError => e
       Rails.logger.error("Failed to update Stripe Price: #{e.message}")
     end
   end
-
   # Handles archiving of synced Stripe products that have been deleted from DB
   def archive_stripe_product
     return unless stripe_product_id.present? # Prevent interruption of #destroy when products have no valid Stripe id (for development purposes)

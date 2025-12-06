@@ -1,25 +1,23 @@
 Rails.application.routes.draw do
   # Webhook resources and job trigger for Stripe activity
   post "webhooks", to: "webhooks#create"
-  # User auth(only for admin currently!)
+  # User authentication/sign-up/accounts
   devise_for :users
   # Admin routes
   get "admin", to: "admin#dashboard"
-
+  # Visitor routes
   get "home", to: "pages#home"
   get "about", to: "pages#about"
-
   # Products routes
   resources :products, only: [ :new, :create, :edit, :index, :destroy ]
-    get "shop", to: "products#shop"
-    get "products/:id", to: "products#show"
-    patch "products/:id", to: "products#update"
+  get "shop", to: "products#shop"
+  get "products/:id", to: "products#show"
+  patch "products/:id", to: "products#update"
   # Cart routes
   resource :cart, only: [ :show ] do
     post "add_item/:product_id", to: "carts#add_item", as: :add_item
     delete "remove_item/:product_id", to: "carts#remove_item", as: :remove_item
   end
-
   # Payments with Stripe
   post "checkout_session_create", to: "checkout#create"
   get "checkout", to: "checkout#new"
