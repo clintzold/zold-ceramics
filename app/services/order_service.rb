@@ -6,6 +6,7 @@ class OrderService
     @cart = user.cart
     @order = nil
     @error = nil
+    @order_id = nil
   end
 
   def call
@@ -19,7 +20,10 @@ class OrderService
   def success?
     @error.nil?
   end
-
+  # Retrieve ID of newly created order
+  def order_id
+    @order_id
+  end
   private
 
   def create_order!
@@ -38,6 +42,8 @@ class OrderService
             product.decrement!(:stock, item.quantity)
             # Add item to order
             order.order_items.create!(product_id: item.product_id, quantity: item.quantity, price: product.price)
+            # Retrieve ID of pending order
+            @order_id = order.id
           else
             raise StandardError.new("Not enough stock for #{product.title}. Only #{product.stock} remaining.")
           end

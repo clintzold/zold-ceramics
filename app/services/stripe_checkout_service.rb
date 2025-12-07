@@ -1,11 +1,12 @@
 # app/services/stripe_checkout_service.rb
 class StripeCheckoutService
   include Rails.application.routes.url_helpers
-  def initialize(line_items:, customer_email: nil, success_url:, cancel_url:)
+  def initialize(order_id:, line_items:, customer_email: nil, success_url:, cancel_url:)
     @success_url = success_url
     @cancel_url = cancel_url
     @line_items = line_items
     @customer_email = customer_email
+    @order_id = order_id
   end
 
   def call
@@ -18,7 +19,8 @@ class StripeCheckoutService
       automatic_tax: { enabled: true },
       shipping_address_collection: { allowed_countries: [ "CA" ] },
       return_url: @success_url + "?session_id={CHECKOUT_SESSION_ID}",
-      expires_at: (Time.now + 30.minutes).to_i
+      expires_at: (Time.now + 30.minutes).to_i,
+      metadata: { order_id: @order_id }
     })
     @session
   rescue Stripe::StripeError => e

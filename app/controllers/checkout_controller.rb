@@ -8,7 +8,7 @@ class CheckoutController < ApplicationController
     order.call
     if order.success?
       # Begin Stripe checkout
-      service = StripeCheckoutService.new(line_items: @line_items, success_url: checkout_success_url, cancel_url: checkout_success_url)
+      service = StripeCheckoutService.new(order_id: order.order_id, line_items: @line_items, success_url: checkout_success_url, cancel_url: checkout_success_url)
       # Session must be instance variable to pass client's secret key to view
       @session = service.call
       if !@session
