@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  enum :status, { pending: 0, paid: 2, canceled: 3 }
+  enum :status, { pending: 0, paid: 1, canceled: 2 }
   belongs_to :user
-  has_many :order_items
+  has_many :order_items, dependent: :destroy
 end

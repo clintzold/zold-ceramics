@@ -11,15 +11,11 @@ class OrderService
   def call
     create_order!
   end
-
+  # Returns error message if Order creation transaction fails
   def errors
     @error
   end
-
-  def order
-    @order
-  end
-
+  # Boolean check for error and failure of order creation
   def success?
     @error.nil?
   end
@@ -27,16 +23,20 @@ class OrderService
   private
 
   def create_order!
+    # All changes rolled back if any step fails
     ActiveRecord::Base.transaction do
       order = Order.create!(user_id: @user.id)
 
       @cart.cart_items.each do |item|
-        puts @user.email
-        product = Product.find(item.product_id)
-        product.with_lock do
+        # Lock product row to prevent race conditions
+        Product.find(item.product_id).with_lock do
+          # Ensure latest record details are used
           product = Product.find(item.product_id)
+          # Check if enough stock is available and handle accordingly
           if product.stock >= item.quantity
+            # Atomic DB operation to avoid concurrency issues
             product.decrement!(:stock, item.quantity)
+            # Add item to order
             order.order_items.create!(product_id: item.product_id, quantity: item.quantity, price: product.price)
           else
             raise StandardError.new("Not enough stock for #{product.title}. Only #{product.stock} remaining.")
