@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_product, only: [ :add_item, :remove_item ]
+  before_action :authenticate_user!
   # Load cart items for display
   def show
     @cart_items = current_user.cart_items

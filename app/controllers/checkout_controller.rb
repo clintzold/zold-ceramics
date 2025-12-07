@@ -4,15 +4,20 @@ class CheckoutController < ApplicationController
 
   # Generate a new Stripe checkout session
   def new
-    @session = Stripe::Checkout::Session.create({
-      ui_mode: "embedded",
-      payment_method_types: [ "card" ],
-      line_items: @line_items,
-      mode: "payment",
-      automatic_tax: { enabled: true },
-      shipping_address_collection: { allowed_countries: [ "CA" ] },
-      return_url: checkout_success_url + "?session_id={CHECKOUT_SESSION_ID}"  # Pass session ID for retrieval
-    })
+    order = OrderService.new(user: current_user)
+    order.call
+    if order.success?
+      # Begin Stripe checkout
+      service = StripeCheckoutService.new(line_items: @line_items, success_url: checkout_success_url, cancel_url: checkout_success_url)
+      # Session must be instance variable to pass client's secret key to view
+      @session = service.call
+
+      if !@session
+        redirect_to cart_path, alert: "There was an error processing this order."
+      end
+    else
+      redirect_to cart_path, alert: order.errors
+    end
   end
   # Order payment succeeds
   def success

@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   before_destroy :archive_stripe_product, prepend: true
   # Product table DB associations
   has_many :cart_items, dependent: :destroy
-  has_many :reservations
+  has_many :order_items
   # Create thumbnail variants of product images
   has_one_attached :main_image do |attachable|
     attachable.variant :thumb, resize_to_limit: [ 100, 100 ]
