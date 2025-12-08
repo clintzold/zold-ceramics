@@ -20,7 +20,8 @@ class StripeCheckoutService
       shipping_address_collection: { allowed_countries: [ "CA" ] },
       return_url: @success_url + "?session_id={CHECKOUT_SESSION_ID}",
       expires_at: (Time.now + 30.minutes).to_i,
-      metadata: { order_id: @order_id }
+      metadata: { order_id: @order_id },
+      payment_intent_data: { metadata: { order_id: @order_id } }
     })
     @session
   rescue Stripe::StripeError => e

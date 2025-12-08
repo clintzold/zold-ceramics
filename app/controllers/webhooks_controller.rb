@@ -23,8 +23,15 @@ class WebhooksController < ApplicationController
     # Handle the event based on its type
     case event.type
     when "checkout.session.completed"
-      # Handle commpleted checkout
-      WebhookEvent.create!(payload: payload, headers: sig_header)
+      # Handle completed checkout
+      if WebhookEvent.find_by(event_id: event.id).nil?
+        WebhookEvent.create!(event_id: event.id, payload: payload, headers: sig_header)
+      end
+    when "checkout.session.expired"
+      # Handle expired checkout
+      if WebhookEvent.find_by(event_id: event.id).nil?
+        WebhookEvent.create!(event_id: event.id, payload: payload, headers: sig_header)
+      end
     # ... handle other event types
     else
       puts "Unhandled event type: #{event.type}"

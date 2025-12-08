@@ -16,7 +16,7 @@ class CartsController < ApplicationController
   def add_item
     amount_to_purchase = params[:num_of_items]
     cart = current_user.cart
-    new_item = cart.cart_items.find_or_create_by(@product.id)
+    new_item = cart.cart_items.find_or_create_by(product_id: @product.id)
     new_item.quantity += amount_to_purchase.to_i
     new_item.save!
     redirect_to shop_path, notice: "#{@product.title} was added to cart."
