@@ -15,6 +15,7 @@ class StripeCheckoutService
       payment_method_types: [ "card" ],
       line_items: @line_items,
       mode: "payment",
+      customer_creation: "always",
       automatic_tax: { enabled: true },
       shipping_address_collection: { allowed_countries: [ "CA" ] },
       return_url: @success_url + "?session_id={CHECKOUT_SESSION_ID}",
