@@ -28,7 +28,7 @@ class CheckoutSessionProcessingJob < ApplicationJob
   def update_order_paid(order_id:, shipping_address:, customer_email:)
     begin
       order = Order.find(order_id)
-      order.update!(shipping_address: shipping_address, status: 1)
+      order.update!(shipping_address: shipping_address, customer_email: customer_email, status: 1)
     rescue StandardError => e
       Rails.logger.error "Error during order creation: #{e.message}"
     end

@@ -1,9 +1,8 @@
 # app/services/order_service.rb
 
 class OrderService
-  def initialize(user:)
-    @user = user
-    @cart = user.cart
+  def initialize(cart:)
+    @cart = cart
     @order = nil
     @error = nil
     @order_id = nil
@@ -29,7 +28,7 @@ class OrderService
   def create_order!
     # All changes rolled back if any step fails
     ActiveRecord::Base.transaction do
-      order = Order.create!(user_id: @user.id)
+      order = Order.create!
 
       @cart.cart_items.each do |item|
         # Lock product row to prevent race conditions

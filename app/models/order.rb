@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   enum :status, { pending: 0, paid: 1, canceled: 2 }
-  belongs_to :user
   has_many :order_items, dependent: :destroy
+  # Triggers actions for canceled or paid order
   after_update :check_status
 
 
@@ -12,7 +12,7 @@ class Order < ApplicationRecord
      return_stock
     end
   end
-
+  # Handle inventory stock returns on canceled orders
   def return_stock
     retries = 0
     order_items.each do |item|

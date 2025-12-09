@@ -4,11 +4,11 @@ class CheckoutController < ApplicationController
 
   # Generate a new Stripe checkout session
   def new
-    order = OrderService.new(user: current_user)
+    order = OrderService.new(cart: current_cart)
     order.call
     if order.success?
       # Begin Stripe checkout
-      service = StripeCheckoutService.new(order_id: order.order_id, line_items: @line_items, success_url: checkout_success_url, cancel_url: checkout_success_url)
+      service = StripeCheckoutService.new(order_id: order.order_id, line_items: @line_items, success_url: checkout_success_url)
       # Session must be instance variable to pass client's secret key to view
       @session = service.call
       if !@session
@@ -46,12 +46,11 @@ class CheckoutController < ApplicationController
   # Prepare cart items for Stripe processing
   def create_line_items
     @line_items = []
-    cart_items = current_user.cart_items
+    cart_items = current_cart.cart_items
     if cart_items.any?
       cart_items.each do |item|
-        product = Product.find(item.product_id)
         @line_items << {
-          price: product.stripe_price_id,
+          price: item.product.stripe_price_id,
           quantity: item.quantity
         }
       end
