@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   post "checkout_session_create", to: "checkout#create"
   get "checkout", to: "checkout#new"
   get "checkout/success", to: "checkout#success"
+
+  # Shipping controller routes(Shippo API)
+  post "shipping", to: "shipping#get_rates"
+  get "shipping", to: "shipping#test"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

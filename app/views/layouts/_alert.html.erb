@@ -1,7 +1,7 @@
 <% if flash.any? %>
   <div class="container-fluid d-flex flex-column align-items-center p-0 m-0">
   <% flash.each do |type, msg| %>
-    <% if type = "notice" %>
+    <% if type == "notice" %>
       <% alert_style = "success" %>
     <% else %>
       <% alert_style = "danger" %>
