@@ -7,8 +7,10 @@ class ShippingController < ApplicationController
       session_id = params[:checkout_session_id]
 
       order_items = retrieve_order_items(session_id)
-      rates = create_shipment(shipping_details: shipping_details, order_items: order_items)
+      shipment = create_shipment(shipping_details: shipping_details, order_items: order_items)
+      rates = get_rates(shipment)
       shipping_options = create_shipping_options(rates)
+      puts shipping_options
 
       update_stripe_checkout(
         checkout_session_id: session_id,
@@ -69,6 +71,12 @@ class ShippingController < ApplicationController
 
   def create_shipment(shipping_details:, order_items:)
     address = shipping_details["address"]
+    #
+    # Parcel creation is for TEST PURPOSES ONLY
+    #
+    # Will refactor to separate method when item weight and shipping
+    # package dimensions are decided upon
+    #
     parcels = []
     order_items.each do
       parcels << {
@@ -82,7 +90,7 @@ class ShippingController < ApplicationController
     end
 
     # Create shipment object
-    shipping_details = {
+    shipment_details = {
     "address_from" => {
       "name" => "Clint Zold",
       "street1" => "456 County Rd 42",
@@ -102,9 +110,19 @@ class ShippingController < ApplicationController
     },
     "parcels" => parcels
   }
+    shipment_details
+  end
 
-    request = ShippoCreateShipmentService.new(shipping_details: shipping_details)
+  def get_rates(shipment)
+    request = ShippoCreateShipmentService.new(shipment_details: shipment)
 
+    # Call Shippo with shipment until rates are returned
+    #
+    # service object can be found at app/services/shippo_api_service.rb
+    #
+    # ***will need to modify this to avoid sending too many requests
+    # during OAuth errors with carriers***
+    #
     begin
       request.call
       if request.rates.any?
