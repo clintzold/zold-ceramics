@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get "checkout/success", to: "checkout#success"
 
   # Shipping controller routes(Shippo API)
-  post "shipping", to: "shipping#get_rates"
+  post "shipping", to: "shipping#get_shipping_options"
   get "shipping", to: "shipping#test"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

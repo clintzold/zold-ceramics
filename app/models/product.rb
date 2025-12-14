@@ -20,9 +20,9 @@ class Product < ApplicationRecord
 
   # Toggles out-of-stock state of products
   def check_out_of_stock
-    if self.stock == 0 && !self.out_of_stock
+    if self.stock < 1
       self.update!(out_of_stock: true)
-    elsif self.stock != 0 && self.out_of_stock
+    elsif self.stock > 0 && self.out_of_stock
       self.update!(out_of_stock: false)
     else
       nil
