@@ -12,8 +12,7 @@ class CheckoutSessionProcessingJob < ApplicationJob
       # Update order status based on event type, mark webhook as processed
       case event.type
       when "checkout.session.completed"
-        puts event.type
-        update_order_paid(order_id: event_details.metadata.order_id, shipping_address: event_details.customer_details.address, customer_email: event_details.customer_details.email, customer_name: event_details.customer_details.name)
+        update_order_paid(event_details)
         webhook_event.toggle!(:processed)
       when "checkout.session.expired"
         update_order_canceled(order_id: event_details.metadata.order_id)
@@ -27,11 +26,15 @@ class CheckoutSessionProcessingJob < ApplicationJob
   private
 
   # Update order status to paid
-  def update_order_paid(order_id:, shipping_address:, customer_email:, customer_name:)
+  def update_order_paid(order_details:)
     begin
-      puts order_id
       order = Order.find(order_id)
-      order.update!(shipping_address: shipping_address, email: customer_email, name: customer_name, status: 1)
+      order.update!(
+        shipping_address: order_details.customer_details.address,
+        email: order_details.customer_details.email,
+        name: order_details.customer_details.name,
+        status: 1
+      )
     rescue StandardError => e
       Rails.logger.error "Error during order creation: #{e.message}"
     end
