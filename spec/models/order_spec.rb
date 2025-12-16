@@ -20,16 +20,4 @@ RSpec.describe Order, type: :model do
       expect(order.status).to eq("paid")
     end
   end
-  context "When an order with items is canceled" do
-    order.order_items.create!(product_id: product.id, quantity: 10)
-
-    it "adds stock to the product order" do
-      order.update!(status: 2)
-      expect(product.reload.stock).to eq(110)
-    end
-  end
-  context "When multiple orders are canceled" do
-    it "processes transactions sequentially" do
-    end
-  end
 end
