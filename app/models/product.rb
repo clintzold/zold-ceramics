@@ -31,7 +31,7 @@ class Product < ApplicationRecord
   def update_stripe_product
     return unless stripe_product_id.present?
     begin
-      if saved_change_to_attribute?(:title) || saved_change_to_attribute?(:description)
+      if saved_change_to_title? || saved_change_to_description?
       Stripe::Product.update(
         stripe_product_id,
         {
