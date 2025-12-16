@@ -13,11 +13,11 @@ class WebhooksController < ApplicationController
       )
     rescue JSON::ParserError => e
       # Invalid payload
-      render json: { error: "Invalid payload" }, status: 400
+      render json: { error: "Invalid payload: #{e.message}" }, status: 400
       return
     rescue Stripe::SignatureVerificationError => e
       # Invalid signature
-      render json: { error: "Invalid signature" }, status: 400
+      render json: { error: "Invalid signature: #{e.message}" }, status: 400
       return
     end
     # Handle the event based on its type
