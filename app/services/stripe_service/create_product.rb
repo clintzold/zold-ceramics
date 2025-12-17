@@ -1,5 +1,7 @@
 module StripeService
-  class CreateProduct
+  class CreateProduct < ApplicationService
+    attr_reader :product, :error
+
     def initialize(product)
       @product = product
       @error = nil
@@ -11,10 +13,6 @@ module StripeService
 
     def success?
       @error.nil?
-    end
-
-    def error
-      @error
     end
 
     private

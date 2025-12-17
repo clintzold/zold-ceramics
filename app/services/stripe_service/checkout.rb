@@ -1,6 +1,6 @@
 # app/services/stripe_checkout_service.rb
 module StripeService
-  class Checkout
+  class Checkout < ApplicationService
     include Rails.application.routes.url_helpers
     def initialize(order_id:, line_items:, customer_email: nil, success_url:)
       @success_url = success_url

@@ -37,7 +37,6 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    service = UpdateProductService.new(@product)
     if @product.update(product_params)
       redirect_to products_path, notice: "Product #{@product.title} was updated."
     else
