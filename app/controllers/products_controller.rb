@@ -19,14 +19,12 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
-    service = CreateStripeProductService.new(@product)
-    service.call
-    if service.success?
+    result = ProductService::Create.call(product_params)
+    if result.success?
       flash[:notice] = "Product was successfully created."  # FLASH NOT WORKING IN TURBO FRAME
       redirect_to new_product_path
     else
-      flash.now[:alert] = service.error # FLASH NOT WORKING IN TURBO FRAME
+      flash.now[:alert] = result.errors.join(", ") # FLASH NOT WORKING IN TURBO FRAME
       render :new
     end
   end

@@ -27,7 +27,7 @@
               <b>Cart Total: </b> <%= number_to_currency(@order_total) %>
             </li>
           </ul>
-          <%= button_to "Checkout", checkout_path, class: "btn btn-warning mt-3", method: :get, data: { turbo: false } %>
+          <%= button_to "Checkout", order_path, class: "btn btn-warning mt-3", method: :get, data: { turbo: false } %>
         </div>
       </div>
     </div>

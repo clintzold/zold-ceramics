@@ -45,14 +45,13 @@ class ShippoCreateShipmentService
   private
 
   def handle_response(response)
-    puts response
     case response.code.to_i
     when 200..299
       ShippingRate.create!(body: JSON.parse(response.body))
     when 401
       { error: "Authentication failed: Check API Token", details: JSON.parse(response.body) }
     else
-      { error: "API reqest failed with stats #{response.code}", details: JSON.parse(response.body) }
+      { error: "API request failed with stats #{response.code}", details: JSON.parse(response.body) }
     end
   end
 end

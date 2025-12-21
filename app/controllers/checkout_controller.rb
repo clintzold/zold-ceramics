@@ -1,26 +1,20 @@
 class CheckoutController < ApplicationController
   before_action :create_line_items, only: [ :new ]
+  before_action :current_cart
   include Rails.application.routes.url_helpers
 
   # Generate a new Stripe checkout session
   def new
-    order = OrderService.new(cart: current_cart)
-    order.call
-    if order.success?
-      # Begin Stripe checkout
-      service = StripeCheckoutService.new(
-        order_id: order.order_id,
-        line_items: @line_items,
-        success_url: checkout_success_url
-      )
-      # Session must be instance variable to pass client's secret key to view
-      @session = service.call
-      if !@session
-        redirect_to cart_path, alert: "There was an error communicating with Stripe. Please try again."
-      end
+    service = StripeService::Checkout.call(
+      order_id: params[:order_id],
+      line_items: @line_items,
+      success_url: checkout_success_url
+    )
+    # Session must be instance variable to pass client's secret key to view
+    if service.success?
+      @session = service.payload
     else
-      # Return to cart and display error details if order creation fails
-      redirect_to cart_path, alert: order.errors
+      redirect_to cart_path, alert: service.errors.join(", ")
     end
   end
 
@@ -50,7 +44,7 @@ class CheckoutController < ApplicationController
   # Prepare cart items for Stripe processing
   def create_line_items
     @line_items = []
-    cart_items = current_cart.cart_items
+    cart_items = @cart.cart_items
     if cart_items.any?
       cart_items.each do |item|
         @line_items << {

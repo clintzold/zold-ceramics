@@ -2,16 +2,15 @@
 module StripeService
   class Checkout < ApplicationService
     include Rails.application.routes.url_helpers
-    def initialize(order_id:, line_items:, customer_email: nil, success_url:)
+    def initialize(order_id:, line_items:, success_url:)
       @success_url = success_url
       @line_items = line_items
-      @customer_email = customer_email
       @order_id = order_id
     end
 
     def call
       begin
-        @session = Stripe::Checkout::Session.create({
+        session = Stripe::Checkout::Session.create({
           ui_mode: "embedded",
           permissions: { update_shipping_details: "server_only" },
           payment_method_types: [ "card" ],
@@ -35,10 +34,12 @@ module StripeService
           metadata: { order_id: @order_id },
           payment_intent_data: { metadata: { order_id: @order_id } }
         })
-        @session
+
+        success(session)
       rescue Stripe::StripeError => e
         # Handle Stripe API errors
         Rails.logger.error "Stripe API Error: #{e.message}"
+        falure("There was an error communicating with Stripe")
       end
     end
   end

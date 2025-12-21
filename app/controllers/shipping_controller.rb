@@ -10,7 +10,6 @@ class ShippingController < ApplicationController
       shipment = create_shipment(shipping_details: shipping_details, order_items: order_items)
       rates = get_rates(shipment)
       shipping_options = create_shipping_options(rates)
-      puts shipping_options
 
       update_stripe_checkout(
         checkout_session_id: session_id,
