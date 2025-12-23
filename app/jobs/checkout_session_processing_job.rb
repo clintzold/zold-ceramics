@@ -13,31 +13,14 @@ class CheckoutSessionProcessingJob < ApplicationJob
 
       case event.type
       when "checkout.session.completed"
-        update_order_paid(order_details: event_details)
+        OrderService::Paid.call(order_id: order_id, order_details: event_details)
         webhook_event.toggle!(:processed)
       when "checkout.session.expired"
-        CancelOrderService.new(order_id).call
+        OrderService::Cancel.call(order_id).call
         webhook_event.toggle!(:processed)
       end
     rescue StandardError => e
       Rails.logger.error "Error processing webhook event: #{e.message}"
     end
-  end
-
-  private
-
-  def update_order_paid(order_details:)
-      order = Order.find(order_details.metadata.order_id)
-      order.update!(
-        stripe_order_id: order_details.id,
-        stripe_customer_id: order_details.customer,
-        shipping_address: order_details.customer_details.address,
-        email: order_details.customer_details.email,
-        name: order_details.customer_details.name,
-        sub_total: order_details.amount_total.to_i / 100,
-        total: order_details.amount_total.to_i / 100,
-        shipping_rate: order_details.shipping_cost.shipping_rate,
-        status: 1
-      )
   end
 end

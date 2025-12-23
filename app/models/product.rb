@@ -27,13 +27,15 @@ class Product < ApplicationRecord
     end
   end
 
-  # Updates name and description of product if change has occurred
+  # Updates title and description of product if change has occurred
   def update_stripe_product
     return unless stripe_product_id.present?
-    StripeService::UpdateProduct.call(self)
+    if saved_change_to_title? || saved_change_to_description?
+      StripeService::UpdateProduct.call(self)
+    end
   end
 
-  # Adds new price object to Stripe account
+  # Adds new price object to Stripe product if change detected
   def update_stripe_price
     return unless stripe_product_id.present?
     if saved_change_to_price?

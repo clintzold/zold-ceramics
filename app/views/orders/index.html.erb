@@ -1,0 +1,5 @@
+<h1>Orders</h1>
+
+<%= render partial: "order_search", locals: { orders: @orders, statuses: @statuses } %>
+
+<%= render partial: "results", locals: { orders: @orders } %>

@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   patch "products/:id", to: "products#update"
 
   # Order routes
-  get "order", to: "order#create"
+  get "orders/create", to: "order#create"
+  get "orders", to: "orders#index"
+  get "orders/:id", to: "orders#show"
 
   # Cart routes
   resource :cart, only: [ :show ] do

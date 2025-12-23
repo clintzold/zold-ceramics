@@ -1,0 +1,27 @@
+
+<div class="overflow-scroll bg-white" id="filtered_results" style="height: 800px">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">View</th>
+        <th scope="col">Status</th>
+        <th scope="col">Total</th>
+        <th scope="col">Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @orders.any? %>
+        <%@orders.order(created_at: :desc).each do |order| %>
+          <tr>
+            <th scope="row"><%= order.id %></th>
+            <td><%= link_to "View Order", orders_path(order.id), data: {turbo_frame: "adminOptions" } %></td>
+            <td><%= order.status %></td>
+            <td><%= number_to_currency(order.total) %></td>
+            <td><%= order.created_at %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
