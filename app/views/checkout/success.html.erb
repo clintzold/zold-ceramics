@@ -1,1 +1,18 @@
-<div><%= @order_details %></div>
+<h1 class="text-center">Order Confirmed</h1>
+
+<div class="container-fluid d-flex flex-column justify-content-center" style="height:50vh">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-8">
+      <p class="text-center">Your order has been placed!</p>
+      <p>You will receive a confirmation email containing order details shortly.</p>
+      <p>
+        Please save your order# for reference and contact us at placeholder@email.com if you do not receive confirmation within 24 hrs.
+      </p>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="card col-md-8">
+      <div class="card-title text-center">Order #<%= @checkout_details.metadata.order_id %></div>
+    </div>
+  </div>
+</div>

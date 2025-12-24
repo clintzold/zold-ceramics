@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
     if params[:filtered_status].present?
       @orders = @orders.where(status: params[:filtered_status])
     end
+
     respond_to do |format|
       format.html
       format.turbo_stream {

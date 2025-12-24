@@ -19,9 +19,15 @@ class Product < ApplicationRecord
   # Toggles out-of-stock state of products
   def check_out_of_stock
     if self.stock < 1 && !self.out_of_stock
+
       self.update!(out_of_stock: true)
+      archive_stripe_product
+
     elsif self.stock > 0 && self.out_of_stock
+
       self.update!(out_of_stock: false)
+      reactivate_stripe_product
+
     else
       nil
     end
@@ -41,5 +47,19 @@ class Product < ApplicationRecord
     if saved_change_to_price?
       StripeService::UpdatePrice.call(self)
     end
+  end
+
+  # Archives Stripe Product (triggered on destroy and out_of_stock)
+  def archive_stripe_product
+    Stripe::Product.update("#{self.stripe_product_id}", { active: false })
+  rescue Stripe::StripeError => e
+    Rails.logger.error "Error archiving Stripe Product: #{e.message}"
+  end
+
+  # Re-activate Stripe Product (triggered when stock is added)
+  def reactivate_stripe_product
+    Stripe::Product.update("#{self.stripe_product_id}", { active: true })
+  rescue Stripe::StripeError => e
+    Rails.logger.error "Error activating Stripe Product: #{e.message}"
   end
 end

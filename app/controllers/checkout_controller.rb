@@ -24,13 +24,7 @@ class CheckoutController < ApplicationController
     session_id = params[:session_id]
     if session_id.present?
       begin
-        checkout_session = Stripe::Checkout::Session.retrieve(session_id)
-        @order_details = {
-          customer_email: checkout_session.customer_email,
-          amount_total: checkout_session.amount_total,
-          currency: checkout_session.currency
-        }
-        flash[:success] = "Payment successful!"
+        @checkout_details = Stripe::Checkout::Session.retrieve(session_id)
       rescue Stripe::InvalidRequestError => e
         flash[:error] = "Error retrieving checkout session: #{e.message}"
       end

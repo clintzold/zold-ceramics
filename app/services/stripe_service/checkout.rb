@@ -16,6 +16,7 @@ module StripeService
           payment_method_types: [ "card" ],
           line_items: @line_items,
           mode: "payment",
+          invoice_creation: { enabled: true },
           customer_creation: "always",
           automatic_tax: { enabled: true },
           shipping_address_collection: { allowed_countries: [ "CA" ] },
