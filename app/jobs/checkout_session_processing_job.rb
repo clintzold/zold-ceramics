@@ -8,15 +8,14 @@ class CheckoutSessionProcessingJob < ApplicationJob
       # Construct event from DB instead of HTTP request
       # to Stripe(save 200 ms!)
       event = Stripe::Event.construct_from(payload)
-      event_details = event.data.object
-      order_id = event_details.metadata.order_id
+      checkout_details = event.data.object
 
       case event.type
       when "checkout.session.completed"
-        OrderService::Paid.call(order_id: order_id, order_details: event_details)
+        OrderService::Paid.call(checkout_details)
         webhook_event.toggle!(:processed)
       when "checkout.session.expired"
-        OrderService::Cancel.call(order_id).call
+        OrderService::Cancel.call(checkout_details.metadata.order_id)
         webhook_event.toggle!(:processed)
       end
     rescue StandardError => e

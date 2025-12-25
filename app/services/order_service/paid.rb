@@ -1,17 +1,22 @@
 # app/services/order_service/paid.rb
 module OrderService
   class Paid < ApplicationService
-    def initialize(order_id:, order_details:)
+    def initialize(checkout_details)
       @order = nil
-      @order_id = order_id
-      @order_details = order_details
-      @stripe_shipping_rate_id = order_details.shipping_cost.shipping_rate
+      @order_id = checkout_details.metadata.order_id
+      @checkout_details = checkout_details
       @shippo_rate_id = nil
     end
 
     def call
       retrieve_order
 
+      # Must retrieve Stripe Shipping Rate created at checkout to access
+      # metadata that contatins the Shippo Shipping Rate ID.
+      #
+      # Shippo Shipping Rate ID is necessary for purchasing the proper
+      # shipping label for the Order and shipping rate purchased by
+      # the customer.
       retrieve_shippo_rate_id
 
       add_details_to_paid_order
@@ -27,20 +32,20 @@ module OrderService
 
     def add_details_to_paid_order
       @order.assign_attributes(
-        stripe_order_id: @order_details.id,
-        stripe_customer_id: @order_details.customer,
-        shipping_address: @order_details.customer_details.address,
-        email: @order_details.customer_details.email,
-        name: @order_details.customer_details.name,
-        sub_total: @order_details.amount_total.to_i / 100,
-        total: @order_details.amount_total.to_i / 100,
+        stripe_order_id: @checkout_details.id,
+        stripe_customer_id: @checkout_details.customer,
+        shipping_address: @checkout_details.customer_details.address,
+        email: @checkout_details.customer_details.email,
+        name: @checkout_details.customer_details.name,
+        sub_total: @checkout_details.amount_total.to_i / 100,
+        total: @checkout_details.amount_total.to_i / 100,
         shipping_rate: @shippo_rate_id,
         status: 1
       )
     end
 
     def retrieve_shippo_rate_id
-     rate = Stripe::ShippingRate.retrieve(@stripe_shipping_rate_id)
+      rate = Stripe::ShippingRate.retrieve(@checkout_details.shipping_cost.shipping_rate)
      @shippo_rate_id = rate.metadata.object_id
     end
 
