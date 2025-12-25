@@ -1,29 +1,21 @@
-<div id="adminDashboard" class="container-fluid p-0">
-  <div class="row flex-wrap">
+<div id="adminDashboard" class="container-fluid">
+  <div class="row h-100 flex-wrap">
     
-    <aside class="col-md-3 bg-secondary d-flex flex-column">
+    <aside class="col-md-3 col-xl-2 d-flex flex-column">
         <h5>Welcome <small><%= @admin.email %></small></h5>
-        <div class="d-flex flex-column justify-content-center">
-          <p class="d-inline-flex gap-1">
-            <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#productsOptions" aria-expanded="false", aria-controls="productsOptions">
-              Products
-            </button>
-            <div class="collapse" id="productsOptions">
-              <div class="list-group list-group-flush" id="admin_options_list">
-                <%= link_to "View Products", products_path, class: "list-group-item list-group-item-action", data: { turbo_frame: "adminOptions" } %>
-                <%= link_to "Add Product", new_product_path, class: "list-group-item list-group-item-action", data: { turbo_frame: "adminOptions" } %>
-              </div>
-            </div>
-          </p>
+        <div class="d-flex pb-3 mt-5 flex-column justify-content-center align-items-center gap-2">
+          <%= render partial: "accordion" %>
         </div>
     </aside>
 
-    <main class=" col-md-8" >
+    <main class="col-md-9 col-xl-8" >
       <turbo-frame id="adminOptions" ></turbo-frame>
     </main>
 
-    <aside class="col-md-1">
-    </aside>
+      <aside class="col-0 col-xl-2">
+      </aside>
+
+
   </div>
 </div>
 

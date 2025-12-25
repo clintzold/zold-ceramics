@@ -29,7 +29,7 @@ class ShippoCreateShipmentService
       address_to: @shipment_details["address_to"],
       parcels: @shipment_details["parcels"],
       async: false,
-      carrier_accounts: [ "5c075acf57cf49b492378f095fe7fd84" ]
+      carrier_accounts: [ "5c075acf57cf49b492378f095fe7fd84" ]  # Currently set to UPS account key
     }.to_json
 
     response = http.request(request)

@@ -1,0 +1,93 @@
+<!-- app/views/admin/_accordion.html.erb -->
+
+<div class="accordion w-100" id="accordionAdmin">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Products
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionAdmin">
+      <div class="accordion-body">
+        <div class="list-group list-group-flush" id="admin_options_list">
+          <%= link_to "View Products", products_path, class: "list-group-item list-group-item-action", data: { turbo_frame: "adminOptions" } %>
+          <%= link_to "Add Product", new_product_path, class: "list-group-item list-group-item-action", data: { turbo_frame: "adminOptions" } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Orders
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionAdmin">
+      <div class="accordion-body">
+        <div class="list-group list-group-flush" id="admin_options_list">
+          <%= link_to "View Orders", orders_path, class: "list-group-item list-group-item-action", data: { turbo_frame: "adminOptions" } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Shipments
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionAdmin">
+      <div class="accordion-body">
+        <div class="list-group list-group-flush" id="admin_options_list">
+          <a href="#" class="list-group-item list-group-item-action">View All</a>
+          <a href="#" class="list-group-item list-group-item-action">Purchase Labels</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        Emails
+      </button>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionAdmin">
+      <div class="accordion-body">
+        <div class="list-group list-group-flush" id="admin_options_list">
+          <a href="#" class="list-group-item list-group-item-action">View All</a>
+          <a href="#" class="list-group-item list-group-item-action">Send New</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+        Reviews
+      </button>
+    </h2>
+    <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionAdmin">
+      <div class="accordion-body">
+        <div class="list-group list-group-flush" id="admin_options_list">
+          <a href="#" class="list-group-item list-group-item-action">View All</a>
+          <a href="#" class="list-group-item list-group-item-action">Add Review</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+        Refunds
+      </button>
+    </h2>
+    <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionAdmin">
+      <div class="accordion-body">
+        <div class="list-group list-group-flush" id="admin_options_list">
+          <a href="#" class="list-group-item list-group-item-action">View All</a>
+          <a href="#" class="list-group-item list-group-item-action">Add New</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

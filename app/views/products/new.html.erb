@@ -1,4 +1,5 @@
 <%= turbo_frame_tag id="adminOptions" do %>
+  <%= render partial: "layouts/alert" %>
 <h1 style="text-align: center" class="mt-2">New Product</h1>
 
 <%= render "products/partial/product_form", product: @product %>

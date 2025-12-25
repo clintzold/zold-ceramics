@@ -1,6 +1,6 @@
 <%=
   form_with url: orders_path, method: :get, data: {turbo_stream: true, controller: "filter", action: "change->filter#filter"} do |form| %>
-  <ul>
+  <ul class="list-unstyled d-flex justify-content-around">
     <% statuses.each do |status| %>
       <li>
         <%= check_box_tag "filtered_status[]",

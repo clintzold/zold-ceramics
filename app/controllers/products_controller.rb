@@ -21,10 +21,10 @@ class ProductsController < ApplicationController
   def create
     result = ProductService::Create.call(product_params)
     if result.success?
-      flash[:notice] = "Product was successfully created."  # FLASH NOT WORKING IN TURBO FRAME
+      flash[:success] = "Product was successfully created."  # FLASH NOT WORKING IN TURBO FRAME
       redirect_to new_product_path
     else
-      flash.now[:alert] = result.errors.join(", ") # FLASH NOT WORKING IN TURBO FRAME
+      flash.now[:danger] = result.errors.join(", ") # FLASH NOT WORKING IN TURBO FRAME
       render :new
     end
   end
@@ -45,7 +45,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy!
-    redirect_to admin_path, notice: "Product was successfully deleted."
+    redirect_to admin_path, success: "Product was successfully deleted."
   end
 
   private

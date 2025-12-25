@@ -1,5 +1,7 @@
-<h1>Orders</h1>
+<%= turbo_frame_tag id="adminOptions" do %>
+  <h1 class="text-center p-3 p-md-0">Orders</h1>
 
-<%= render partial: "order_search", locals: { orders: @orders, statuses: @statuses } %>
+  <%= render partial: "order_search", locals: { orders: @orders, statuses: @statuses } %>
 
-<%= render partial: "results", locals: { orders: @orders } %>
+  <%= render partial: "results", locals: { orders: @orders } %>
+<% end %>

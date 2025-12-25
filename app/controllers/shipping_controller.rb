@@ -40,7 +40,14 @@ class ShippingController < ApplicationController
           fixed_amount: {
             currency: rate["currency_local"],
             amount: (rate["amount_local"].to_i * 100).to_s
-          }
+          },
+          #
+          # This id is KEY to retrieving the unique rate generated
+          # for each order by Shippo.
+          #
+          # It is impossible to purchase the label via API call
+          # later without it!
+          metadata: { object_id: rate["object_id"] }
         }
       }
     end

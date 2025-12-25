@@ -5,10 +5,14 @@ module OrderService
       @order = nil
       @order_id = order_id
       @order_details = order_details
+      @stripe_shipping_rate_id = order_details.shipping_cost.shipping_rate
+      @shippo_rate_id = nil
     end
 
     def call
       retrieve_order
+
+      retrieve_shippo_rate_id
 
       add_details_to_paid_order
 
@@ -30,9 +34,14 @@ module OrderService
         name: @order_details.customer_details.name,
         sub_total: @order_details.amount_total.to_i / 100,
         total: @order_details.amount_total.to_i / 100,
-        shipping_rate: @order_details.shipping_cost.shipping_rate,
+        shipping_rate: @shippo_rate_id,
         status: 1
       )
+    end
+
+    def retrieve_shippo_rate_id
+     rate = Stripe::ShippingRate.retrieve(@stripe_shipping_rate_id)
+     @shippo_rate_id = rate.metadata.object_id
     end
 
     def save_order
