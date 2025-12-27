@@ -6,7 +6,7 @@
 #
 # This allows users to select shipping rates provided in real time
 # by making a call to the Shippo shipment API.
-
+#
 module ShippingService
   class BuildShippingOptions < ApplicationService
     attr_reader :shipping_options
@@ -36,6 +36,10 @@ module ShippingService
           }
         }
       end
+      success(@shipping_options)
+    rescue StandardError => e
+      Rails.logger.error "There was an error converting shipping rates for Stripe: #{e.message}"
+      failure(e.message)
     end
   end
 end
