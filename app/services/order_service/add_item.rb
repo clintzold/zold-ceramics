@@ -1,6 +1,6 @@
 # app/services/order_service/add_item.rb
 #
-# This service uses pessimistic locking and atomic
+# This service uses pessimistic locking for
 # database operations.
 #
 # Having such limited stock of sometimes 'one-off' products
@@ -33,7 +33,8 @@ module OrderService
       @product.with_lock do
         @product.reload
         if stock_available?
-          @product.decrement!(:stock, @desired_amount)
+          @product.stock -= @desired_amount
+          @product.save!
           add_item_to_order
         else
           raise NotEnoughStockError.new(@product.title, @product.stock)

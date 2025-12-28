@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
   # Order routes
   resources :orders, only: [ :create, :index, :show ]
-  get "orders", to: "orders#index"
+
+  # Shipments routes
+  resources :shipments, only: [ :create, :index, :show ]
 
   # Cart routes
   resource :cart, only: [ :show ] do
@@ -31,8 +33,7 @@ Rails.application.routes.draw do
   get "checkout/success", to: "checkout#success"
 
   # Shipping controller routes(Shippo API)
-  post "shipping", to: "shipping#get_shipping_options"
-  get "shipping", to: "shipping#test"
+  get "shipping_options", to: "shipping_options#create"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

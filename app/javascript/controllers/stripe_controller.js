@@ -5,7 +5,7 @@ import { Controller } from "@hotwired/stimulus"
 // Calls backend to set shipping options
 const onShippingDetailsChange = async (shippingDetailsChangeEvent) => {
 	const { checkoutSessionId, shippingDetails } = shippingDetailsChangeEvent;
-	const response = await fetch("shipping", {
+	const response = await fetch("shipping_options", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({
@@ -13,7 +13,6 @@ const onShippingDetailsChange = async (shippingDetailsChangeEvent) => {
 			shipping_details: shippingDetails,
 		})
 	})
-	console.log(checkoutSessionId)
 
 	if (response.type === 'error') {
 		return Promise.resolve({ type: "reject", errorMessage: response.message });

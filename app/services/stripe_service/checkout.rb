@@ -40,7 +40,7 @@ module StripeService
       rescue Stripe::StripeError => e
         # Handle Stripe API errors
         Rails.logger.error "Stripe API Error: #{e.message}"
-        falure("There was an error communicating with Stripe")
+        failure("There was an error communicating with Stripe")
       end
     end
   end

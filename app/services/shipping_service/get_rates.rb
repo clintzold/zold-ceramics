@@ -6,8 +6,6 @@ module ShippingService
     end
 
     def call
-      request = ShippoCreateShipmentService.new(shipment_details: @shipment)
-
       # Call Shippo with shipment until rates are returned
       #
       # service object can be found at app/services/shippo_api_service.rb
@@ -16,24 +14,15 @@ module ShippingService
       # during OAuth errors with carriers***
       #
       retries = 0
-      begin
-        request.call
-        if request.rates.any?
-          success(request.rates)
-        else
-          raise StandardError.new(
-            "Error during shipping rates request to Shippo: No rates retrieved!"
-          )
-        end
-      rescue StandardError => e
-        if retries > 5
-          failure(
-            "Error retrieving rates from Shippo. #{retries} attempts made: #{e.message}"
-          )
+      5.times do
+        result = ShippoService::CreateShipment.call(shipment_details: @shipment)
+        if result.payload.any?
+         return success(result.payload)
         end
         retries += 1
-        retry
       end
+
+      failure("Error retrieving rates from Shippo: #{result.errors.join(', ')}")
     end
   end
 end

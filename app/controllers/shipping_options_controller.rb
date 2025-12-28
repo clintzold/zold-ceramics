@@ -1,8 +1,8 @@
 class ShippingOptionsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :retrieve_order_items
+  before_action :retrieve_order_items, only: [ :get_shipping_options ]
 
-  def create
+  def get_shipping_options
     result = ShippingService::GenerateOptions.call(
       shipping_details: params[:shipping_details],
       session_id: params[:checkout_session_id],
@@ -10,14 +10,10 @@ class ShippingOptionsController < ApplicationController
     )
 
     if result.success?
-      @response = { type: "object", value: { succeeded: true } }
+      render json: { type: "object", value: { succeeded: true } }
     else
       Rails.logger.error result.errors.join(", ")
-      @response = { type: "error", message: "We could not find shipping options. Please review your shipping address and try again." }
-    end
-
-    respond_to do |format|
-      format.json { render json: @response }
+      render json: { type: "error", message: "We could not find shipping options. Please review your shipping address and try again." }
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_24_010235) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_27_234955) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -97,6 +97,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_24_010235) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "shipments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "label_url"
+    t.bigint "order_id", null: false
+    t.string "parcel"
+    t.string "tracking_number"
+    t.string "tracking_status"
+    t.string "tracking_url_provider"
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_shipments_on_order_id"
+  end
+
   create_table "shipping_rates", force: :cascade do |t|
     t.jsonb "body"
     t.datetime "created_at", null: false
@@ -132,4 +144,5 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_24_010235) do
   add_foreign_key "cart_items", "products"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
+  add_foreign_key "shipments", "orders"
 end
