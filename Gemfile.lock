@@ -87,7 +87,7 @@ GEM
       msgpack (~> 1.2)
     bootstrap_icons_rails (1.113.02)
       railties (>= 4.2)
-    brakeman (7.1.1)
+    brakeman (7.1.2)
       racc
     builder (3.3.0)
     bundler-audit (0.9.3)
