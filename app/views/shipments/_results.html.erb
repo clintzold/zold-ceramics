@@ -16,7 +16,6 @@
             <th scope="row"><%= shipment.order_id %></th>
             <td><%= link_to "View shipment", shipment_path(shipment.id), data: { turbo_frame: "adminOptions" } %></td>
             <td><%= shipment.tracking_status.upcase %></td>
-            <td><%= link_to "Print Label", shipment.label_url, data: { turbo: false } %></td>
           </tr>
         <% end %>
       <% end %>

@@ -11,7 +11,7 @@ class ShipmentsController < ApplicationController
     if result.success?
       redirect_to shipment_path(result.payload.id), success: "Shipment created for Order##{params[:id]}"
     else
-      render order_path(order_id), alert: result.errors.join(", ")
+      redirect_to order_path(order_id), alert: result.errors.join(", ")
     end
   end
 
