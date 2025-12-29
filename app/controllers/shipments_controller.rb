@@ -2,6 +2,7 @@ class ShipmentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [ :create ]
 
   def create
+    order_id = params[:order_id]
     result = ShippingService::CreateShipment.call(
       order_id: params[:order_id],
       rate_id: params[:rate_id]
@@ -10,7 +11,7 @@ class ShipmentsController < ApplicationController
     if result.success?
       redirect_to shipment_path(result.payload.id), success: "Shipment created for Order##{params[:id]}"
     else
-      render order_path(params[:order_id]), alert: result.errors.join(", ")
+      render order_path(order_id), alert: result.errors.join(", ")
     end
   end
 
