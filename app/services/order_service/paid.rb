@@ -46,7 +46,7 @@ module OrderService
 
     def retrieve_shippo_rate_id
       rate = Stripe::ShippingRate.retrieve(@checkout_details.shipping_cost.shipping_rate)
-     @shippo_rate_id = rate.metadata.object_id
+     @shippo_rate_id = rate.metadata.rate_id
     end
 
     def save_order

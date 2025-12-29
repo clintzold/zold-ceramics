@@ -1,0 +1,5 @@
+
+<%= turbo_frame_tag id="adminOptions" do %>
+  <h1 class="text-center m-4">Shipment Details</h1>
+  <%= render partial: "shipment_details", locals: { order: @order, shipment: @shipment } %>
+<% end %>

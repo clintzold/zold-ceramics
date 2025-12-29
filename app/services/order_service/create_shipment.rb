@@ -10,7 +10,7 @@ module OrderService
       @order.build_shipment(
         parcel: @shipment_details["parcel"],
         tracking_number: @shipment_details["tracking_number"],
-        tracking_status: @shipment_details["tracking_status"],
+        tracking_status: @shipment_details["tracking_status"].downcase,
         tracking_url_provider: @shipment_details["tracking_url_provider"],
         label_url: @shipment_details["label_url"]
       )

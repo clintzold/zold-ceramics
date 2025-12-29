@@ -1,0 +1,48 @@
+
+<div class="container-fluid px-0 px-md-3 d-flex flex-column justify-content-center align-items-center">
+  <div class="card bg-white col-md-10 col-xl-6">
+    <div class="card-body">
+      <div class="container-fluid d-flex justify-content-between">
+        <h2 class="card-title text-center">Shipment #<%= shipment.id %></h2>
+
+          <%=
+            button_to "View Order",
+            order_path(order.id),
+            class: "btn btn-warning",
+            method: :get
+          %>
+
+      </div>
+      <div class="card bg-white">
+        <div class="card-body px-0 px-md-3">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <p class="card-text"><b>Order#:</b> <%= order.id %></p>
+                <p class="card-text"><b>Customer Name:</b> <%= order.name %></p>
+                <p class="card-text"><b>Address:</b></p>
+                <p class="card-text mb-0"><%= order.shipping_address["line1"] %></p>
+                <p class="card-text mb-0"><%= order.shipping_address["line2"] %></p>
+                <p class="card-text mb-0">
+                  <%= order.shipping_address["city"] %>, <%= order.shipping_address["state"] %>
+                </p>
+                <p class="card-text mb-0"><%= order.shipping_address["postal_code"] %></p>
+                <p class="card-text mb-2"><%= order.shipping_address["country"] %></p>
+              </div>
+              <div class="col-md-6 py-3 py-md-0">
+                <p class="card-text"><b>Date: </b><%= shipment.created_at %></p>
+                <p class="card-text"><b>Status: </b><%= shipment.tracking_status.upcase %></p>
+                <p class="card-text"><b>Carrier: </b><%=  %></p>
+                <p class="card-text"><b>Service Level: </b><%= %></p>
+                <p class="card-text">
+                <%= link_to "Print Label", shipment.label_url, data: { turbo: false } %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

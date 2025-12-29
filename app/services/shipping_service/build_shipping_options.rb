@@ -32,7 +32,7 @@ module ShippingService
             #
             # It is impossible to purchase the label via API call
             # later without it!
-            metadata: { object_id: rate["object_id"] }
+            metadata: { rate_id: rate["object_id"] }
           }
         }
       end

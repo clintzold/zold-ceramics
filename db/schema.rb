@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_27_234955) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_28_035936) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -103,7 +103,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_27_234955) do
     t.bigint "order_id", null: false
     t.string "parcel"
     t.string "tracking_number"
-    t.string "tracking_status"
+    t.integer "tracking_status", default: 0
     t.string "tracking_url_provider"
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_shipments_on_order_id"

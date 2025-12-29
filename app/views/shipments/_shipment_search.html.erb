@@ -1,0 +1,16 @@
+<!-- app/views/shipments/_shipment_search.html.erb -->
+<%=
+  form_with url: shipments_path, method: :get, data: {turbo_stream: true, controller: "filter", action: "change->filter#filter"} do |form| %>
+  <ul class="list-unstyled d-flex justify-content-around">
+    <% statuses.each do |status| %>
+      <li>
+        <%= check_box_tag "filtered_status[]",
+          status,
+          params[:filtered_status]&.include?(status),
+          id: status
+        %>
+        <%= label_tag status, status.capitalize %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

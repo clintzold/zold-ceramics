@@ -2,7 +2,26 @@
 <div class="container-fluid px-0 px-md-3 d-flex flex-column justify-content-center align-items-center">
   <div class="card bg-white col-md-10 col-xl-6">
     <div class="card-body">
-      <h2 class="card-title text-center">Order #<%= order.id %></h2>
+      <div class="container-fluid d-flex justify-content-between">
+        <h2 class="card-title text-center">Order #<%= order.id %></h2>
+
+        <% if order.shipment %>
+          <%=
+            button_to "View Shipment",
+            shipment_path(order.shipment.id),
+            class: "btn btn-warning",
+            method: :get
+          %>
+        <% else %> 
+          <%=
+            button_to "Create Shipment",
+            shipments_path(order_id: order.id, rate_id: order.shipping_rate),
+            class: "btn btn-warning",
+            method: :post
+          %>
+        <% end %>
+
+      </div>
       <div class="card bg-white">
         <div class="card-body px-0 px-md-3">
           <% if order.status != "paid" %>

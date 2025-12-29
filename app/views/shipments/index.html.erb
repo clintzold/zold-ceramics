@@ -1,0 +1,8 @@
+<!-- app/views/shipments/index.html.erb -->
+<%= turbo_frame_tag id="adminOptions" do %>
+  <h1 class="text-center p-3 p-md-0">Shipments</h1>
+
+  <%= render partial: "shipment_search", locals: { orders: @shipments, statuses: @statuses } %>
+
+  <%= render partial: "results", locals: { orders: @shipments } %>
+<% end %>
