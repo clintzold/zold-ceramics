@@ -1,0 +1,21 @@
+<!-- Hero Photo -->
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col p-0">
+      <div class="card hero-image-container border-0 d-flex flex-wrap">
+        <%= image_tag "1000014593.jpg", class: "card-img hero-image rounded-0 img-fluid opacity-75", alt: "Background image with three handmade mugs" %>
+        <div class="card-img-overlay heroOverlay d-flex flex-column justify-content-center gap-5 align-items-center p-lg-5">
+          <div class="heroText">
+            <p class="card-title text-center text-light display-1" style="text-shadow: 1px 0px 5px gray;">
+              Zold Ceramics
+            </p>
+            <p class="card-text text-center text-light h4" style="text-shadow: 1px 0px 10px black;">
+              Timeless earthenware.
+            </p>
+          </div>
+          <%= button_to "Shop Now", shop_path, method: :get, class: "btn btn-lg border-2 btn-outline-light mt-md-5 shadow-lg" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,62 +24,59 @@
     <%= javascript_include_tag "https://js.stripe.com/clover/stripe.js"%>
   </head>
 
-  <body class="d-flex flex-column min-vh-100 bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark py-xxl-3 px-3 bg-primary">
-      <div class="container-fluid">
-        <button class="navbar-toggler my-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a href="<%= home_path %>" class="navbar-brand">Zold Ceramics</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <a class="ms-auto text-secondary me-2" href="<%= cart_path %>"><i class="bi bi-cart2 h4"></i></a>
-          <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="<%= home_path %>">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%= about_path %>">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%= shop_path %>">Shop</a>
-            </li>
-            <li class="nav-item mt-2">
-
-              <% if user_signed_in? %>
-                <%= button_to "Sign Out", destroy_user_session_path, class: "btn btn-light", method: :delete %>
-              <% else %>
-                <%= button_to "Sign In", new_user_session_path, class: "btn btn-light", method: :get %>
-              <% end %>
-
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-      <%= render "/layouts/alert" %>
-      <%= yield %>
-
-      <div class="container mt-auto">
-        <footer class=" d-flex flex-wrap justify-content-between align-items-center py-1 my-1 border-top">
-          <div class="col-md-4 d-flex align-items-center">
-            <a href="/" class="mb-2 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap">
-              <i class="bi bi-cup-hot-fill h3 mb-0"></i>
-            </a>
+  <body class="d-flex flex-column min-vh-100 bg-light" data-controller="window-resize" data-action="resize@window->window-resize#checkSize">  
+      <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top p-0 p-md-3" data-window-resize-target="navbar">
+        <div class="container border-bottom" data-window-resize-target="navElementContainer">
+          <button class="navbar-toggler my-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a href="<%= home_path %>" class="navbar-brand">Zold Ceramics</a>
+          <div class="collapse justify-content-end navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item mx-2">
+                <a class="nav-link active" aria-current="page" href="<%= home_path %>">Home</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="nav-link" href="<%= about_path %>">About</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="nav-link" href="<%= shop_path %>">Shop</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="nav-link pt-1" href="<%= cart_path %>"><i class="bi bi-cart2 h4"></i></a>
+              </li>
+            </ul>
           </div>
-          <span class="mb-3 mb-md-0 text-body-secondary">© 2025 Zold Ceramics</span>
-          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3">
-              <a class="text-body-secondary" href="#" aria-label="Instagram">
-                <i class="bi bi-instagram"></i>
-              </a>
-            </li>
-            <li class="ms-3">
-              <a class="text-body-secondary" href="#" aria-label="Facebook">
-                <i class="bi bi-facebook"></i>
-              </a>
-            </li>
-          </ul>
-        </footer>
-      </div>
+        </nav>
+      </header>
+
+      <main>
+        <%= render "/layouts/alert" %>
+        <%= yield %>
+      </main>
+
+      <div class="container">
+      <footer class=" d-flex flex-wrap justify-content-between align-items-center py-1 my-1 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-2 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap">
+            <i class="bi bi-cup-hot-fill h3 mb-0"></i>
+          </a>
+        </div>
+        <span class="mb-3 mb-md-0 text-body-secondary">© 2025 Zold Ceramics</span>
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li class="ms-3">
+            <a class="text-body-secondary" href="#" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+          </li>
+          <li class="ms-3">
+            <a class="text-body-secondary" href="#" aria-label="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+          </li>
+        </ul>
+      </footer>
+    </div>
   </body>
 </html>

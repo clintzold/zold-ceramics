@@ -58,7 +58,7 @@ module ShippoService
         to_address: @to_address,
         line_items: @line_items,
 
-        placed_at: "2016-09-23T01:28:12Z",
+        placed_at: "2016-09-23T01:28:12Z",  # Must be in exact format Shippo Expects -> "2016-09-23T01:28:12Z"
         order_number: @order.id,
         order_status: "PAID",
         shipping_cost: "10", # Test data

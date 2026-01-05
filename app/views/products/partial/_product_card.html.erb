@@ -1,5 +1,5 @@
   <div class="container-fluid mt-5">
-    <div class="row flex-wrap justify-content-center" style="gap:2rem">
+    <div class="row flex-wrap justify-content-center" style="gap:1rem">
 
       <% if @products.any? %>
         <% carousel_counter_number = 0 %> <!-- Allow each control to have different id -->
@@ -21,11 +21,11 @@
             <div class="card-body d-flex flex-column justify-content-between pb-1 pb-sm-2 pb-lg-3">
               <div>
               <h5 class="card-title" style="font-size: 6cqw"><%= product.title %></h5>
-              <p class="card-text mb-auto" style="font-size: 4cqw"><%= product.description %></p>
+              <p class="card-text mb-auto" style="font-size: 4.5cqw"><%= product.description %></p>
               </div>
               <div>
               <% if !product.out_of_stock %>
-                <p class="card-text mt-2" style="font-size: 4cqw"><b>Price: </b><%= number_to_currency(product.price).to_s %></p>
+                <p class="card-text mt-2" style="font-size: 4.5cqw"><b>Price: </b><%= number_to_currency(product.price).to_s %></p>
                 <%= form_with url: add_item_cart_path(product_id: product.id), class: "d-flex justify-content-between", method: :post do |form| %>
                   <%= form.submit "Add to cart", class: "btn btn-warning", style: "font-size: 5cqw" %>
                   <%= form.number_field :num_of_items, class: "form-control", style: "width: 20cqw; font-size: 4cqw", value: 1, min: 1, max: product.stock, step: 1 %>

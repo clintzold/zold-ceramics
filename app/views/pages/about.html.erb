@@ -1,2 +1,46 @@
-<h1>Pages#about</h1>
-<p>Find me in app/views/pages/about.html.erb</p>
+<%= turbo_frame_tag "about_details" do %>
+  <!-- About card and teaser info -->
+  <div class="container-fluid aboutContainer py-md-5">
+    <div class="row justify-content-center">
+
+      <!-- Card -->
+      <div class="card border-0 rounded-0 shadow-lg p-0 col col-xl-10 col-xxl-8 p-0 hoverCard">
+
+
+            <!-- Card Body -->
+              <div class="card-body p-5 d-flex flex-column justify-content-around">
+                
+                <div>
+                  <!-- Card Image -->
+                  <%= image_tag "jessie-sitting-forest.jpg", class: "float-sm-start w-50 me-3 d-block" %>
+                  <figure>
+                    <blockquote cite="https://example.com/source-document-url">
+                      <p class="fs-1 text-center opacity-50">
+                        "The only limit to our realization of tomorrow is our doubts of today."
+                      </p>
+                    </blockquote>
+                    <figcaption class="fs-3 text-center">
+                      <cite>— Franklin D. Roosevelt</cite>
+                    </figcaption>
+                  </figure>
+
+                  <p class="fs-5">
+                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus in optio assumenda expedita iste quam explicabo perferendis obcaecati ex sequi. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate unde consectetur delectus laboriosam commodi! Numquam doloribus corporis porro ipsam et nam accusamus. Saepe possimus, debitis quo aut quas est expedita. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta delectus dolores maxime illo fugiat dolorum commodi nobis repellendus eveniet? Animi, repellat et quidem commodi illum necessitatibus nam obcaecati nulla asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, aspernatur. Quidem ea hic est fuga sint nulla doloremque necessitatibus explicabo asperiores et! Eveniet totam itaque esse! At ut quis nemo.
+                  </p>
+                  <%= image_tag "cream-mugs-1.jpeg", class: "float-sm-end w-50 ms-3 d-block" %>
+                  <p class="fs-5">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda ab iste porro accusantium repudiandae vitae. Odio quas sequi fuga, reiciendis quia beatae natus tempora similique impedit eligendi odit non atque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam blanditiis non iste maiores tenetur expedita repellendus voluptatibus. Reiciendis, in placeat praesentium ex optio omnis ratione esse maiores? Nam, cupiditate mollitia.
+                  </p>
+                  <p class="fs-5">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, ratione? Laborum saepe totam magnam consequuntur ad debitis ipsam dolores dolor! Recusandae nihil dolorem ea cupiditate eius accusantium inventore animi ratione?
+                  </p>
+                </div>
+              </div>
+            <!-- End Card Body -->
+
+      </div>
+      <!-- End Card -->
+
+    </div>
+  </div>
+<% end %>

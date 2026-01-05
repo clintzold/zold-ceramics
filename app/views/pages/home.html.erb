@@ -1,21 +1,23 @@
-<!-- Hero Photo -->
-<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
- <div class="carousel-inner">
-  <div class="carousel-item active mainCarousel">
-    <%= image_tag "1000014595.jpg", class: "d-block w-100", alt: "" %>
-  </div>
-  <div class="carousel-item mainCarousel">
-    <%= image_tag "1000014593.jpg", class: "d-block w-100", alt: "" %>
-  </div>
- </div>
- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-   <span class="visually-hidden">Previous</span>
- </button>
- <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-   <span class="carousel-control-next-icon" aria-hidden="true"></span>
-   <span class="visually-hidden">Next</span>
- </button>
-</div>
-<!-- Graphic -->
-<%= render partial: "shared/banner_1" %>
+<!-- Hero and slogan banner -->
+<section>
+
+  <%= render "hero" %>
+
+</section>
+
+<section class="p-1 py-md-5">
+
+  <%= render "home_image_collection_1" %>
+  <%# render "teaser_cards" %>
+
+</section>
+
+  <%# render partial: "shared/banner_1" %>
+<!--  About -->
+<section class="p-1 py-2 p-md-3 py-lg-5">
+
+  <%= turbo_frame_tag "about_details" do %>
+    <%= render "about_card" %>
+  <% end %>
+
+</section>
