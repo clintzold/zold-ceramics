@@ -1,17 +1,17 @@
 module ProductService
   class Create < ApplicationService
-    def initialize(params)
-      @product = Product.new(params)
+    def initialize(product)
+      @product = product
       @stripe_product = nil
       @stripe_price = nil
     end
 
     def call
-      create_stripe_product
+      # create_stripe_product
 
-      create_stripe_price
+      # create_stripe_price
 
-      assign_stripe_attributes
+      # assign_stripe_attributes
 
       attempt_persist_new_product
 

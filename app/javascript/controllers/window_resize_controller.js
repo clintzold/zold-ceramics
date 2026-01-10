@@ -26,14 +26,14 @@ export default class extends Controller {
 	addClasses() {
 		this.navElementContainerTarget.classList.remove("border-bottom");
 
-		this.navbarTarget.classList.add("bg-secondary");
+		this.navbarTarget.classList.add("bg-primary");
 		this.navbarTarget.classList.remove("fixed-top");
 	}
 
 	removeClasses() {
 		this.navElementContainerTarget.classList.add("border-bottom");
 
-		this.navbarTarget.classList.remove("bg-secondary");
+		this.navbarTarget.classList.remove("bg-primary");
 		this.navbarTarget.classList.add("fixed-top");
 	}
 }

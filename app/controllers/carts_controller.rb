@@ -17,12 +17,14 @@ class CartsController < ApplicationController
     new_item = @cart.cart_items.find_or_create_by(product_id: @product.id)
     new_item.quantity += amount_to_purchase.to_i
     new_item.save!
-    redirect_to shop_path, notice: "#{@product.title} was added to cart."
+    flash[:success] = "#{@product.title} was added to cart."
+    redirect_to cart_path
   end
   # Remove product from cart
   def remove_item
     @cart.cart_items.delete_by(product_id: @product.id)
-    redirect_to cart_path, notice: "#{@product.title} was removed from cart."
+    flash[:notice] = "#{@product.title} was removed from cart."
+    redirect_to cart_path
   end
 
   private

@@ -9,11 +9,12 @@
 #   end
 
 Product.create!([
-  { title: "12oz Forest Mug", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4 },
-  { title: "12oz Forest Mug", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4 },
-  { title: "12oz Forest Mug", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4 },
-  { title: "12oz Forest Mug", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4 },
-  { title: "12oz Forest Mug", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4 },
-  { title: "12oz Forest Mug", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4 },
-  { title: "12oz Forest Mug", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4 }
+  { title: "12oz Forest Mug", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4, category: "drinkware" },
+  { title: "12oz Forest Mug", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4, category: "drinkware" },
+  { title: "12oz Forest Mug", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4, category: "drinkware" },
+  { title: "Plate", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4, category: "dinnerware" },
+  { title: "Plate", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4, category: "dinnerware" },
+  { title: "Plate", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4, category: "dinnerware" },
+  { title: "Vase", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4, category: "decorative" },
+  { title: "Vase", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4, category: "decorative" }
 ])

@@ -1,40 +1,61 @@
+<div class="container-fluid">
+  <div class="row flex-wrap">
 
-<div class="row flex-wrap">
-  <aside class="col-md-6 bg-light">
-    <div class="container sticky-top">
+    <aside class="col"></aside>
 
-      <div class="card bg-secondary shadow mt-5">
-        <div class="card-body">
-          <h4 class="card-title">Cart Details</h4>
-          <ul class="list-group">
-            <% if @cart_items.any? %>
-              <% @cart_items.each do |item| %>
-                <% product = Product.find_by(id: item.product_id) %>
-                <% if product %>
-                  <li class="list-group-item">
-                    <b>Name: </b><%= product.title %><br>
-                    <b>Price: </b><%= product.price %><br>
-                    <b>Quantity: </b><%= item.quantity %>
-                  </li>
-                <% else %>
-                  <div class="alert alert-danger" role="alert">
-                    This product is no longer available. Check back with us again!
-                  </div>
+    <!-- Shopping Cart -->
+    <main class="col-12 col-md-10 col-xxl-8 p-0">
+
+        <div class="card bg-secondary shadow shopping-cart-card border-0">
+          <h4 class="card-title text-center mt-2 text-white">Cart Details</h4>
+          <div class="card-body px-1 px-sm-3 mx-md-3 rounded bg-white shopping-cart-body overflow-auto">
+
+            <!-- Shopping Cart List Details -->
+            <ul class="list-group shopping-cart-list">
+              <% if @cart_items.any? %>
+                <% @cart_items.each do |item| %>
+                  <% product = Product.find_by(id: item.product_id) %>
+                  <% if product %>
+                    <li class="list-group-item container-fluid">
+                      <div class="row align-items-center">
+                        <div class="col-12 col-sm-3">
+                          <%= image_tag product.main_image, class: "cart-image" %>
+                        </div>
+                        <div class="col-12 col-sm-5 text-center">
+                          <p><b><%= product.title %></b></p>
+                        </div>
+                        <div class="col-12 col-sm-2 text-center">
+                          <p><b>Qty: </b><%= item.quantity %></p>
+                        </div>
+                        <div class="col-12 col-sm-2 text-center">
+                          <p><b>Total: </b><%= number_to_currency(product.price * item.quantity) %></p>
+                        </div>
+                      </div>
+                    </li>
+                  <% else %>
+                    <div class="alert alert-danger" role="alert">
+                      This product is no longer available. Check back with us again!
+                    </div>
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
-            <li class="list-group-item">
-              <b>Cart Total: </b> <%= number_to_currency(@order_total) %>
-            </li>
-          </ul>
-          <%= button_to "Checkout", orders_path, class: "btn btn-warning mt-3", method: :post, data: { turbo: false } %>
+              <li class="list-group-item text-end">
+                <b>Cart Total: </b> <%= number_to_currency(@order_total) %>
+              </li>
+            </ul>
+
+          </div>
+          <!-- Checkout Button -->
+          <div class="container-fluid d-flex justify-content-center align-items-center py-1">
+            <%= button_to "Checkout", orders_path,
+            class: "btn btn-warning",
+            method: :post,
+            data: { turbo: false } %>
+          </div>
         </div>
-      </div>
-    </div>
-  </aside>
+    </main>
 
-  <main class="col-md-6 bg-light">
-    <%= render partial: "cart_items" %>
-  </main>
+    <aside class="col"></aside>
 
+  </div>
 </div>

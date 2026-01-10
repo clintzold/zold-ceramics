@@ -1,0 +1,23 @@
+/* app/assets/stylesheets/shopping_cart.css
+*
+* Styling for cart card and listed items
+*
+*/
+
+.shopping-cart-card {
+	
+}
+
+.shopping-cart-body {
+	max-height: 650px;
+}
+
+.shopping-cart-row {
+	height: 200px;
+}
+
+.cart-image {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}

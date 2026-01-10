@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "contacts/new"
+  get "contacts/create"
   # Webhook resources and job trigger for Stripe activity
   post "webhooks", to: "webhooks#create"
   # User authentication/sign-up/accounts

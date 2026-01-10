@@ -24,10 +24,10 @@
     <%= javascript_include_tag "https://js.stripe.com/clover/stripe.js"%>
   </head>
 
-  <body class="d-flex flex-column min-vh-100 bg-light" data-controller="window-resize" data-action="resize@window->window-resize#checkSize">  
+  <body class="d-flex flex-column justify-content-between min-vh-100 bg-light">  
       <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top p-0 p-md-3" data-window-resize-target="navbar">
-        <div class="container border-bottom" data-window-resize-target="navElementContainer">
+      <nav class="navbar navbar-expand-md navbar-dark py-1 bg-primary">
+        <div class="container" data-window-resize-target="navElementContainer">
           <button class="navbar-toggler my-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -38,7 +38,10 @@
                 <a class="nav-link active" aria-current="page" href="<%= home_path %>">Home</a>
               </li>
               <li class="nav-item mx-2">
-                <a class="nav-link" href="<%= about_path %>">About</a>
+                <a class="nav-link" href="<%= home_path + "#about" %>">About</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="nav-link" href="<%= home_path + "#contact" %>">Contact</a>
               </li>
               <li class="nav-item mx-2">
                 <a class="nav-link" href="<%= shop_path %>">Shop</a>
@@ -48,11 +51,11 @@
               </li>
             </ul>
           </div>
+        </div>
         </nav>
       </header>
 
       <main>
-        <%= render "/layouts/alert" %>
         <%= yield %>
       </main>
 

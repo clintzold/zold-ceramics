@@ -19,7 +19,9 @@ class ProductsController < ApplicationController
   end
 
   def create
-    result = ProductService::Create.call(product_params)
+    @product = Product.new(product_params)
+
+    result = ProductService::Create.call(@product)
     if result.success?
       flash[:success] = "Product was successfully created."  # FLASH NOT WORKING IN TURBO FRAME
       redirect_to new_product_path
@@ -51,7 +53,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.expect(product: [ :title, :description, :price, :stock, :main_image, images: [] ])
+    params.expect(product: [ :title, :category, :description, :price, :stock, :main_image, images: [] ])
   end
 
   def validate_admin

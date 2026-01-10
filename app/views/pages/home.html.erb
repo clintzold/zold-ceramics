@@ -5,19 +5,34 @@
 
 </section>
 
-<section class="p-1 py-md-5">
+<!-- Image Collection Grid -->
+<section class="py-md-5 px-1 py-2 px-md-0">
 
   <%= render "home_image_collection_1" %>
-  <%# render "teaser_cards" %>
 
 </section>
 
-  <%# render partial: "shared/banner_1" %>
 <!--  About -->
-<section class="p-1 py-2 p-md-3 py-lg-5">
+<section class="px-1 py-2 px-md-0" id="about">
 
   <%= turbo_frame_tag "about_details" do %>
     <%= render "about_card" %>
+  <% end %>
+
+</section>
+
+<!-- Image Collection Grid -->
+<section class="py-md-5 px-1 pb-2 px-md-0">
+
+  <%= render "home_image_collection_1" %>
+
+</section>
+
+<!-- Contact -->
+<section id="contact" class="px-1 py-2 px-md-0">
+
+  <%= turbo_frame_tag "contact_details" do %>
+    <%= render "contact_card" %>
   <% end %>
 
 </section>

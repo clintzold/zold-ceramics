@@ -6,7 +6,7 @@
 .aboutContainer,
 .heroOverlay {
 	animation: fadeIn;
-	animation-duration: 1.5s;
+	animation-duration: 2s;
 	animation-timing-function: ease-in-out;
 	animation-fill-mode: forwards;
 	opacity: 0;
