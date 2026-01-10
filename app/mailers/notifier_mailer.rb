@@ -5,6 +5,6 @@ class NotifierMailer < ApplicationMailer
     @name = name
     @email = email
     @message = message
-    mail(to: "admin@zoldceramics.com", subject: "Contact Form - Zold Ceramics", message: message, reply_to: email)
+    mail(to: "clintzold@gmail.com", subject: "Contact Form - Zold Ceramics", reply_to: email)
   end
 end
