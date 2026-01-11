@@ -1,2 +1,54 @@
-<h1>Pages#shop</h1>
-<p>Find me in app/views/pages/shop.html.erb</p>
+<!-- Hero Image -->
+<section>
+
+  <%= render "pages/shop_partials/hero" %>
+
+</section>
+
+<section class="py-5">
+  <%= render "layouts/alert" %>
+  <div class="container-fluid">
+    <div class="row">
+
+      <aside class="col-lg-1"></aside>
+
+      
+      <main class="col px-0 px-md-3 col-lg-10">
+        <div id="accordion">
+          <div class="card my-1">
+            <button class="btn card-img product-category-card w-100 btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <div class="display-3 text-white" id="headingOne" >Drinkware</div>
+            </button>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
+              <div class="card-body">
+                <%= render "pages/shop_partials/product_card", products: @products.where(category: "drinkware") %>
+              </div>
+            </div>
+          </div>
+          <div class="card my-1">
+            <button class="btn card-img product-category-card w-100 btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <div class="display-3 text-white" id="headingTwo">Dinnerware</div>
+            </button>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
+              <div class="card-body">
+                <%= render "pages/shop_partials/product_card", products: @products.where(category: "dinnerware") %>
+              </div>
+            </div>
+          </div>
+          <div class="card my-1">
+            <button class="btn card-img product-category-card w-100 btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <div class="display-3 text-white" id="headingThree" >Decorative</div>
+            </button>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
+              <div class="card-body">
+                <%= render "pages/shop_partials/product_card", products: @products.where(category: "decorative") %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <aside class="col-lg-1"></aside>
+    </div>
+  </div>
+</section>

@@ -1,40 +1,48 @@
 <!-- app/views/contact_forms/new.html.erb -->
-<%= turbo_frame_tag "contact_us", class: "container-fluid" do %>
+<%= turbo_frame_tag "contact_us" do %>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="px-1 col col-sm-10 col-md-8 col-lg-6 col-xxl-5">
 
-  <div class="row justify-content-center">
-    <div class="col col-md-8 col-xl-6">
+        <!-- Contact Form Card -->
+        <div class="card bg-secondary contact-us-card px-xxl-3" style="--bs-bg-opacity: .5">
+          <h1 class="card-title text-center text-white mt-1" style="text-shadow: 1px 1px 3px gray">Let's chat.</h1>
+          <div class="card-body text-start" style="text-shadow: 1px 1px 3px gray">
 
-      <!-- Contact Form Card -->
-      <div class="card bg-secondary contact-us-card" style="--bs-bg-opacity: .5">
-        <h1 class="card-title text-center text-white mt-1" style="text-shadow: 1px 1px 3px gray">Let's chat.</h1>
-        <div class="card-body text-start" style="text-shadow: 1px 1px 3px gray">
+            <!-- Contact Form -->
+            <%= form_with model: @contact_form, url: contact_forms_path, method: :post, class: "text-white" do |form| %>
+              <% if form.object.errors.any? %>
+                <div id="error_explanation">
+                  <ul>
+                    <% form.object.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <%= form.label :name, "Name" %>
+              <%= form.text_field :name,
+                placeholder: "Enter your name",
+                maxlength: "50",
+                class: "form-control mb-3" %>
 
-          <!-- Contact Form -->
-          <%= form_with model: @contact_form, url: contact_forms_path, method: :post, class: "text-white" do |form| %>
-            <% if form.object.errors.any? %>
-              <div id="error_explanation">
-                <ul>
-                  <% form.object.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
+              <%= form.label :email, "Email" %>
+              <%= form.email_field :email,
+                placeholder: "Enter your email",
+                maxlength: "50",
+                class: "form-control mb-3" %>
+
+              <%= form.label :message, "Message" %>
+              <%= form.text_area :message,
+                rows: 5,
+                placeholder: "Enter message details...",
+                maxlength: "750",
+                class: "form-control mb-3" %>
+
+              <%= form.submit "Submit", class: "btn btn-warning" %>
             <% end %>
-            <%= form.label :name, "Name" %>
-            <%= form.text_field :name, placeholder: "Enter your name", class: "form-control mb-2" %>
 
-            <%= form.label :email, "Email" %>
-            <%= form.email_field :email, placeholder: "Enter your email", class: "form-control mb-2" %>
-
-            <%= form.label :message, "Message" %>
-            <%= form.text_area :message,
-              rows: 5,
-              placeholder: "Enter message details...",
-              class: "form-control mb-3" %>
-
-            <%= form.submit "Submit", class: "btn btn-warning" %>
-          <% end %>
-
+          </div>
         </div>
       </div>
     </div>

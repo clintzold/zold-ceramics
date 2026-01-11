@@ -1,0 +1,59 @@
+<hr class="border-2">
+<h5 class="text-primary text-center">Cart Summary</h3>
+  <ul class="px-4 py-1 text-primary">
+    <li class="list-group-item text-start">
+      Items:
+    </li>
+    <li class="list-group-item">
+      Subtotal:
+    </li>
+    <li class="list-group-item">
+      Tax:
+    </li>
+    <li class="list-group-item">
+      Total:
+    </li>
+  </ul>
+  <div class="container d-flex justify-content-center">
+    <%= button_to "View Cart", cart_path, method: :get, class: "btn btn-warning btn-sm" %>
+  </div>
+<hr class="border-2">
+
+<div class="container-fluid d-md-none">
+  <div class="dropdown-center d-flex flex-column align-items-center">
+    <button class="btn btn-primary text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Filter Products
+    </button>
+    <ul class="dropdown-menu">
+      <li>
+        <a class="dropdown-item active" href="#">All</a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="#">Drinkware</a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="#">Dinnerware</a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="#">Decorative</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="container-fluid d-flex flex-column d-none d-md-block">
+  <h5 class="text-center text-primary">Filter Products</h5>
+  <div class="form-check ps-4">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+    <label class="form-check-label" for="flexCheckDefault">
+      Default checkbox
+    </label>
+  </div>
+  <div class="form-check ms-4">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+    <label class="form-check-label" for="flexCheckChecked">
+      Checked checkbox
+    </label>
+  </div>
+</div>
+<hr class="border-2">

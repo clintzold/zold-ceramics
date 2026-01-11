@@ -1,0 +1,8 @@
+<button class="btn card-img product-category-card w-100 btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapse<%= card_number %>" aria-expanded="false" aria-controls="collapse<%= card_number %>">
+  <div class="display-3 text-light" id="headingOne" ><%= product_category %></div>
+</button>
+<div id="collapse<%= card_number %>" class="collapse" aria-labelledby="heading<%= card_number %>" data-bs-parent="#accordion">
+  <div class="card-body">
+    <%= render "products/partial/product_card", products: products %>
+  </div>
+</div>

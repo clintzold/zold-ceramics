@@ -11,10 +11,10 @@ Rails.application.routes.draw do
   # Visitor routes
   get "home", to: "pages#home"
   get "about", to: "pages#about"
+  get "shop", to: "pages#shop"
 
   # Products routes
   resources :products, only: [ :new, :create, :edit, :index, :destroy ]
-  get "shop", to: "products#shop"
   get "products/:id", to: "products#show"
   patch "products/:id", to: "products#update"
 

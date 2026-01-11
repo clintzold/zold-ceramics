@@ -4,4 +4,8 @@ class PagesController < ApplicationController
 
   def about
   end
+
+  def shop
+    @products = Product.all
+  end
 end

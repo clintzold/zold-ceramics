@@ -1,0 +1,29 @@
+
+<div id="carousel<%= carousel_counter_number.to_s %>" class="carousel slide">
+ <div class="carousel-inner">
+  <div class="carousel-item active">
+    <% if !product.main_image.attached? %>
+      <% main_image_url = "1000014596.jpg" %>
+    <% else %>
+      <% main_image_url = product.main_image %>
+    <% end %>
+    <%= image_tag main_image_url, class: "card-image", alt: "" %>
+  </div>
+
+  <% if product.images.any? %>
+    <% product.images.each do |image| %>
+      <div class="carousel-item">
+        <%= image_tag image, class: "d-block w-100", alt: "" %>
+      </div>
+    <% end %>
+  <% end %>
+ </div>
+ <button class="carousel-control-prev" type="button" data-bs-target="#carousel<%= carousel_counter_number.to_s %>" data-bs-slide="prev">
+   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+   <span class="visually-hidden">Previous</span>
+ </button>
+ <button class="carousel-control-next" type="button" data-bs-target="#carousel<%= carousel_counter_number.to_s %>" data-bs-slide="next">
+   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+   <span class="visually-hidden">Next</span>
+ </button>
+</div>

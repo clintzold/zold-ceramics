@@ -1,0 +1,41 @@
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <%= form_with model: product do |form| %>
+        <div class="mb-3 d-flex gap-5">
+
+          <div>
+            <%= form.label :title, class: "form-label" %>
+            <%= form.text_field :title, class: "form-control" %>
+          </div>
+
+          <div class="d-flex flex-column">
+            <%= form.label :category, class: "form-label" %>
+            <%= form.select :category, [["Drinkware", "drinkware"], ["Dinnerware", "dinnerware"], ["Decorative", "decorative"]], {}, { class: "form-select bg-white" } %>
+          </div>
+
+        </div>
+        <div class="mb-3">
+          <%= form.label :description, class: "form-label" %>
+          <%= form.text_area :description, class: "form-control", rows: "5" %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :price, class: "form-label" %>
+          <%= form.number_field :price, step: :any, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :stock, class: "form-label" %>
+          <%= form.number_field :stock, class: "form-control" %>
+        </div>
+        <%= render "/products/partial/images", form: form, product: product %>
+        <div class="d-flex justify-content-between mb-5">
+          <%= form.submit class: "btn btn-warning" %>
+      <% end %>
+        <% if !product.id.nil? %>
+          <%= button_to "Delete Product", product_path(product.id), class: "btn btn-danger", method: :delete %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
