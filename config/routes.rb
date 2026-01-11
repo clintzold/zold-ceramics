@@ -36,6 +36,9 @@ Rails.application.routes.draw do
 
   # Shipping controller routes(Shippo API)
   post "shipping_options", to: "shipping_options#create"
+
+  # Contact Forms controller(Handles 'Contact Us' submissions)
+  get "contact_us", to: "contact_forms#contact_us"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

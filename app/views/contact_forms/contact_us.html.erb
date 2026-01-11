@@ -1,0 +1,29 @@
+<!-- app/views/contact_forms/contact_us.html.erb -->
+<%= turbo_frame_tag "contact-us", class: "container-fluid p-0" do %>
+  <div class="row justify-content-center">
+    <div class="col col-md-8 col-xl-6">
+      <div class="card bg-white contact-us-card" style="--bs-bg-opacity: .6">
+        <h1 class="card-title text-center">Contact Form</h1>
+        <div class="card-body text-start">
+          <%= form_with url: contact_us_path, method: :post do |form| %>
+            <div class="form-group">
+              <%= form.label :name, "Name" %>
+              <%= form.text_field :name, placeholder: "Enter your name", class: "form-control mb-2" %>
+            </div>
+
+              <%= form.label :email, "Email" %>
+              <%= form.email_field :email, placeholder: "Enter your email", class: "form-control mb-2" %>
+
+              <%= form.label :message, "Message" %>
+              <%= form.text_area :message,
+                rows: 5,
+                placeholder: "Enter message details...",
+                class: "form-control mb-3" %>
+
+            <%= form.submit "Submit", class: "btn btn-warning" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

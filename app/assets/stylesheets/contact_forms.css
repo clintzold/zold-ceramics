@@ -1,0 +1,20 @@
+
+.contact-us-card {
+	opacity: 0;
+	animation-name: card-fade-in;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-in-out;
+	animation-direction: forwards;
+	animation-fill-mode: forwards;
+
+}
+
+@keyframes card-fade-in {
+	from {
+	opacity: 0;
+	}
+
+	to {
+	opacity: 1;
+	}
+}

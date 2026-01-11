@@ -8,12 +8,17 @@
       <%= image_tag "cream-mugs-1.jpeg", class: "card-image" %>
 
       <!-- Card Overlay -->
-      <div class="card-img-overlay d-flex text-center flex-column align-items-center justify-content-center p-5 text-light" style="text-shadow: 1px 0px 5px black;">
-        <h1 class="card-title display-2">Contact us</h1>
-        <div class="d-flex justify-content-center p-2">
-          <%= button_to "Contact Form", about_path, method: :get, class: "btn btn-outline-light btn-lg border-2 shadow-lg" %>
-        </div>
-      </div>
+      <div class="card-img-overlay d-flex text-center flex-column align-items-center justify-content-center p-5-sm text-light">
+
+        <%= turbo_frame_tag "contact-us", class: "container-fluid p-0" do %>
+
+          <h1 class="card-title display-2" style="text-shadow: 1px 0px 5px black">Contact us</h1>
+          <div class="d-flex justify-content-center p-2">
+            <%= button_to "Contact Form", contact_us_path, method: :get, class: "btn btn-outline-light btn-lg border-2 shadow-lg" %>
+          </div>
+          </div>
+
+        <% end %>
       <!-- End Card Overlay -->
 
     </div>
