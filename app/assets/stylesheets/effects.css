@@ -12,3 +12,10 @@
 	opacity: 0;
 }
 
+/*
+* Make Bootstrap collapsables smoother
+*/
+.collapsing {
+	transition: height 0.5s ease-in-out;
+}
+

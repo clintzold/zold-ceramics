@@ -1,10 +1,10 @@
 class NotifierMailer < ApplicationMailer
   default from: "no-reply@zoldceramics.com"
 
-  def simple_message(name, email, message)
-    @name = name
-    @email = email
-    @message = message
-    mail(to: "clintzold@gmail.com", subject: "Contact Form - Zold Ceramics", reply_to: email)
+  def contact_form_submission(contact_form)
+    @name = contact_form.name
+    @email = contact_form.email
+    @message = contact_form.message
+    mail(to: "clintzold@gmail.com", subject: "Zold Ceramics - Contact Form Submission", reply_to: contact_form.email)
   end
 end
