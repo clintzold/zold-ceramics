@@ -21,3 +21,23 @@
 	width: 100%;
 	object-fit: cover;
 }
+
+.cart-wrapper {
+	position: relative;
+	display: inline-block;
+}
+
+.cart-counter {
+	position: absolute;
+	top: 3;
+	right: 0;
+	background-color: #ff0000;
+	color: white;
+	border-radius: 50%;
+	padding: 3px 3px 3px 3px;
+	font-size: 10px;
+	font-weight: bold;
+	line-height: 1;
+	min-width: 15px;
+	text-align: center;
+}

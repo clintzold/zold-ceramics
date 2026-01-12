@@ -22,7 +22,7 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%# Allow page specific javascripts to be loaded in the head as needed %>
-    <%= yield(:page_specific) %>
+    <%= yield(:page_scripts) %>
   </head>
 
   <body class="d-flex flex-column justify-content-between min-vh-100 bg-light">  
@@ -48,7 +48,12 @@
                 <a class="nav-link" data-active-nav-target="navLink" href="<%= shop_path %>">Shop</a>
               </li>
               <li class="nav-item mx-2">
-                <a class="nav-link pt-1" data-active-nav-target="navLink" href="<%= cart_path %>"><i class="bi bi-cart2 h4"></i></a>
+                <a class="nav-link pt-1 cart-wrapper" data-active-nav-target="navLink" href="<%= cart_path %>">
+                  <i class="bi bi-cart2 h4"></i>
+                  <span class="cart-counter">
+                    <%= cart_count %>
+                  </span>
+                </a>
               </li>
             </ul>
           </div>
