@@ -21,7 +21,8 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <%= javascript_include_tag "https://js.stripe.com/clover/stripe.js"%>
+    <%# Allow page specific javascripts to be loaded in the head as needed %>
+    <%= yield(:page_specific) %>
   </head>
 
   <body class="d-flex flex-column justify-content-between min-vh-100 bg-light">  
