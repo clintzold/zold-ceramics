@@ -25,7 +25,12 @@
                           <p><b><%= product.title %></b></p>
                         </div>
                         <div class="col-12 col-sm-2 text-center">
-                          <p><b>Qty: </b><%= item.quantity %></p>
+                          <p class="mb-1">
+                            <b>Qty: </b><%= item.quantity %>
+                          </p>
+                          <%= button_to remove_item_cart_path(item.product_id), class: "btn", method: :delete do %>
+                            <i class="bi bi-trash3 text-danger"></i>
+                          <% end %>
                         </div>
                         <div class="col-12 col-sm-2 text-center">
                           <p><b>Total: </b><%= number_to_currency(product.price * item.quantity) %></p>

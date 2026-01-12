@@ -50,9 +50,11 @@
               <li class="nav-item mx-2">
                 <a class="nav-link pt-1 cart-wrapper" data-active-nav-target="navLink" href="<%= cart_path %>">
                   <i class="bi bi-cart2 h4"></i>
-                  <span class="cart-counter">
-                    <%= cart_count %>
-                  </span>
+                  <% if cart_count > 0 %>
+                    <span class="cart-counter">
+                      <%= cart_count %>
+                    </span>
+                  <% end %>
                 </a>
               </li>
             </ul>
