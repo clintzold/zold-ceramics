@@ -7,7 +7,8 @@ class OrdersController < ApplicationController
     if result.success?
       redirect_to checkout_path(order_id: result.payload.id)
     else
-      redirect_to cart_path, alert: result.errors.join(", ")
+      flash[:danger] = result.errors.join(", ")
+      redirect_to cart_path
     end
   end
 

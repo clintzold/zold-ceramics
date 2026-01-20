@@ -50,10 +50,8 @@
               <li class="nav-item mx-2">
                 <a class="nav-link pt-1 cart-wrapper" data-active-nav-target="navLink" href="<%= cart_path %>">
                   <i class="bi bi-cart2 h4"></i>
-                  <% if cart_count > 0 %>
-                    <span class="cart-counter">
-                      <%= cart_count %>
-                    </span>
+                  <%= turbo_frame_tag "cart_counter" do %>
+                    <%= render "carts/cart_counter" %>
                   <% end %>
                 </a>
               </li>

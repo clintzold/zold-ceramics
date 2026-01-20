@@ -1,0 +1,10 @@
+<!-- app/layouts/_cart_counter.html.erb
+
+  Display current number of cart items belonging to session cart
+
+-->
+<% if cart_count > 0 %>
+  <span class="cart-counter">
+    <%= cart_count %>
+  </span>
+<% end %>

@@ -10,44 +10,12 @@
           <h4 class="card-title text-center mt-2 text-white">Cart Details</h4>
           <div class="card-body px-1 px-sm-3 mx-md-3 rounded bg-white shopping-cart-body overflow-auto">
 
+            <%= render "layouts/alert" %>
+
             <!-- Shopping Cart List Details -->
-            <ul class="list-group shopping-cart-list">
-              <% if @cart_items.any? %>
-                <% @cart_items.each do |item| %>
-                  <% product = Product.find_by(id: item.product_id) %>
-                  <% if product %>
-                    <li class="list-group-item container-fluid">
-                      <div class="row align-items-center">
-                        <div class="col-12 col-sm-3">
-                          <%= image_tag product.main_image, class: "cart-image" %>
-                        </div>
-                        <div class="col-12 col-sm-5 text-center">
-                          <p><b><%= product.title %></b></p>
-                        </div>
-                        <div class="col-12 col-sm-2 text-center">
-                          <p class="mb-1">
-                            <b>Qty: </b><%= item.quantity %>
-                          </p>
-                          <%= button_to remove_item_cart_path(item.product_id), class: "btn", method: :delete do %>
-                            <i class="bi bi-trash3 text-danger"></i>
-                          <% end %>
-                        </div>
-                        <div class="col-12 col-sm-2 text-center">
-                          <p><b>Total: </b><%= number_to_currency(product.price * item.quantity) %></p>
-                        </div>
-                      </div>
-                    </li>
-                  <% else %>
-                    <div class="alert alert-danger" role="alert">
-                      This product is no longer available. Check back with us again!
-                    </div>
-                  <% end %>
-                <% end %>
-              <% end %>
-              <li class="list-group-item text-end">
-                <b>Cart Total: </b> <%= number_to_currency(@order_total) %>
-              </li>
-            </ul>
+            <%= turbo_frame_tag "cart_items_card" do %>
+              <%= render "cart_items", cart: @cart %>
+            <% end %>
 
           </div>
           <!-- Checkout Button -->

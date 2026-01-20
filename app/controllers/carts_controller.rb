@@ -3,10 +3,9 @@ class CartsController < ApplicationController
   before_action :current_cart
   # Load cart items for display
   def show
-    @cart_items = @cart.cart_items
     @order_total = 0
-    if @cart_items.any?
-      @cart_items.each do |item|
+    if @cart.cart_items
+      @cart.cart_items.each do |item|
         @order_total += item.product.price * item.quantity
       end
     end
@@ -17,14 +16,25 @@ class CartsController < ApplicationController
     new_item = @cart.cart_items.find_or_create_by(product_id: @product.id)
     new_item.quantity += amount_to_purchase.to_i
     new_item.save!
-    flash[:success] = "#{@product.title} was added to cart."
-    redirect_to cart_path
+    respond_to do |format|
+      format.turbo_stream {
+        render turbo_stream: [
+        turbo_stream.update("cart_counter", partial: "carts/cart_counter")
+        ]
+      }
+    end
   end
   # Remove product from cart
   def remove_item
     @cart.cart_items.delete_by(product_id: @product.id)
-    flash[:notice] = "#{@product.title} was removed from cart."
-    redirect_to cart_path
+    respond_to do |format|
+      format.turbo_stream {
+        render turbo_stream: [
+          turbo_stream.update("cart_counter", partial: "carts/cart_counter"),
+          turbo_stream.update("cart_items_card", partial: "cart_items", locals: { cart: @cart })
+        ]
+      }
+    end
   end
 
   private

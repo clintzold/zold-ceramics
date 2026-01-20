@@ -1,0 +1,40 @@
+<!-- app/views/carts/_cart_items.html.erb
+  Cart item display card
+-->
+<ul class="list-group shopping-cart-list">
+  <% order_total = 0 %>
+  <% if cart.cart_items.any? %>
+    <% cart.cart_items.each do |item| %>
+      <% order_total += (item.product.price * item.quantity) %>
+      <% product = Product.find_by(id: item.product_id) %>
+      <% if product %>
+        <li class="list-group-item container-fluid">
+          <div class="row align-items-center">
+            <div class="col-12 col-sm-3">
+              <%= image_tag product.main_image, class: "cart-image" %>
+            </div>
+            <div class="col-8 col-sm-6">
+              <p class="fs-5 mb-1 mt-2 mt-sm-0"><b><%= product.title %></b></p>
+              <p class="mb-1">
+                <b>Qty: </b><%= item.quantity %>
+              </p>
+              <p class="mb-1"><b>Total: </b><%= number_to_currency(product.price * item.quantity) %></p>
+            </div>
+            <div class="col-4 col-sm-3 text-center">
+              <%= button_to remove_item_cart_path(item.product_id), class: "btn", method: :delete do %>
+                <i class="bi bi-trash3 text-danger fs-2"></i>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      <% else %>
+        <div class="alert alert-danger" role="alert">
+          This product is no longer available. Check back with us again!
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  <li class="list-group-item text-end">
+    <b>Cart Total: </b> <%= number_to_currency(order_total) %>
+  </li>
+</ul>
