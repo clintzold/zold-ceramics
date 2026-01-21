@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   get "contacts/create"
   # Webhook resources and job trigger for Stripe activity
   post "webhooks", to: "webhooks#create"
-  # User authentication/sign-up/accounts
-  devise_for :users
   # Admin routes
   get "admin", to: "admin#dashboard"
 

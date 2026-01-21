@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   def dashboard
-    @admin = current_user
+    # @admin = current_user
   end
 
   def products
