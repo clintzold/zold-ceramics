@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
   before_action :product_params, only: [ :create ]
-  before_action :validate_admin, only: [ :create, :new, :edit, :index, :update, :destroy ]
 
   def shop
     @products = Product.all

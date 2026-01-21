@@ -1,7 +1,5 @@
 class OrdersController < ApplicationController
   before_action :current_cart
-  before_action :authenticate_user!
-  before_action :require_admin
   def create
     result = OrderService::Create.call(cart: @cart)
     if result.success?
