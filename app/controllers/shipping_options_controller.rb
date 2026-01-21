@@ -1,4 +1,5 @@
 class ShippingOptionsController < ApplicationController
+  allow_unauthenticated_access
   skip_before_action :verify_authenticity_token
   before_action :retrieve_order_items
 

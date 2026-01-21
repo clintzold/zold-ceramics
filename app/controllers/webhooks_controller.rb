@@ -1,4 +1,5 @@
 class WebhooksController < ApplicationController
+  allow_unauthenticated_access
   skip_before_action :verify_authenticity_token # External data will not have token from our app
 
   # Create a new webhook event and save to DB upon POST request

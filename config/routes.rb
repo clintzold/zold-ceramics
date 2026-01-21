@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resource :session
+  resources :passwords, param: :token
   get "contacts/new"
   get "contacts/create"
   # Webhook resources and job trigger for Stripe activity

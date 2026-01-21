@@ -417,6 +417,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap
   bootstrap_icons_rails (~> 1.113)
   brakeman

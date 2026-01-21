@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  allow_unauthenticated_access
   before_action :current_cart
   def create
     result = OrderService::Create.call(cart: @cart)

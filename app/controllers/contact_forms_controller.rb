@@ -1,4 +1,5 @@
 class ContactFormsController < ApplicationController
+  allow_unauthenticated_access
   def new
     @contact_form = ContactForm.new
   end

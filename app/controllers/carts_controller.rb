@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  allow_unauthenticated_access
   before_action :set_product, only: [ :add_item, :remove_item ]
   before_action :current_cart
   # Load cart items for display
