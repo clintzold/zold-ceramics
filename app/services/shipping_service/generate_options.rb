@@ -62,7 +62,7 @@ module ShippingService
     end
 
     def update_stripe_checkout
-      result = ShippingService::UpdateCheckout.call(
+      result = StripeService::UpdateCheckout.call(
         session_id: @session_id,
         shipping_details: @shipping_details,
         shipping_options: @shipping_options

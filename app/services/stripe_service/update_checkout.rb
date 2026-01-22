@@ -1,5 +1,5 @@
 # app/services/stripe_services/update_checkout.rb
-module ShippingServices
+module StripeService
   class UpdateCheckout < ApplicationService
     def initialize(session_id:, shipping_details:, shipping_options:)
       @session_id = session_id
