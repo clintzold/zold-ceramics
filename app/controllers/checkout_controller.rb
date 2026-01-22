@@ -6,7 +6,6 @@ class CheckoutController < ApplicationController
 
   # Generate a new Stripe checkout session
   def new
-    puts params[:order_id]
     result = StripeService::Checkout.call(
       order_id: params[:order_id],
       line_items: @line_items,
