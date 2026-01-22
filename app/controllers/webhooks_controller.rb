@@ -7,6 +7,7 @@ class WebhooksController < ApplicationController
     payload = request.body.read
     sig_header = request.env["HTTP_STRIPE_SIGNATURE"]
     event = nil
+
     # Construct Stripe event from JSON dump
     begin
       event = Stripe::Webhook.construct_event(
@@ -21,6 +22,7 @@ class WebhooksController < ApplicationController
       render json: { error: "Invalid signature: #{e.message}" }, status: 400
       return
     end
+
     # Handle the event based on its type
     case event.type
     when "checkout.session.completed"
@@ -28,11 +30,13 @@ class WebhooksController < ApplicationController
       if WebhookEvent.find_by(event_id: event.id).nil?
         WebhookEvent.create!(event_id: event.id, payload: payload, headers: sig_header)
       end
+
     when "checkout.session.expired"
-      # Handle expired checkout
+      # Handle expired checkout(indicates failed payment)
       if WebhookEvent.find_by(event_id: event.id).nil?
         WebhookEvent.create!(event_id: event.id, payload: payload, headers: sig_header)
       end
+
     # ... handle other event types
     else
       puts "Unhandled event type: #{event.type}"

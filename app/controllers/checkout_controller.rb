@@ -1,7 +1,6 @@
 class CheckoutController < ApplicationController
   allow_unauthenticated_access
   before_action :create_line_items, only: [ :new ]
-  before_action :current_cart
   include Rails.application.routes.url_helpers
 
   # Generate a new Stripe checkout session

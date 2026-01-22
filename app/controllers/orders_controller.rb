@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   allow_unauthenticated_access
-  before_action :current_cart
+
   def create
     result = OrderService::Create.call(cart: @cart)
     if result.success?
@@ -31,14 +31,6 @@ class OrdersController < ApplicationController
           locals: { orders: @orders }
         )
       }
-    end
-  end
-
-  private
-
-  def require_admin
-    unless current_user.admin?
-      redirect_to home_path, alert: "You are not authourized to view this page."
     end
   end
 end

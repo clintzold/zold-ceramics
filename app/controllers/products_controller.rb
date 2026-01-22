@@ -55,10 +55,4 @@ class ProductsController < ApplicationController
   def product_params
     params.expect(product: [ :title, :category, :description, :price, :stock, :main_image, images: [] ])
   end
-
-  def validate_admin
-    if !current_user.admin
-      redirect_to home_path, alert: "You do not have permission to access this page."
-    end
-  end
 end
