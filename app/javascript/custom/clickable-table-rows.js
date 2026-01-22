@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     row.addEventListener('click', () => {
       const url = row.dataset.href;
       if (url) {
-	console.log("hey")
         window.location.href = url;
       }
     });
