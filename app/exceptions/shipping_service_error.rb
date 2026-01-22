@@ -1,4 +1,4 @@
-# app/exceptions/create_shipment_error.rb
+# app/exceptions/shipping_service_error.rb
 class ShippingServiceError < StandardError
   def initialize(service, message)
     @message = "An error occured during shipment creation: #{service} with message: #{message}"
