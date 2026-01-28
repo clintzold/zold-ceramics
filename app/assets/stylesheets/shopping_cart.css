@@ -4,106 +4,142 @@
 *
 */
 
-.shopping-cart-card {
-	
-}
+.shopping-cart-card {}
 
 .shopping-cart-body {
-	max-height: 650px;
+  max-height: 650px;
 }
 
 .shopping-cart-row {
-	height: 200px;
+  height: 200px;
 }
 
 .cart-image {
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .cart-wrapper {
-	position: relative;
-	display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .cart-counter {
-	position: absolute;
-	top: 3;
-	right: 0;
-	background-color: #ff0000;
-	color: white;
-	border-radius: 50%;
-	padding: 3px 3px 3px 3px;
-	font-size: 10px;
-	font-weight: bold;
-	line-height: 1;
-	min-width: 15px;
-	text-align: center;
+  position: absolute;
+  top: 3;
+  right: 0;
+  background-color: #ff0000;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 3px 3px 3px;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 1;
+  min-width: 15px;
+  text-align: center;
 }
 
 .cart-summary-container {
-	z-index: 2;
-	position: fixed;
-	bottom: 30px;
-	right: 0px;
+  z-index: 2;
+  position: fixed;
+  bottom: 30px;
+  right: 0px;
+}
+
+.cart-summary-list {
+  max-height: 45vh;
+  overflow: auto;
+}
+
+.cart-summary-amounts {
+  width: 35%;
+  display: flex;
+  text-align: end;
+  align-items: center;
+}
+
+.cart-summary-item-title {
+  display: flex;
+  align-items: center;
+  text-align: start;
+  gap: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 200px;
 }
 
 .cart-preview-card {
-	border: 3px solid #66b2b2; /*#f6b89e;*/
-	width: 375px;
-	max-width: 100vw; /* Prevent overflow on small screens */
+  border: 3px solid #4da6a6;
+  /*#66b2b2;*/
+  /*#f6b89e;*/
+  width: 375px;
+  max-width: 100vw;
+  background-color: #4da6a6;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  /* Prevent overflow on small screens */
 }
 
 .cart-summary-title {
-	background-color: #66b2b2;
+  background-color: #4da6a6;
+  /*#66b2b2;*/
 }
 
 .cart-button {
-	border: 3px solid #66b2b2; /*#f47f6a;*/
-	background-color: #b2d8d8;/*#f6b89e;*/
-	z-index: 2;
-	position: fixed;
-	bottom: 10px;
-	right: 10px;
+  border: 3px solid #4da6a6;
+  /*#66b2b2;*/
+  /*#f47f6a;*/
+  background-color: #b2d8d8;
+  /*#f6b89e;*/
+  z-index: 2;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
 }
 
 .bounce-cart {
-	animation: bounce 1s linear;
+  animation: bounce 1s linear;
 }
 
 .cart-button:active {
-	transform: translateY(2px);
-	opacity: 0.8;
-}
-
-.cart-summary-text {
-	font-size: 0.8rem;
+  transform: translateY(2px);
+  opacity: 0.8;
 }
 
 @keyframes bounce {
+
   /* At these points, the element is at its resting position (bottom) */
-  0%, 20%, 53%, 80%, 100% {
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
     /* The cubic-bezier here gives a smooth landing/takeoff (ease-out-ish) */
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     transform: translate3d(0, 0, 0);
   }
 
   /* The peak of the first, highest bounce */
-  40%, 43% {
+  40%,
+  43% {
     /* This cubic-bezier creates a sharp peak and quick fall (ease-in-ish) */
     animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    transform: translate3d(0, -50px, 0) scaleY(1.1); /* Bounces up 50px, stretches slightly */
+    transform: translate3d(0, -50px, 0) scaleY(1.1);
+    /* Bounces up 50px, stretches slightly */
   }
 
   /* The peak of the second, smaller bounce */
   70% {
     animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    transform: translate3d(0, -20px, 0) scaleY(1.05); /* Bounces up 20px, less stretch */
+    transform: translate3d(0, -20px, 0) scaleY(1.05);
+    /* Bounces up 20px, less stretch */
   }
 
   /* The peak of the third, smallest bounce */
   90% {
-    transform: translate3d(0, -10px, 0) scaleY(1.02); /* Bounces up 4px, minimal stretch */
+    transform: translate3d(0, -10px, 0) scaleY(1.02);
+    /* Bounces up 4px, minimal stretch */
   }
 }

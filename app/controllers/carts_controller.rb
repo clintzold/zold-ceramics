@@ -43,7 +43,6 @@ class CartsController < ApplicationController
       format.turbo_stream {
         render turbo_stream: [
           turbo_stream.update("cart_counter", partial: "carts/cart_counter"),
-          turbo_stream.update("cart_items_card", partial: "cart_items", locals: { cart: @cart }),
           turbo_stream.update(
             "cart_summary_frame",
             partial: "carts/cart_summary",

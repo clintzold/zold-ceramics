@@ -18,3 +18,7 @@ Product.create!([
   { title: "Vase", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4, category: "decorative" },
   { title: "Vase", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4, category: "decorative" }
 ])
+
+User.create!([
+  { admin: true, email_address: "admin@zold-ceramics.com", password: "password"}
+])
