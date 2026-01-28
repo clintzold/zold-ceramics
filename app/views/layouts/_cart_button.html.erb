@@ -1,0 +1,17 @@
+<!-- app/views/pages/shop_partials/_cart_button.html.erb
+
+  Fixed button to guide user to cart review and checkout
+
+-->
+<%= turbo_frame_tag "cart_button_frame" do %>
+  <% if cart_count > 0 %>
+    <button class="rounded-circle shadow cart-button <%= animation_type %>" type="button" data-bs-toggle="collapse" data-bs-target="#cartDetails" aria-expanded="false" aria-controls="cartDetails">
+      <div class="cart-wrapper p-2">
+        <i class="bi bi-cart fs-3 text-white"></i>
+        <%= turbo_frame_tag "cart_counter" do %>
+          <%= render "carts/cart_counter" %>
+        <% end %>
+      </div>
+    </button>
+  <% end %>
+<% end %>

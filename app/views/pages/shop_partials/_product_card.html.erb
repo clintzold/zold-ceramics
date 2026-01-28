@@ -28,7 +28,7 @@
                 <p class="card-text mt-2"><b>Price: </b><%= number_to_currency(product.price).to_s %></p>
                 <%= form_with url: add_item_cart_path(product_id: product.id), class: "d-flex justify-content-between", method: :post do |form| %>
                   <div class="container w-100 d-flex justify-content-between">
-                    <%= form.submit "Add to cart", class: "btn btn-primary text-white" %>
+                    <%= form.submit "Add to cart", class: "btn btn-warning" %>
                     <%= form.number_field :num_of_items, class: "form-control w-25", value: 1, min: 1, max: product.stock, step: 1, id: "product_stock" %>
                   </div>
                 <% end %>

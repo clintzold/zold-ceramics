@@ -17,10 +17,20 @@ class CartsController < ApplicationController
     new_item = @cart.cart_items.find_or_create_by(product_id: @product.id)
     new_item.quantity += amount_to_purchase.to_i
     new_item.save!
+
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: [
-        turbo_stream.update("cart_counter", partial: "carts/cart_counter")
+        turbo_stream.update("cart_counter", partial: "carts/cart_counter"),
+        turbo_stream.update(
+          "cart_button_frame",
+          partial: "layouts/cart_button",
+          locals: { animation_type: "bounce-cart" }),
+        turbo_stream.update(
+          "cart_summary_frame",
+          partial: "carts/cart_summary",
+          locals: { show: "hidden", cart: @cart }
+        )
         ]
       }
     end
@@ -28,11 +38,20 @@ class CartsController < ApplicationController
   # Remove product from cart
   def remove_item
     @cart.cart_items.delete_by(product_id: @product.id)
+
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: [
           turbo_stream.update("cart_counter", partial: "carts/cart_counter"),
-          turbo_stream.update("cart_items_card", partial: "cart_items", locals: { cart: @cart })
+          turbo_stream.update("cart_items_card", partial: "cart_items", locals: { cart: @cart }),
+          turbo_stream.update(
+            "cart_summary_frame",
+            partial: "carts/cart_summary",
+            locals: { show: "show", cart: @cart }),
+        turbo_stream.update(
+          "cart_button_frame",
+          partial: "layouts/cart_button",
+          locals: { animation_type: nil })
         ]
       }
     end

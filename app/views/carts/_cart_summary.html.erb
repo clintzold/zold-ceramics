@@ -1,0 +1,55 @@
+<!-- app/views/carts/_cart_summary.html.erb -->
+<%= turbo_frame_tag "cart_summary_frame" do %>
+  <!-- Hide if no cart items -->
+  <% if cart_count > 0 %>
+    <!-- Fixed-Width Container for smooth slide-in transition -->
+    <div class="cart-summary-container d-inline-flex align-items-end">
+      <div class="collapse collapse-horizontal <%= show %> mb-5" id="cartDetails">
+        <div class="card rounded-end-0 border-end-0 shadow-lg cart-preview-card">
+          <h3 class="cart-summary-title text-center text-white p-2">Cart Summary</h3>
+          <!-- Cart Items List -->
+          <div class="container">
+            <ul class="list-group list-group-flush">
+              <!-- Calculate total --> 
+              <% cart_total = 0 %>
+              <% @cart.cart_items.each do |item| %>
+                <% cart_total += item.quantity * item.product.price %>
+                <!-- Item Details -->
+                <li class="list-group-item d-flex px-1 justify-content-between opacity-75">
+                  <!-- Item Delete Button and Title -->
+                  <div class="cart-summary-text d-flex gap-2 align-items-center text-start">
+                    <%= button_to remove_item_cart_path(item.product_id), class: "btn rounded-circle border-0 p-0 m-0", method: :delete do %>
+                      <i class="bi bi-x-circle text-secondary fs-6"></i>
+                    <% end %>
+                    <%= item.product.title %>
+                  </div>
+                  <!-- Item Quantity and Price -->
+                  <div class="cart-summary-text">x<%= item.quantity %></div>
+                  <div class="cart-summary-text"><%= item.product.price %></div>
+                </li>
+              <% end %>
+              <!-- Cart Total -->
+              <li class="list-group-item">
+                <h5 class="card-title fs-6 opacity-75 m-0 text-end">Total: <%= number_to_currency(cart_total) %></h5>
+              </li>
+            </ul>
+            <!-- Cart Nav Options -->
+            <div class="card-body d-flex justify-content-between">
+              <button 
+                class="btn text-white btn-info"
+                type="button" 
+                data-bs-toggle="collapse"
+                data-bs-target="#cartDetails"
+                aria-expanded="true"
+                aria-controls="cartDetails">
+                Hide Cart
+              </button>
+              <%= button_to "Checkout", cart_path, method: :get, class: "btn border-3 btn-secondary text-white" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+<% end %>

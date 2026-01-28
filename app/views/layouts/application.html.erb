@@ -27,14 +27,14 @@
 
   <body class="d-flex flex-column justify-content-between min-vh-100 bg-light">  
       <header>
-      <nav class="navbar navbar-expand-md navbar-dark py-1 bg-dark">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container">
-          <button class="navbar-toggler my-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler my-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <a href="<%= home_path %>" class="navbar-brand">Zold Ceramics</a>
           <div class="collapse justify-content-end navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mb-2 mb-lg-0" data-controller="active-nav" data-active-nav-active-class="active">
+            <ul class="navbar-nav mb-0" data-controller="active-nav" data-active-nav-active-class="active">
               <li class="nav-item mx-2">
                 <a class="nav-link" data-active-nav-target="navLink" aria-current="page" href="<%= home_path %>">Home</a>
               </li>
@@ -47,14 +47,6 @@
               <li class="nav-item mx-2">
                 <a class="nav-link" data-active-nav-target="navLink" href="<%= shop_path %>">Shop</a>
               </li>
-              <li class="nav-item mx-2">
-                <a class="nav-link pt-1 cart-wrapper" data-active-nav-target="navLink" href="<%= cart_path %>">
-                  <i class="bi bi-cart2 h4"></i>
-                  <%= turbo_frame_tag "cart_counter" do %>
-                    <%= render "carts/cart_counter" %>
-                  <% end %>
-                </a>
-              </li>
             </ul>
           </div>
         </div>
@@ -62,6 +54,10 @@
       </header>
 
       <main>
+        <!-- Cart Summary Collapse and Button -->
+        <%= render "carts/cart_summary", show: "hidden", cart: @cart %>
+        <%= render "layouts/cart_button", animation_type: nil %>
+        <!-- Page Content -->
         <%= yield %>
       </main>
 

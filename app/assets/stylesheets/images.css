@@ -51,6 +51,11 @@
         object-position: center;
 }
 
+.about-main-img {
+	width:50%;
+	padding: 10px;
+}
+
 @media (max-width: 992px) {
 
 	.image-grid-collection {
@@ -69,9 +74,14 @@
 	}
 	.hero-image-container {
 		height: 800px;
-	{
+	}
 	.image-link-card {
 		height:450px;
 	}
+	.about-main-img {
+		width: 100%;
+		padding: 30px;
+	}
+
 
 }

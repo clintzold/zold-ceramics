@@ -1,0 +1,25 @@
+<!-- app/views/pages/shop_partials/_cart_button.html.erb
+
+  Fixed button to guide user to cart review and checkout
+
+-->
+
+<div class="cart-button-container d-inline-flex align-items-start gap-2">
+
+  <div class="collapse collapse-horizontal" id="cartDetails">
+    <div class="card" style="width: 200px;">
+      <div class="card-body">
+        <%= button_to "View Cart", cart_path, method: :get, class: "btn btn-outline-warning" %>
+        <%= button_to "Checkout", cart_path, method: :get, class: "btn btn-warning" %>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-warning py-2 cart-wrapper" style="border-radius: 50%"type="button" data-bs-toggle="collapse" data-bs-target="#cartDetails" aria-expanded="false" aria-controls="cartDetails">
+    <i class="bi bi-cart2 h4 text-white"></i>
+    <%= turbo_frame_tag "cart_counter" do %>
+      <%= render "carts/cart_counter" %>
+    <% end %>
+  </button>
+
+</div>
