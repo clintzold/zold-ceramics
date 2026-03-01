@@ -23,7 +23,6 @@ servers:
 
 proxy:
   app_port: 80
-  ssl: true
   host: 31.97.209.135
 ssh:
   port: 5119
