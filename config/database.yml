@@ -91,18 +91,17 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: zold_ceramics_production
-    username: zold_ceramics
-    password: <%= ENV["ZOLD_CERAMICS_DATABASE_PASSWORD"] %>
+    url: <%= ENV['DATABASE_URL'] %>
+    database: zold-ceramics_production
   cache:
     <<: *primary_production
-    database: zold_ceramics_production_cache
+    database: zold-ceramics_production_cache
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: zold_ceramics_production_queue
+    database: zold-ceramics_production_queue
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
-    database: zold_ceramics_production_cable
+    database: zold-ceramics_production_cable
     migrations_paths: db/cable_migrate

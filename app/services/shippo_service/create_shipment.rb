@@ -5,7 +5,7 @@ module ShippoService
 
     def initialize(shipment_details:)
       @shipment_details = shipment_details
-      @api_token = Rails.application.credentials.shippo[:test_key]
+      @api_token = Rails.application.credentials.shippo[:secret_key]
       @body = nil
     end
 

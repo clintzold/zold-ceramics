@@ -5,7 +5,7 @@ module ShippoService
 
     def initialize(order_id)
       @order = Order.find(order_id)
-      @api_token = Rails.application.credentials.shippo[:test_key]
+      @api_token = Rails.application.credentials.shippo[:secret_key]
       @to_address = nil
       @line_items = []
       @request_body = nil

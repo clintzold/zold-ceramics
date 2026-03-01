@@ -7,7 +7,7 @@ image: zold_ceramics
 # Deploy to these servers.
 servers:
   web:
-    - 192.168.0.1
+    - 31.97.209.135
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -20,26 +20,34 @@ servers:
 #
 # Don't use this when deploying to multiple web servers (then you have to terminate SSL at your load balancer).
 #
-# proxy:
-#   ssl: true
-#   host: app.example.com
 
+proxy:
+  app_port: 80
+  ssl: true
+  host: 31.97.209.135
+ssh:
+  port: 5119
+  # proxy: root@31.97.209.135
 # Where you keep your container images.
 registry:
   # Alternatives: hub.docker.com / registry.digitalocean.com / ghcr.io / ...
-  server: localhost:5555
+  server: registry.hub.docker.com
 
   # Needed for authenticated registries.
-  # username: your-user
+  username: clintzold
 
   # Always use an access token rather than real password when possible.
-  # password:
-  #   - KAMAL_REGISTRY_PASSWORD
+  password:
+    - KAMAL_REGISTRY_PASSWORD
 
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 env:
   secret:
     - RAILS_MASTER_KEY
+    - POSTGRES_DB
+    - POSTGRES_PASSWORD
+    - POSTGRES_USER
+    - DB_HOST
   clear:
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
     # When you start using multiple servers, you should split out job processing to a dedicated machine.
@@ -96,7 +104,22 @@ builder:
 #   user: app
 
 # Use accessory services (secrets come from .kamal/secrets).
-# accessories:
+accessories:
+  postgres:
+    image: postgres:15
+    host: 31.97.209.135
+    env:
+      clear:
+      secret:
+        - POSTGRES_PASSWORD
+        - POSTGRES_USER
+        - DB_HOST
+        - DB_PORT
+        - DATABASE_URL
+    directories:
+      - data:/var/lib/postgresql/data
+    files:
+      - db/production_setup.sql:/docker-entrypoint-initdb.d/setup.sql
 #   db:
 #     image: mysql:8.0
 #     host: 192.168.0.2
