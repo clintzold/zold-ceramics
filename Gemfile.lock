@@ -211,6 +211,7 @@ GEM
     parser (3.3.10.1)
       ast (~> 2.4.1)
       racc
+    parslet (2.0.0)
     pg (1.6.3)
     pg (1.6.3-aarch64-linux)
     pg (1.6.3-aarch64-linux-musl)
@@ -369,6 +370,7 @@ GEM
     thruster (0.1.17-aarch64-linux)
     thruster (0.1.17-x86_64-linux)
     timeout (0.6.0)
+    trollop (2.9.10)
     tsort (0.2.0)
     turbo-rails (2.0.21)
       actionpack (>= 7.1.0)
@@ -392,6 +394,10 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    yarn (0.1.1)
+      parslet (>= 1.2)
+      rack (>= 1.3)
+      trollop (>= 1.16)
     zeitwerk (2.7.4)
 
 PLATFORMS
@@ -433,6 +439,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+  yarn (~> 0.1.1)
 
 BUNDLED WITH
   4.0.4
