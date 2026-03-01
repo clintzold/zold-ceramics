@@ -7,11 +7,11 @@ module ProductService
     end
 
     def call
-      # create_stripe_product
+      create_stripe_product
 
-      # create_stripe_price
+      create_stripe_price
 
-      # assign_stripe_attributes
+      assign_stripe_attributes
 
       attempt_persist_new_product
 
