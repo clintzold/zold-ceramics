@@ -2,7 +2,7 @@
 service: zold_ceramics
 
 # Name of the container image (use your-user/app-name on external registries).
-image: zold_ceramics
+image: clintzold/zold_ceramics
 
 # Deploy to these servers.
 servers:
