@@ -109,7 +109,6 @@ accessories:
     image: postgres:15
     host: 31.97.209.135
     env:
-      clear:
       secret:
         - POSTGRES_PASSWORD
         - POSTGRES_USER
