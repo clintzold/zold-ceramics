@@ -5,6 +5,10 @@ class CheckoutController < ApplicationController
 
   # Generate a new Stripe checkout session
   def new
+    # Make sure cart is emptied and cart widget disappears
+    current_cart.cart_items.destroy_all
+    
+    # Call stripe for embedded checkout form with order details
     result = StripeService::Checkout.call(
       order_id: params[:order_id],
       line_items: @line_items,
