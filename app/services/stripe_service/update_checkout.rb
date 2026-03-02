@@ -9,7 +9,7 @@ module StripeService
     end
 
     def call
-      Stripe::Checkout::Session.update(checkout_session_id, {
+      Stripe::Checkout::Session.update(@session_id, {
         collected_information: {
           shipping_details: {
             name: @name,
@@ -25,7 +25,10 @@ module StripeService
         },
         shipping_options: @shipping_options
       })
-      { type: "object", value: { succeeded: true } }.to_json
+
+      success()
+    rescue Stripe::StripeError => e
+      failure("Error updating Stripe Checkout: #{e.message}")
     end
   end
 end
