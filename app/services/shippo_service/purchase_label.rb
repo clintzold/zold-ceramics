@@ -35,6 +35,7 @@ module ShippoService
     private
 
     def handle_response(response)
+      puts response
       case response.code.to_i
       when 200..299
         success(@body)

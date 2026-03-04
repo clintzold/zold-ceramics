@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Great Vibes';
+    src: url('GreatVibes-Regular.woff2') format('woff2'),
+        url('GreatVibes-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Birthstone';
+    src: url('Birthstone-Regular.woff2') format('woff2'),
+        url('Birthstone-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.product-category-card {
+  font-family: 'Great Vibes', Helvetica, sans-serif;
+  font-size: 2rem;
+}
+
+.navbar-brand {
+  font-family: 'Great Vibes', Helvetica, sans-serif;
+  font-size: 1.5rem;
+}
+
+.hero-title {
+  font-family: 'Great Vibes', Helvetica, sans-serif;
+  font-size: 4.5rem;
+}
+
+.cart-summary-title {
+  font-family: 'Birthstone', Helvetica, sans-serif;
+  font-size: 2.2rem;
+}
