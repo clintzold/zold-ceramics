@@ -25,6 +25,10 @@
   font-size: 1.5rem;
 }
 
+.navbar {
+  padding: 2px;
+}
+
 .hero-title {
   font-family: 'Great Vibes', Helvetica, sans-serif;
   font-size: 4.5rem;
