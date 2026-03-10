@@ -24,8 +24,19 @@
               <p class="card-text mb-auto"><%= product.description %></p>
               </div>
               <div>
+              <!-- Hides buttons if out of stock -->
               <% if !product.out_of_stock %>
-                <p class="card-text mt-2"><b>Price: </b><%= number_to_currency(product.price).to_s %></p>
+                <div class="d-flex gap-3 product-dimensions-text mt-3">
+                <p>
+                  <small><b>100g</b></small>
+                </p>
+                  <p>
+                    <small><b>3x3x5</b></small>
+                  </p>
+                </div>
+                <p>
+                  <%= number_to_currency(product.price).to_s %>
+                </p>
                 <%= form_with url: add_item_cart_path(product_id: product.id), class: "d-flex justify-content-between", method: :post do |form| %>
                   <div class="container w-100 d-flex justify-content-between">
                     <%= form.submit "Add to cart", class: "btn btn-warning" %>

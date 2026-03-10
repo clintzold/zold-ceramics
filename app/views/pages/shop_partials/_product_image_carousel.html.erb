@@ -7,13 +7,13 @@
     <% else %>
       <% main_image_url = product.main_image %>
     <% end %>
-    <%= image_tag main_image_url, class: "card-image", alt: "" %>
+    <%= image_tag main_image_url, class: "product-card-image", alt: "" %>
   </div>
 
   <% if product.images.any? %>
     <% product.images.each do |image| %>
       <div class="carousel-item">
-        <%= image_tag image, class: "d-block w-100", alt: "" %>
+        <%= image_tag image, class: "product-card-image", alt: "" %>
       </div>
     <% end %>
   <% end %>

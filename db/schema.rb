@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_21_232653) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_10_021420) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -88,6 +88,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_21_232653) do
     t.string "category"
     t.datetime "created_at", null: false
     t.text "description"
+    t.decimal "height"
+    t.decimal "length"
     t.integer "lock_version", default: 0, null: false
     t.boolean "out_of_stock", default: false
     t.decimal "price", precision: 6, scale: 2
@@ -96,6 +98,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_21_232653) do
     t.string "stripe_product_id"
     t.string "title"
     t.datetime "updated_at", null: false
+    t.integer "weight"
+    t.decimal "width"
   end
 
   create_table "sessions", force: :cascade do |t|
