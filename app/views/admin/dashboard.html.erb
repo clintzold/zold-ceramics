@@ -1,22 +1,9 @@
-<div id="adminDashboard" class="container-fluid">
-  <div class="row h-100 flex-wrap">
+<div id="adminDashboard" class="container-fluid d-flex justify-content-center">
     
-    <aside class="col-md-3 col-xl-2 d-flex flex-column">
-        <h5>Welcome <small><%# @admin.email %></small></h5>
-        <div class="d-flex pb-3 mt-5 flex-column justify-content-center align-items-center gap-2">
-          <%= render partial: "accordion" %>
-        </div>
-    </aside>
-
     <main class="col-md-9 col-xl-8" >
       <turbo-frame id="adminOptions" ></turbo-frame>
     </main>
 
-      <aside class="col-0 col-xl-2">
-      </aside>
-
-
-  </div>
 </div>
 
 <%= javascript_include_tag 'custom/active_list_item.js' %>

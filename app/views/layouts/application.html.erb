@@ -27,30 +27,11 @@
 
   <body class="d-flex flex-column justify-content-between min-vh-100 bg-light">  
       <header>
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <div class="container">
-          <button class="navbar-toggler my-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <a href="<%= home_path %>" class="navbar-brand">Zold Ceramics</a>
-          <div class="collapse justify-content-end navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mb-0" data-controller="active-nav" data-active-nav-active-class="active">
-              <li class="nav-item mx-2">
-                <a class="nav-link" data-active-nav-target="navLink" aria-current="page" href="<%= home_path %>">Home</a>
-              </li>
-              <li class="nav-item mx-2">
-                <a class="nav-link" href="<%= home_path + "#about" %>">About</a>
-              </li>
-              <li class="nav-item mx-2">
-                <a class="nav-link"  href="<%= home_path + "#contact" %>">Contact</a>
-              </li>
-              <li class="nav-item mx-2">
-                <a class="nav-link" data-active-nav-target="navLink" href="<%= shop_path %>">Shop</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        </nav>
+        <% if controller.controller_name == "admin" %>
+          <%= render "shared/admin_nav" %>
+        <% else %>
+          <%= render "shared/main_nav" %>
+        <% end %>
       </header>
 
       <main>
