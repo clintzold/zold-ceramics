@@ -29,16 +29,14 @@ module ShippingService
 
     def set_base_cost
       case @province
-      when "alberta", "ab"
-        @base_cost = 15
-      when "british columbia", "bc"
-        @base_cost = 20
-      when "saskatchewan", "sk"
-        @base_cost = 20
-      when "manitoba", "mb"
-        @base_cost = 25
-      else
+      when "alberta", "ab", "british columbia", "bc", "sakatchewan", "sk"
         @base_cost = 30
+      when "manitoba", "mb", "ontario", "on", "quebec", "qc"
+        @base_cost = 35
+      when "yukon", "yt", "northwest territories", "nt"
+        @base_cost = 85
+      else
+        @base_cost = 45
       end
     end
 
