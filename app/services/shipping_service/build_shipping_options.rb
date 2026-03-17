@@ -24,8 +24,9 @@ module ShippingService
             type: "fixed_amount",
             fixed_amount: {
               currency: "CAD",
-              amount: (rate["amount"] * 100).to_s
+              amount: (rate["amount"] * 100).to_i.to_s
             }
+          }
         }
       end
       success(@shipping_options)

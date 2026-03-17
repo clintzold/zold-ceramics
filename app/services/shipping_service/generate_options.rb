@@ -5,14 +5,11 @@ module ShippingService
       @session_id = session_id
       @shipping_details = shipping_details
       @order_items = order_items
-      @shipment = nil
       @rates = nil
       @shipping_options = nil
     end
 
     def call
-      build_shipment
-
       get_rates
 
       build_shipping_options
@@ -26,32 +23,14 @@ module ShippingService
 
     private
 
-    def build_shipment
-      result = ShippingService::BuildShipment.call(
-        shipping_details: @shipping_details,
-        order_items: @order_items
-      )
-
-      if result.success?
-       @shipment = result.payload
-      else
-        raise ShippingServiceError.new("BuildShipment", result.errors)
-      end
-    end
-
     def get_rates
       order_value = 0
       @order_items.each { |item| order_value += item.price}
-      result = ShippingService::GetRates.call(
-        address: @shipping_details["address"],
+
+      @rates = ShippingService::GetRates.call(
+        province: @shipping_details["address"]["state"],
         order_value: order_value
       )
-
-      if result.success?
-        @rates = result.payload
-      else
-        raise ShippingServiceError.new("GetRates", result.errors)
-      end
     end
 
     def build_shipping_options
