@@ -40,7 +40,12 @@ module ShippingService
     end
 
     def get_rates
-      result = ShippingService::GetRates.call(@shipment)
+      order_value = 0
+      @order_items.each { |item| order_value += item.price}
+      result = ShippingService::GetRates.call(
+        address: @shipping_details["address"],
+        order_value: order_value
+      )
 
       if result.success?
         @rates = result.payload

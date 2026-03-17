@@ -1,8 +1,12 @@
 # app/services/shipping_services/get_rates.rb
 module ShippingService
   class GetRates < ApplicationService
-    def initialize(shipment)
-      @shipment = shipment
+    def initialize(:province, :order_value)
+      @province = province
+      @order_value = order_value
+      @base_cost = nil
+      @value_rate = order_value * 0.05
+      @rates = nil
     end
 
     def call
@@ -13,16 +17,43 @@ module ShippingService
       # ***will need to modify this to avoid sending too many requests
       # during OAuth errors with carriers***
       #
-      retries = 0
-      5.times do
-        result = ShippoService::CreateShipment.call(shipment_details: @shipment)
-        if result.payload.any?
-         return success(result.payload)
-        end
-        retries += 1
-      end
+      set_base_cost
 
-      failure("Error retrieving rates from Shippo: #{result.errors.join(', ')}")
+      create_rates
+
+      @rates
+      
     end
+
+    private
+
+    def set_base_cost
+      case @province
+      when "alberta" || "ab"
+        @base_cost = 15
+      when "british columbia" || "bc"
+        @base_cost = 20
+      when "saskatchewan" || "sk"
+        @base_cost = 20
+      when "manitoba" || "mb"
+        @base_cost = 25
+      else
+        @base_cost = 30
+      end
+    end
+
+    def create_rates
+      @rates = [
+        {
+          "service_level" => "UPS Standard",
+          "amount" => @base_cost + @value_rate
+        }
+        {
+          "service_level" => "UPS Express",
+          "amount" => @base_cost + @value_rate + 10
+        }
+      ]
+    end
+
   end
 end

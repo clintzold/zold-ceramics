@@ -20,20 +20,12 @@ module ShippingService
       @rates.each do | rate |
         @shipping_options << {
           shipping_rate_data: {
-            display_name: rate["servicelevel"]["display_name"],
+            display_name: rate["service_level"],
             type: "fixed_amount",
             fixed_amount: {
-              currency: rate["currency_local"],
-              amount: (rate["amount_local"].to_i * 100).to_s
-            },
-            #
-            # This id is KEY to retrieving the unique rate generated
-            # for each order by Shippo.
-            #
-            # It is impossible to purchase the label via API call
-            # later without it!
-            metadata: { rate_id: rate["object_id"] }
-          }
+              currency: "CAD",
+              amount: (rate["amount"] * 100).to_s
+            }
         }
       end
       success(@shipping_options)
