@@ -6,7 +6,6 @@ module OrderService
       @order_id = checkout_details.metadata.order_id
       @checkout_details = checkout_details
       @shipping_rate = nil
-      @shipping_total = nil
     end
 
     def call
@@ -38,10 +37,10 @@ module OrderService
         shipping_address: @checkout_details.customer_details.address,
         email: @checkout_details.customer_details.email,
         name: @checkout_details.customer_details.name,
-        sub_total: @checkout_details.amount_total.to_i / 100,
-        total: @checkout_details.amount_total.to_i / 100,
+        sub_total: sprintf("%.2f", @checkout_details.amount_subtotal.to_d / 100),
+        total: sprintf("%.2f", @checkout_details.amount_total.to_d / 100),
         shipping_rate: @shipping_rate,
-        shipping_total: @shipping_total,
+        shipping_total: sprintf("%.2f", @checkout_details.shipping_cost.amount_total.to_d / 100),
         status: 1
       )
     end
@@ -49,7 +48,6 @@ module OrderService
     def retrieve_shipping_rate
       rate = Stripe::ShippingRate.retrieve(@checkout_details.shipping_cost.shipping_rate)
      @shipping_rate = rate.display_name
-     @shipping_total = rate.fixed_amount.amount.to_i / 100
     end
 
     def save_order
