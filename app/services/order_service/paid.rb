@@ -37,10 +37,10 @@ module OrderService
         shipping_address: @checkout_details.customer_details.address,
         email: @checkout_details.customer_details.email,
         name: @checkout_details.customer_details.name,
-        sub_total: sprintf("%.2f", @checkout_details.amount_subtotal.to_d / 100),
-        total: sprintf("%.2f", @checkout_details.amount_total.to_d / 100),
+        sub_total: @checkout_details.amount_subtotal.to_d / 100,
+        total: @checkout_details.amount_total.to_d / 100,
         shipping_rate: @shipping_rate,
-        shipping_total: sprintf("%.2f", @checkout_details.shipping_cost.amount_total.to_d / 100),
+        shipping_total: @checkout_details.shipping_cost.amount_total.to_d / 100,
         status: 1
       )
     end

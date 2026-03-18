@@ -4,23 +4,6 @@
     <div class="card-body">
       <div class="container-fluid d-flex justify-content-between">
         <h2 class="card-title text-center">Order #<%= order.id %></h2>
-
-        <% if order.shipment %>
-          <%=
-            button_to "View Shipment",
-            shipment_path(order.shipment.id),
-            class: "btn btn-warning",
-            method: :get
-          %>
-        <% else %> 
-          <%=
-            button_to "Create Shipment",
-            shipments_path(order_id: order.id, rate_id: order.shipping_rate),
-            class: "btn btn-warning",
-            method: :post
-          %>
-        <% end %>
-
       </div>
       <div class="card bg-white border-0">
         <div class="card-body px-0 px-md-3">
@@ -63,11 +46,17 @@
                           <%= image_tag(item.product.main_image, class: "img-fluid rounded-start") %>
                         </div>
                         <div class="card-body pt-0 col-md-8 d-flex flex-column justify-content-between">
-                          <h6 class="card-title text-center"><b><%= item.product.title %></b></h6>
-                          <p class="card-text mb-0 lh-1">
-                          <b>Price: </b><%= number_to_currency(item.price) %> <br>
-                          <b>Quantity: </b><%= item.quantity %> <br>
-                          <b>Total: </b><%= number_to_currency(item.price * item.quantity) %>
+                          <h6 class="card-title text-center mt-2"><b><%= item.product.title %></b></h6>
+                          <div class="container d-flex justify-content-between">
+                            <p class="card-text mb-0 lh-1">
+                              <small>Price: <%= number_to_currency(item.price) %></small> <br>
+                            </p>
+                            <p class="card-text mb-0 lh-1">
+                              <small>Quantity: <%= item.quantity %></small> <br>
+                            </p>
+                          </div>
+                          <p class="card-text text-end mb-0 lh-1">
+                            <b>Total: </b><%= number_to_currency(item.price * item.quantity) %>
                           </p>
                         </div>
                       </div>

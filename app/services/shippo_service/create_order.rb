@@ -49,7 +49,7 @@ module ShippoService
         @line_items << {
           quantity: item.quantity,
           title: item.product.title,
-          total_price: (item.quantity * item.price.to_i),
+          total_price: (item.quantity * item.price),
           currency: "CAD",
           weight: (item_weight.to_d / 1000).to_s,
           weight_unit: "kg"
@@ -67,11 +67,11 @@ module ShippoService
         order_status: "PAID",
         weight: (@total_weight.to_d / 1000).to_s,
         weight_unit: "kg",
-        shipping_cost: sprintf("%.2f", @order.shipping_total),
+        shipping_cost: @order.shipping_total,
         shipping_cost_currency: "CAD",
         shipping_method: @order.shipping_rate,
-        subtotal_price: sprintf("%.2f", @order.sub_total),
-        total_price: sprintf("%.2f", @order.total),
+        subtotal_price: @order.sub_total,
+        total_price: @order.total,
         currency: "CAD"
       }.to_json
     end

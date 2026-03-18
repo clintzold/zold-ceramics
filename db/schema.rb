@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_18_031808) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_18_203339) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -76,7 +76,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_18_031808) do
     t.jsonb "shipping_address"
     t.string "shipping_label"
     t.string "shipping_rate"
-    t.integer "shipping_total"
+    t.decimal "shipping_total"
     t.integer "status", default: 0
     t.string "stripe_customer_id"
     t.string "stripe_order_id"
