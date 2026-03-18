@@ -10,6 +10,7 @@ module ShippoService
       @line_items = []
       @request_body = nil
       @response = nil
+      @total_weight = 0
     end
 
     def call
@@ -42,12 +43,15 @@ module ShippoService
 
     def build_line_items
       @order.order_items.each do |item|
+        item_weight = item.product.weight
+        @total_weight += item_weight
+
         @line_items << {
           quantity: item.quantity,
           title: item.product.title,
           total_price: (item.quantity * item.price.to_i),
           currency: "CAD",
-          weight: (item.weight / 100).to_s,
+          weight: (item_weight.to_d / 1000).to_s,
           weight_unit: "kg"
         }
       end
@@ -61,11 +65,13 @@ module ShippoService
         placed_at: Time.now.utc.iso8601,  # eg. "2023-10-27T10:00:00Z" Must be in exact format Shippo Expects -> "2016-09-23T01:28:12Z"
         order_number: @order.id,
         order_status: "PAID",
-        shipping_cost: @order.shipping_total,
+        weight: (@total_weight.to_d / 1000).to_s,
+        weight_unit: "kg",
+        shipping_cost: sprintf("%.2f", @order.shipping_total),
         shipping_cost_currency: "CAD",
         shipping_method: @order.shipping_rate,
-        subtotal_price: @order.sub_total,
-        total_price: @order.total,
+        subtotal_price: sprintf("%.2f", @order.sub_total),
+        total_price: sprintf("%.2f", @order.total),
         currency: "CAD"
       }.to_json
     end
@@ -93,7 +99,7 @@ module ShippoService
       when 401
         failure("Authentication failed: Check API Token")
       else
-        failure("API request failed with stats #{@response.code}")
+        failure("API request failed with code #{@response.code} and details: #{@response.body}")
       end
     end
   end
