@@ -47,8 +47,8 @@ module ShippoService
           title: item.product.title,
           total_price: (item.quantity * item.price.to_i),
           currency: "CAD",
-          weight: "0.5",  # Test data
-          weight_unit: "lb"  # Test data
+          weight: (item.weight / 100).to_s,
+          weight_unit: "kg"
         }
       end
     end
@@ -58,18 +58,15 @@ module ShippoService
         to_address: @to_address,
         line_items: @line_items,
 
-        placed_at: "2016-09-23T01:28:12Z",  # Must be in exact format Shippo Expects -> "2016-09-23T01:28:12Z"
+        placed_at: Time.now.utc.iso8601,  # eg. "2023-10-27T10:00:00Z" Must be in exact format Shippo Expects -> "2016-09-23T01:28:12Z"
         order_number: @order.id,
         order_status: "PAID",
-        shipping_cost: "10", # Test data
+        shipping_cost: @order.shipping_total,
         shipping_cost_currency: "CAD",
-        shipping_method: "UPS",  # Test data
+        shipping_method: @order.shipping_rate,
         subtotal_price: @order.sub_total,
         total_price: @order.total,
-        total_tax: "5",  # Test data
-        currency: "CAD",
-        weight: "1",  # Test data
-        weight_unit: "lb"
+        currency: "CAD"
       }.to_json
     end
 

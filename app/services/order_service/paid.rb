@@ -5,7 +5,8 @@ module OrderService
       @order = nil
       @order_id = checkout_details.metadata.order_id
       @checkout_details = checkout_details
-      @shippo_rate_id = nil
+      @shipping_rate = nil
+      @shipping_total = nil
     end
 
     def call
@@ -17,7 +18,7 @@ module OrderService
       # Shippo Shipping Rate ID is necessary for purchasing the proper
       # shipping label for the Order and shipping rate purchased by
       # the customer.
-      retrieve_shippo_rate_id
+      retrieve_shipping_rate
 
       add_details_to_paid_order
 
@@ -39,14 +40,16 @@ module OrderService
         name: @checkout_details.customer_details.name,
         sub_total: @checkout_details.amount_total.to_i / 100,
         total: @checkout_details.amount_total.to_i / 100,
-        shipping_rate: @shippo_rate_id,
+        shipping_rate: @shipping_rate,
+        shipping_total: @shipping_total,
         status: 1
       )
     end
 
-    def retrieve_shippo_rate_id
+    def retrieve_shipping_rate
       rate = Stripe::ShippingRate.retrieve(@checkout_details.shipping_cost.shipping_rate)
-     @shippo_rate_id = rate.metadata.rate_id
+     @shipping_rate = rate.display_name
+     @shipping_total = rate.fixed_amount.amount.to_i / 100
     end
 
     def save_order
