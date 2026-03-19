@@ -1,8 +1,7 @@
 .image-grid-collection {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 50% 50%;
-	height: 1200px;
+	grid-template-rows: 1fr;
 	gap: 10px;
 	padding-left:5px;
 	padding-right: 5px;
@@ -17,25 +16,27 @@
 	opacity: 1;
 }
 
-.main-image {
+.main-image-right {
 	grid-row: 1 / span 2;
 	grid-column: 2;
 }
+.main-image-left {
+	grid-row: span 2;
+	grid-column: 1;
+}
 
-.bottom-image {
-  grid-row: 2;
+.span-image {
   grid-column: 1 / span 2;
 }
 .side-image{
 	grid-column: 1;
 }
 .top-image {
-  grid-row: 1
 }
 .main-image img,
 .side-image img,
 .top-image img,
-.bottom-image img,
+.span-image img,
 .card-image,
 .hero-image {
 	width:100%;
@@ -56,22 +57,15 @@
 
 @media (max-width: 992px) {
 
-	.image-grid-collection {
-		height: 800px;
-	}
-
 	.image-link-card {
-		height:550px;
+		height:500px;
 	}
 
 }
 @media (max-width: 768px) {
 
-	.image-grid-collection {
-		height: 600px;
-	}
 	.image-link-card {
-		height:450px;
+		height:400px;
 	}
 	.about-main-img {
 		width: 100%;
