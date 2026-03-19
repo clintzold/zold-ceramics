@@ -11,12 +11,6 @@ module OrderService
     def call
       retrieve_order
 
-      # Must retrieve Stripe Shipping Rate created at checkout to access
-      # metadata that contatins the Shippo Shipping Rate ID.
-      #
-      # Shippo Shipping Rate ID is necessary for purchasing the proper
-      # shipping label for the Order and shipping rate purchased by
-      # the customer.
       retrieve_shipping_rate
 
       add_details_to_paid_order

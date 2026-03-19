@@ -1,3 +1,7 @@
 .dropdown-toggle {
   width: 150px;
 }
+
+#index-table {
+  width: 100vw;
+}

@@ -7,7 +7,8 @@
   <%= form.label :main_image, class: "form-label" %>
   <%= form.file_field :main_image, class: "form-control",
         direct_upload: true,
-        data: { previews_target: "input", action: "change->previews#preview" } %>
+        data: { previews_target: "input", action: "change->previews#preview" },
+        required: true %>
 
   <div class="container mt-2" data-previews-target="preview">
     <% if product.main_image.attached? %>

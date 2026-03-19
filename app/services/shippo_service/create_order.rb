@@ -67,11 +67,11 @@ module ShippoService
         order_status: "PAID",
         weight: (@total_weight.to_d / 1000).to_s,
         weight_unit: "kg",
-        shipping_cost: @order.shipping_total,
+        shipping_cost: sprintf("%.2f", @order.shipping_total),
         shipping_cost_currency: "CAD",
         shipping_method: @order.shipping_rate,
-        subtotal_price: @order.sub_total,
-        total_price: @order.total,
+        subtotal_price: sprintf("%.2f", @order.sub_total),
+        total_price: sprintf("%.2f", @order.total),
         currency: "CAD"
       }.to_json
     end
@@ -99,7 +99,7 @@ module ShippoService
       when 401
         failure("Authentication failed: Check API Token")
       else
-        failure("API request failed with code #{@response.code} and details: #{@response.body}")
+        failure("API request failed with code #{@response.code} and details: #{JSON.parse(@response.body)}")
       end
     end
   end

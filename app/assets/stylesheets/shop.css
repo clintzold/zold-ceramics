@@ -7,13 +7,12 @@
 	align-items: center;
 }
 
-.product-card-image {
-  width: 100%;
-  height: 375px;
-  object-fit: cover;
-  object-position: center;
-}
 
 .product-dimensions-text {
   color: #c0c0c0;
+}
+
+.stripe-checkout {
+  background-color: white;
+  height: 93vh;
 }
