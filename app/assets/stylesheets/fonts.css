@@ -15,6 +15,44 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Borel';
+    src: url('Borel-Regular.woff2') format('woff2'),
+        url('Borel-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Dongle';
+    src: url('Dongle-Light.woff2') format('woff2'),
+        url('Dongle-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Dongle';
+    src: url('Dongle-Regular.woff2') format('woff2'),
+        url('Dongle-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Dongle';
+    src: url('Dongle-Bold.woff2') format('woff2'),
+        url('Dongle-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
 .product-category-card {
   font-family: 'Great Vibes', Helvetica, sans-serif;
   font-size: 2rem;
@@ -35,6 +73,46 @@
 }
 
 .cart-summary-title {
-  font-family: 'Birthstone', Helvetica, sans-serif;
-  font-size: 2.2rem;
+  font-family: 'Borel', Helvetica, sans-serif;
+  font-size: 2rem;
+}
+
+.about-blog {
+  font-family: "Dongle", Helvetica, sans-serif;
+  opacity: 75%;
+}
+
+.product-title {
+  font-family: 'Borel', Helvetica, sans-serif;
+  font-weight: bold;
+  opacity: 95%;
+}
+
+.product-description {
+  font-family: 'Borel', Helvetica, sans-serif;
+  opacity: 75%;
+}
+
+.product-details {
+  font-family: 'Dongle', Helvetica, sans-serif;
+  opacity: 75%;
+  font-size: 1.5rem;
+}
+
+.add-to-cart-btn {
+  height:20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Borel', Helvetica, sans-serif;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.amount-to-purchase-field {
+  font-family: sans-serif;
+  font-weight: bold;
+  width: 40px;
+  padding-left: 5px;
+  padding-right: 0px;
 }
