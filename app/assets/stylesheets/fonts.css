@@ -77,6 +77,10 @@
   font-size: 1.5rem;
 }
 
+.home-card-title {
+  font-family: 'Great Vibes', Helvetica, sans-serif;
+}
+
 .borel {
   font-family: 'Borel', Helvetica, sans-serif;
   font-weight: bold;
@@ -99,6 +103,9 @@
   opacity: 95%;
 }
 
+figure {
+  font-family: 'Borel', Helvetica, sans-serif;
+}
 .product-description {
   font-family: 'Borel', Helvetica, sans-serif;
   opacity: 75%;
@@ -126,4 +133,9 @@
   width: 40px;
   padding-left: 5px;
   padding-right: 0px;
+}
+
+.about-blog a {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  padding: 4px 30px 0 30px;
 }

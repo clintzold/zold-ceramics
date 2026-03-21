@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "about_details" do %>
   <!-- About card and teaser info -->
-  <div class="container-fluid aboutContainer py-md-5">
+  <div class="container-fluid aboutContainer">
     <div class="row justify-content-center">
 
       <!-- Card -->
@@ -11,46 +11,49 @@
                 
                 <div class="card-text">
                   <!-- Card Image -->
-                  <%= image_tag "jessie-sitting-forest.jpg", class: "about-main-img float-start me-3 d-block" %>
-                  <figure>
-                    <blockquote cite="https://example.com/source-document-url">
-                      <p class="fs-2 text-center opacity-50">
-                        "The only limit to our realization of tomorrow is our doubts of today."
-                      </p>
-                    </blockquote>
-                    <figcaption class="text-center">
-                      <cite><small class="fs-4">— Franklin D. Roosevelt</small></cite>
-                    </figcaption>
-                  </figure>
+                  <div class="d-flex flex-column align-items-center pb-3">
+                    <%= image_tag "jessie-sitting-forest.jpg", class: "about-main-img float-start me-3 d-block" %>
+                    <figure>
+                      <blockquote cite="https://example.com/source-document-url">
+                        <p class="fs-5 text-center opacity-50">
+                          "I found I could say things with color and shapes that I couldn’t say any other way – things I had no words for."
+                        </p>
+                      </blockquote>
+                      <figcaption class="text-center">
+                        <cite><small class="fs-6">— Georgia O'Keeffe</small></cite>
+                      </figcaption>
+                    </figure>
+                  </div>
 
                   <div class="about-blog fs-1">
-                    <p class="text-center display-3"> Welcome to <i>Zold Ceramics!</i></p>
+                    <p class="text-center home-card-title display-3"> Welcome to <i>Zold Ceramics!</i></p>
                     <p>I'm Jessie Zold Edwards, the face behind the pottery.</p>
                     <p>
-                    I've spent countless hours in the kitchen baking up treats for my family 
-                    and friends for as long as I can remember. My love for cooking began when I was 
-                    quite young, as I was often  my mom and great-grandmother's shadow in the kitchen. 
-                    I always loved having something to offer at family gatherings or holidays - I think 
-                    that's where my love of handmade gifts truly began.
+                    To me, the most wonderful art is found in the practical. The old shoes that fit just right,
+                    that magic chair that always lulls you into an afternoon nap - 
+                    the family recipe that's comforted and fed generations. 
+                    These are the things that carry memory and meaning for as long as they last, and this is what
+                    I strive for my pottery to achieve - to be as beautiful in their use as they are in aesthetic.
                     </p>
                     <p>
-                    Growing up in the 90's meant I lived before and after everyone had a computer in 
-                    their homes or at their fingertips. I'm so thankful for the generation I grew up 
-                    in. I love how technology has made the world feel small, how we can connect with 
-                    people from all over and they don't seem so far away. I'm also thankful I knew a 
-                    time when in-person, human interaction was the only way we made connections. As much 
-                    as I love this crazy life I've found, my heart longs for the simplicity of a time gone 
-                    by.
+                    This innate love for useful art - seeking the place where beauty and practicality meet - 
+                    is in hindsight what drove me out into the world. From the family farm in Ontario to the 
+                    province of Alberta to become a structural engineer, to finally leaving town-life behind again to live
+                    in an off-grid home of our own making. My husband and I's greatest pleasure is now watching our children 
+                    grow and play in a life that is uniquely our own design.
                     </p>
                     <p>
-                    Through art, baking and handmade cermaics, I've found a way to quiet the world around me 
+                    Through art, baking and handmade ceramics, I've found a way to quiet the noise around me 
                     and offer this whirlwind world something truly authentic. I hope my ceramic art brings 
-                    joy into your homes, excitement to your gift giving and both a nostaglia for times past 
+                    joy into your homes, excitement to your gift giving and both a nostalgia for times past 
                     and a hope for the future.
                     </p>
-                    <p>
-                    Happy shopping!
-                    </p>
+                    <div class="d-flex justify-content-between align-items-start">
+                      <p>
+                      Happy shopping!
+                      </p>
+                      <%= link_to "Shop Now", shop_path, class: "btn btn-secondary", data: { turbo_frame: :_top } %>
+                    </div>
                   </div>
                 </div>
               </div>
