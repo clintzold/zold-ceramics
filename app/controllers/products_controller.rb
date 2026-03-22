@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
       redirect_to new_product_path
     else
       flash.now[:danger] = result.errors.join(", ") # FLASH NOT WORKING IN TURBO FRAME
-      render :new
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -46,8 +46,11 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
-    @product.destroy!
-    redirect_to admin_path, success: "Product was successfully deleted."
+    if @product.destroy!
+      redirect_to admin_path, success: "Product was successfully deleted."
+    else
+      render :show, status: :unprocessable_content
+    end
   end
 
   private

@@ -3,6 +3,11 @@
   <div class="row justify-content-center">
     <div class="col-md-10">
       <%= form_with model: product do |form| %>
+        <% if product.errors.any? %>
+          <% product.errors.full_messages.each do |message| %>
+            <p class="text-danger"><%= message %></p>
+          <% end %>
+        <% end %>
         <div class="mb-3 d-flex gap-4">
 
           <div>
@@ -25,15 +30,15 @@
 
           <div>
             <%= form.label :width, class: "form-label" %>
-            <%= form.number_field :width, class: "form-control", placeholder: "in", required: true %>
+            <%= form.number_field :width, class: "form-control", placeholder: "in", step: :any, required: true %>
           </div>
           <div>
             <%= form.label :length, class: "form-label" %>
-            <%= form.number_field :length, class: "form-control", placeholder: "in", required: true %>
+            <%= form.number_field :length, class: "form-control", placeholder: "in", step: :any, required: true %>
           </div>
           <div>
             <%= form.label :height, class: "form-label" %>
-            <%= form.number_field :height, class: "form-control", placeholder: "in", required: true %>
+            <%= form.number_field :height, class: "form-control", placeholder: "in", step: :any, required: true %>
           </div>
 
         </div>
