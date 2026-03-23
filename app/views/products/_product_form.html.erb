@@ -54,7 +54,9 @@
           <%= form.label :stock, class: "form-label" %>
           <%= form.number_field :stock, class: "form-control", required: true %>
         </div>
+        <!-- Image upload section -->
         <%= render "images_preview", form: form, product: product %>
+
         <div class="d-flex justify-content-between mb-5">
           <%= form.submit class: "btn btn-warning" %>
       <% end %>
