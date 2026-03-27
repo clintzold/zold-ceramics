@@ -10,11 +10,11 @@ class Product < ApplicationRecord
   has_many :order_items
   has_one_attached :main_image do |attachable|
     attachable.variant :thumb, resize_to_limit: [ 100, 100 ]
-    attachable.variant :card_image, resize_to_limit: [ 500, 500 ], saver: { strip: true, quality: 70 }
+    attachable.variant :card_image, resize_to_limit: [ 500, 500 ], saver: { strip: true, quality: 70 }, format: :webp
   end
   has_many_attached :images do |attachable|
     attachable.variant :thumb, resize_to_limit: [ 100, 100 ]
-    attachable.variant :card_image, resize_to_limit: [ 500, 500 ], saver: { strip: true, quality: 70 }
+    attachable.variant :card_image, resize_to_limit: [ 500, 500 ], saver: { strip: true, quality: 70 }, format: :webp
   end
 
 
