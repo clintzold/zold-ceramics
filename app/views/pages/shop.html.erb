@@ -21,7 +21,13 @@
             </button>
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
               <div class="card-body">
-                <%= render "pages/shop_partials/product_card", products: @products.where(category: "drinkware") %>
+                <% if @products.where(category: "drinkware").any? %>
+                  <%= render "pages/shop_partials/product_card", products: @products.where(category: "drinkware") %>
+                <% else %>
+                  <div class="p-5">
+                    <h1 class="text-center out-of-stock">Sorry, we're out of stock!</h1>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
@@ -31,7 +37,13 @@
             </button>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
               <div class="card-body">
-                <%= render "pages/shop_partials/product_card", products: @products.where(category: "dinnerware") %>
+                <% if @products.where(category: "dinnerware").any? %>
+                  <%= render "pages/shop_partials/product_card", products: @products.where(category: "dinnerware") %>
+                <% else %>
+                  <div class="p-5">
+                    <h1 class="text-center out-of-stock">Sorry, we're out of stock!</h1>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
@@ -41,7 +53,13 @@
             </button>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
               <div class="card-body">
-                <%= render "pages/shop_partials/product_card", products: @products.where(category: "decorative") %>
+                <% if @products.where(category: "decorative").any? %>
+                  <%= render "pages/shop_partials/product_card", products: @products.where(category: "decorative") %>
+                <% else %>
+                  <div class="p-5">
+                    <h1 class="text-center out-of-stock">Sorry, we're out of stock!</h1>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
