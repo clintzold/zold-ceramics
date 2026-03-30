@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :product_params, only: [ :create ]
 
   def shop
-    @products = Product.all
+    @products = Product.where(out_of_stock: false)
   end
 
   def index
