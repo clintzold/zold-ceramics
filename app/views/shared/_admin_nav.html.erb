@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
-  <div class="container">
+  <div class="container-fluid px-1 px-md-3 px-xl-5">
     <button class="navbar-toggler my-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -43,7 +43,7 @@
             </div>
         </li>
 
-        <li class="nav-item dropdown mx-2">
+        <li class="nav-item dropdown mx-2 py-2 py-md-0">
           <%= link_to "Sign Out", session_path, class: "btn btn-danger", data: { turbo_method: :delete } %>
         </li>
       </ul>
