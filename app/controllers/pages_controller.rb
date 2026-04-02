@@ -8,6 +8,6 @@ class PagesController < ApplicationController
   end
 
   def shop
-    @products = Product.all
+    @products = Product.where(out_of_stock: false)
   end
 end

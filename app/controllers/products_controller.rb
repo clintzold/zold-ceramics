@@ -1,10 +1,5 @@
 class ProductsController < ApplicationController
-  allow_unauthenticated_access only: [ :shop, :show ]
   before_action :product_params, only: [ :create ]
-
-  def shop
-    @products = Product.where(out_of_stock: false)
-  end
 
   def index
     @products = Product.all

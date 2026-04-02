@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  allow_unauthenticated_access
+  skip_before_action :require_authentication, only: [:create]
 
   def create
     result = OrderService::Create.call(cart: @cart)
@@ -33,4 +33,7 @@ class OrdersController < ApplicationController
       }
     end
   end
+
+  private
+
 end

@@ -4,6 +4,7 @@ module Authentication
   included do
     before_action :require_authentication
     helper_method :authenticated?
+    helper_method :require_admin
   end
 
   class_methods do
@@ -35,7 +36,7 @@ module Authentication
     end
 
     def require_admin
-      redirect_to root_path, alert: "Not authorized" unless Current.user&.admin?
+      redirect_to home_path, alert: "Not authorized", data: { turbo_frame: "_top"} unless Current.user&.admin?
     end
 
     def after_authentication_url
