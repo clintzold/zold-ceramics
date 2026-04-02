@@ -42,9 +42,14 @@
                 </p>
               </div>
               <!-- Product Price -->
-              <p>
-                <%= number_to_currency(product.price).to_s %>
-              </p>
+              <div class="d-flex justify-content-between">
+                <p>
+                  <%= number_to_currency(product.price).to_s %>
+                </p>
+                <p class="opacity-50">
+                  <small><%= product.stock %> in stock</small>
+                </p>
+              </div>
               <!-- Add To Cart Form -->
               <%= form_with url: add_item_cart_path(product_id: product.id), class: "d-flex justify-content-between", method: :post do |form| %>
                 <div class="container w-100 d-flex justify-content-between">
