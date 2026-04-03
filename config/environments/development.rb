@@ -35,20 +35,20 @@ Rails.application.configure do
 
   # Set delivery method
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
 
   # Point to gmail and provide credentials(app password)
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: "zoldceramics.com",
-    user_name: Rails.application.credentials.dig(:smtp, :user_name),
-    password: Rails.application.credentials.dig(:smtp, :password),
-    authentication: "plain",
-    enable_starttls: true,
-    open_timeout: 5,
-    read_timeout: 5 }
+    address:              'smtp.hostinger.com',
+    port:                 465, # Use 587 if you prefer TLS/STARTTLS
+    domain:               'zoldceramics.com',
+    user_name:            Rails.application.credentials.dig(:smtp, :user_name),
+    password:             Rails.application.credentials.dig(:smtp, :password),
+    authentication:       'plain',
+    tls:                  true # Set to true if using port 465
+  }
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Make template changes take effect immediately.
   config.action_mailer.perform_caching = false
