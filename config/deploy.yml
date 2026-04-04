@@ -22,7 +22,6 @@ servers:
 #
 
 proxy:
-  app_port: 80
   ssl: true
   host: zoldceramics.com
 ssh:
