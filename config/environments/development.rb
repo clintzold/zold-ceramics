@@ -37,15 +37,16 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
 
-  # Point to gmail and provide credentials(app password)
+  # Point to Hostinger Mailbox and provide credentials
   config.action_mailer.smtp_settings = {
     address:              'smtp.hostinger.com',
-    port:                 465, # Use 587 if you prefer TLS/STARTTLS
+    port:                 587, # Use 587 if you prefer TLS/STARTTLS
     domain:               'zoldceramics.com',
     user_name:            Rails.application.credentials.dig(:smtp, :user_name),
     password:             Rails.application.credentials.dig(:smtp, :password),
     authentication:       'plain',
-    tls:                  true # Set to true if using port 465
+    enable_starttls_auto: false,
+    enable_starttls: true # Must force encryption to avoid spam filter
   }
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true

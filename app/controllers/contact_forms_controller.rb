@@ -7,12 +7,14 @@ class ContactFormsController < ApplicationController
   def create
    @contact_form = ContactForm.new(contact_form_params)
 
+   respond_to do |format|
     if @contact_form.valid?
       NotifierMailer.contact_form_submission(contact_form_params.to_h).deliver_later
-      redirect_to home_path, data: { turbo_frame: "_top" }, success: "Message sent successfully"
+      format.html { head :no_content}
     else
-      render :new, status: :unprocessable_content
+      format.html {render :new, status: :unprocessable_content}
     end
+   end
   end
 
   private

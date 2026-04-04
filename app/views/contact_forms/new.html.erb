@@ -5,13 +5,19 @@
       <div class="px-1 col col-sm-10 col-md-8 col-lg-6 col-xxl-5">
 
         <!-- Contact Form Card -->
-        <div class="card bg-primary contact-us-card px-xxl-3" style="--bs-bg-opacity: .5">
+        <div class="card bg-primary contact-us-card px-xxl-3" data-controller="loader" style="--bs-bg-opacity: .5">
+
+          <div class="form-overlay card" data-loader-target="loadingOverlay">
+            <i class="bi bi-cup-hot-fill loading-icon mb-0" data-loader-target="loadingIcon" data-action="animationend->loader#handleLoadingEnd"></i>
+            <p class="text-center form-result-message" data-loader-target="message" data-action="animationend->loader#handleComplete">Your message has been sent.</p>
+          </div>
+
           <h1 class="card-title text-center text-white mt-1" style="text-shadow: 1px 1px 3px gray">Let's chat.</h1>
           <div class="card-body text-start" style="text-shadow: 1px 1px 3px gray">
 
 
               <!-- Contact Form -->
-              <%= form_with model: @contact_form, url: contact_forms_path, method: :post, class: "text-white" do |form| %>
+              <%= form_with model: @contact_form, url: contact_forms_path, data: { "loader-target": "form", action: "turbo:submit-end->loader#show"}, method: :post, class: "text-white" do |form| %>
                 <% if form.object.errors.any? %>
                   <div id="error_explanation">
                     <ul>
@@ -25,22 +31,27 @@
                 <%= form.text_field :name,
                   placeholder: "Enter your name",
                   maxlength: "50",
-                  class: "form-control mb-3" %>
+                  class: "form-control mb-3",
+                  required: true %>
 
                 <%= form.label :email, "Email" %>
                 <%= form.email_field :email,
                   placeholder: "Enter your email",
                   maxlength: "50",
-                  class: "form-control mb-3" %>
+                  class: "form-control mb-3",
+                  required: true %>
 
                 <%= form.label :message, "Message" %>
                 <%= form.text_area :message,
                   rows: 5,
                   placeholder: "Enter message details...",
                   maxlength: "750",
-                  class: "form-control mb-3" %>
+                  class: "form-control mb-3",
+                  required: true %>
 
-                <%= form.submit "Send", class: "btn btn-secondary opacity-75 text-white" %>
+                <%= form.submit "Send", data: {loader_target: "button"}, class: "btn btn-secondary opacity-75 text-white" %>
+                <%= turbo_frame_tag "contact_form" do %>
+                <% end %>
               <% end %>
 
           </div>
