@@ -23,8 +23,8 @@ servers:
 
 proxy:
   app_port: 80
-  ssl: false
-  host: 31.97.209.135
+  ssl: true
+  host: zoldceramics.com
 ssh:
   port: 5119
   # proxy: root@31.97.209.135

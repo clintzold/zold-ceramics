@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :subscriptions
   resource :session
   resources :passwords, param: :token
   get "contacts/new"

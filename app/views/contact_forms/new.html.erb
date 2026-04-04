@@ -9,38 +9,39 @@
           <h1 class="card-title text-center text-white mt-1" style="text-shadow: 1px 1px 3px gray">Let's chat.</h1>
           <div class="card-body text-start" style="text-shadow: 1px 1px 3px gray">
 
-            <!-- Contact Form -->
-            <%= form_with model: @contact_form, url: contact_forms_path, method: :post, class: "text-white" do |form| %>
-              <% if form.object.errors.any? %>
-                <div id="error_explanation">
-                  <ul>
-                    <% form.object.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                    <% end %>
-                  </ul>
-                </div>
+
+              <!-- Contact Form -->
+              <%= form_with model: @contact_form, url: contact_forms_path, method: :post, class: "text-white" do |form| %>
+                <% if form.object.errors.any? %>
+                  <div id="error_explanation">
+                    <ul>
+                      <% form.object.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+                <%= form.label :name, "Name" %>
+                <%= form.text_field :name,
+                  placeholder: "Enter your name",
+                  maxlength: "50",
+                  class: "form-control mb-3" %>
+
+                <%= form.label :email, "Email" %>
+                <%= form.email_field :email,
+                  placeholder: "Enter your email",
+                  maxlength: "50",
+                  class: "form-control mb-3" %>
+
+                <%= form.label :message, "Message" %>
+                <%= form.text_area :message,
+                  rows: 5,
+                  placeholder: "Enter message details...",
+                  maxlength: "750",
+                  class: "form-control mb-3" %>
+
+                <%= form.submit "Send", class: "btn btn-secondary opacity-75 text-white" %>
               <% end %>
-              <%= form.label :name, "Name" %>
-              <%= form.text_field :name,
-                placeholder: "Enter your name",
-                maxlength: "50",
-                class: "form-control mb-3" %>
-
-              <%= form.label :email, "Email" %>
-              <%= form.email_field :email,
-                placeholder: "Enter your email",
-                maxlength: "50",
-                class: "form-control mb-3" %>
-
-              <%= form.label :message, "Message" %>
-              <%= form.text_area :message,
-                rows: 5,
-                placeholder: "Enter message details...",
-                maxlength: "750",
-                class: "form-control mb-3" %>
-
-              <%= form.submit "Send", class: "btn btn-secondary opacity-75 text-white" %>
-            <% end %>
 
           </div>
         </div>
