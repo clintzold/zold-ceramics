@@ -51,8 +51,8 @@ module ShippoService
           title: item.product.title,
           total_price: (item.quantity * item.price),
           currency: "CAD",
-          weight: (item_weight.to_d / 1000).to_s,
-          weight_unit: "kg"
+          weight: item_weight.to_s,
+          weight_unit: "g"
         }
       end
     end
@@ -65,8 +65,8 @@ module ShippoService
         placed_at: Time.now.utc.iso8601,  # eg. "2023-10-27T10:00:00Z" Must be in exact format Shippo Expects -> "2016-09-23T01:28:12Z"
         order_number: @order.id,
         order_status: "PAID",
-        weight: (@total_weight.to_d / 1000).to_s,
-        weight_unit: "kg",
+        weight: @total_weight.to_s,
+        weight_unit: "g",
         shipping_cost: sprintf("%.2f", @order.shipping_total),
         shipping_cost_currency: "CAD",
         shipping_method: @order.shipping_rate,
