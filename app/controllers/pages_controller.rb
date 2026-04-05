@@ -8,6 +8,6 @@ class PagesController < ApplicationController
   end
 
   def shop
-    @products = Product.where(out_of_stock: false)
+    @products = Product.includes(images_attachments: [blob: {variant_records: :blob}], main_image_attachment: [blob: :variant_records]).where(out_of_stock: false)
   end
 end
