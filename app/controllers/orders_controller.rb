@@ -13,6 +13,16 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    respond_to do |format|
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.replace(
+          "adminOptions",
+          partial: "show",
+          locals: { order: @order }
+        )
+      }
+      format.html { redirect_to admin_path }
+    end
   end
 
   def index
@@ -23,13 +33,13 @@ class OrdersController < ApplicationController
     end
 
     respond_to do |format|
-      format.html
+      format.html { redirect_to admin_path }
       format.turbo_stream {
         render turbo_stream: turbo_stream.replace(
-          "filtered_results",
-          partial: "results",
-          locals: { orders: @orders }
-        )
+            "adminOptions",
+            partial: "index",
+            locals: {orders: @orders, statuses: @statuses}
+          )
       }
     end
   end

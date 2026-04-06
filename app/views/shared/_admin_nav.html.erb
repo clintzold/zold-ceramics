@@ -26,7 +26,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <div class="list-group list-group-flush" id="admin_options_list">
-                <%= link_to "View Orders", orders_path, class: "list-group-item list-group-item-action", data: { turbo_frame: "adminOptions" } %>
+                <%= link_to "View Orders", orders_path, class: "list-group-item list-group-item-action", data: { turbo_stream: true } %>
               </div>
             </div>
         </li>
