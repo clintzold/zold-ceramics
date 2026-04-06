@@ -13,7 +13,7 @@
 
         <h1 class="card-title display-1 home-card-title" style="text-shadow: 1px 0px 5px black">Contact us</h1>
         <div class="d-flex justify-content-center p-2">
-          <%= button_to "Contact Form", new_contact_form_path, method: :get, class: "btn btn-outline-light btn-lg border-2 shadow-lg" %>
+          <%= link_to "Contact Form", new_contact_form_path, data: { turbo_stream: true }, class: "btn btn-outline-light btn-lg border-2 shadow-lg" %>
         </div>
         </div>
 

@@ -17,7 +17,7 @@
 
 
               <!-- Contact Form -->
-              <%= form_with model: @contact_form, url: contact_forms_path, data: { "loader-target": "form", action: "turbo:submit-end->loader#show"}, method: :post, class: "text-white" do |form| %>
+              <%= form_with model: contact_form, url: contact_forms_path, data: { "loader-target": "form", action: "turbo:submit-end->loader#show"}, method: :post, class: "text-white" do |form| %>
                 <% if form.object.errors.any? %>
                   <div id="error_explanation">
                     <ul>

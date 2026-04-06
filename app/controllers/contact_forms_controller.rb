@@ -2,6 +2,13 @@ class ContactFormsController < ApplicationController
   allow_unauthenticated_access
   def new
     @contact_form = ContactForm.new
+    respond_to do |format|
+      format.turbo_stream { 
+        render turbo_stream: turbo_stream.replace(
+          "contact_us", partial: "new", locals: {contact_form: @contact_form}
+        )}
+      format.html { redirect_to home_path( anchor: "contact" )}
+    end
   end
 
   def create
