@@ -2,15 +2,12 @@
 module OrderService
   class Paid < ApplicationService
     def initialize(checkout_details)
-      @order = nil
-      @order_id = checkout_details.metadata.order_id
+      @order = Order.find_by(token: checkout_details.metadata.order_token)
       @checkout_details = checkout_details
       @shipping_rate = nil
     end
 
     def call
-      retrieve_order
-
       retrieve_shipping_rate
 
       add_details_to_paid_order
@@ -22,10 +19,6 @@ module OrderService
     end
 
     private
-
-    def retrieve_order
-      @order = Order.find(@order_id)
-    end
 
     def add_details_to_paid_order
       @order.assign_attributes(
@@ -51,7 +44,7 @@ module OrderService
       if @shipping_rate == "Local Pickup(Central Alberta)"
         @order.update!(local: true)
       else
-        ShippoService::CreateOrder(@order.id).call
+        ShippoService::CreateOrder(@order.token).call
       end
     end
 

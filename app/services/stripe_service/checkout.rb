@@ -2,10 +2,10 @@
 module StripeService
   class Checkout < ApplicationService
     include Rails.application.routes.url_helpers
-    def initialize(order_id:, line_items:, success_url:)
+    def initialize(order_token:, line_items:, success_url:)
       @success_url = success_url
       @line_items = line_items
-      @order_id = order_id
+      @order_token = order_token
     end
 
     def call
@@ -32,8 +32,8 @@ module StripeService
           } ],
           return_url: @success_url + "?session_id={CHECKOUT_SESSION_ID}",
           expires_at: (Time.now + 30.minutes).to_i,
-          metadata: { order_id: @order_id },
-          payment_intent_data: { metadata: { order_id: @order_id } }
+          metadata: { order_token: @order_token },
+          payment_intent_data: { metadata: { order_token: @order_token } }
         })
 
         success(session)

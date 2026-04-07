@@ -3,8 +3,8 @@ module ShippoService
   class CreateOrder < ApplicationService
       BASE_URL = "https://api.goshippo.com/"
 
-    def initialize(order_id)
-      @order = Order.find(order_id)
+    def initialize(order_token)
+      @order = Order.find_by(token: order_token)
       @api_token = Rails.application.credentials.shippo[:secret_key]
       @to_address = nil
       @line_items = []

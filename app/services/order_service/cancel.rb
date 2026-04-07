@@ -1,24 +1,17 @@
 # app/services/order_service/cancel.rb
 module OrderService
   class Cancel < ApplicationService
-    def initialize(order_id)
-      @order = nil
-      @order_id = order_id
+    def initialize(order_token)
+      @order = Order.find_by(token: order_token)
     end
 
     def call
-      retrieve_order
-
       cancel_order
 
       restock_products
     end
 
     private
-
-    def retrieve_order
-      @order = Order.find(@order_id)
-    end
 
     def restock_products
       @order.order_items.each do |item|

@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   def create
     result = OrderService::Create.call(cart: @cart)
     if result.success?
-      redirect_to checkout_path(order_id: result.payload.id)
+      redirect_to checkout_path(order_token: result.payload.token)
     else
       flash[:danger] = result.errors.join(", ")
       redirect_to shop_path
@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    @order = Order.find(order_params[:id])
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: turbo_stream.replace(
@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   def index
     @statuses = Order.statuses.keys
     @orders = Order.all
-    if params[:filtered_status].present?
+    if order_params[:filtered_status].present?
       @orders = @orders.where(status: params[:filtered_status])
     end
 
@@ -46,4 +46,8 @@ class OrdersController < ApplicationController
 
   private
 
+  def order_params
+    params.permit(:id, :filtered_status)
+
+  end
 end

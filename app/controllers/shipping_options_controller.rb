@@ -5,8 +5,8 @@ class ShippingOptionsController < ApplicationController
 
   def create
     result = ShippingService::GenerateOptions.call(
-      shipping_details: params[:shipping_details],
-      session_id: params[:checkout_session_id],
+      shipping_details: shipping_params[:shipping_details],
+      session_id: shipping_params[:checkout_session_id],
       order_items: @order_items
     )
 
@@ -24,9 +24,24 @@ class ShippingOptionsController < ApplicationController
 
   private
 
+  def shipping_params
+    params.permit(
+      :checkout_session_id, 
+      shipping_details: [
+        :name,
+        address: [
+          :country, :line1,
+          :line2, :city,
+          :postal_code, :state
+        ]
+        
+      ]
+    )
+  end
+
   def retrieve_order_items
-    session = Stripe::Checkout::Session.retrieve(params[:checkout_session_id])
-    order = Order.find(session.metadata.order_id)
+    session = Stripe::Checkout::Session.retrieve(shipping_params[:checkout_session_id])
+    order = Order.find_by(token: session.metadata.order_token)
     @order_items = order.order_items
   end
 end

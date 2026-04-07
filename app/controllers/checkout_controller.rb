@@ -10,7 +10,7 @@ class CheckoutController < ApplicationController
     
     # Call stripe for embedded checkout form with order details
     result = StripeService::Checkout.call(
-      order_id: params[:order_id],
+      order_token: checkout_params[:order_token],
       line_items: @line_items,
       success_url: checkout_success_url
     )
@@ -24,7 +24,7 @@ class CheckoutController < ApplicationController
 
   # Order payment succeeds
   def success
-    session_id = params[:session_id]
+    session_id = checkout_params[:session_id]
     if session_id.present?
       begin
         @checkout_details = Stripe::Checkout::Session.retrieve(session_id)
@@ -38,6 +38,10 @@ class CheckoutController < ApplicationController
   end
 
   private
+
+  def checkout_params
+    params.permit(:session_id, :order_token)
+  end
 
   # Prepare cart items for Stripe processing
   def create_line_items

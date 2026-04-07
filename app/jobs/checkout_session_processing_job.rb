@@ -15,7 +15,7 @@ class CheckoutSessionProcessingJob < ApplicationJob
         OrderService::Paid.call(checkout_details)
         webhook_event.toggle!(:processed)
       when "checkout.session.expired"
-        OrderService::Cancel.call(checkout_details.metadata.order_id)
+        OrderService::Cancel.call(checkout_details.metadata.order_token)
         webhook_event.toggle!(:processed)
       end
     rescue StandardError => e
