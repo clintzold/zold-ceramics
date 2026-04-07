@@ -1,12 +1,4 @@
 # app/services/shipping_services/build_shipment_options
-#
-# This class necessarily builds an array of shipping options in
-# the format Stripe expects to receive to update it's embedded UI
-# dynamically.
-#
-# This allows users to select shipping rates provided in real time
-# by making a call to the Shippo shipment API.
-#
 module ShippingService
   class BuildShippingOptions < ApplicationService
     attr_reader :shipping_options
