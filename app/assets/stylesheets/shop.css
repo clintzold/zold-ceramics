@@ -14,5 +14,27 @@
 
 .stripe-checkout {
   background-color: white;
-  height: 93vh;
+  min-height: 90vh;
+}
+
+.faq-list {
+  width: clamp(25vw, 500px, 90vw);
+}
+
+.faq-card {
+  padding-top: 10px;
+  opacity: .5;
+  position: relative;
+}
+
+.faq-exit-button {
+  color: white;
+  position: absolute;
+  right: 25px;
+  top: 5px;
+  font-size: 1.5rem;
+}
+
+.faq-exit-button:hover {
+  opacity: .7;
 }

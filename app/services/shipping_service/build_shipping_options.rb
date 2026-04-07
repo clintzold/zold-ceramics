@@ -25,7 +25,8 @@ module ShippingService
             fixed_amount: {
               currency: "CAD",
               amount: (rate["amount"] * 100).to_i.to_s
-            }
+            },
+            delivery_estimate: rate["delivery_estimate"]
           }
         }
       end

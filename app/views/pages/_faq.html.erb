@@ -1,0 +1,17 @@
+<div class="card bg-info rounded-0 text-white text-center d-flex flex-column align-items-center faq-card" data-controller="exit">
+  <%= link_to "#", data: { action: "click->exit#hide"} do %>
+    <i class="bi bi-x-square faq-exit-button"></i>
+  <% end %>
+  <h2 class="card-title text-center mt-1">Ordering Information</h2>
+  <div class="card-body">
+    <div class="card-text">
+      <p><b>Some notes on shipping and order placement:</b></p>
+      <div class="d-flex flex-column align-items-center faq-list text-start">
+        <ul>
+          <li>All purchases are non-refundable</li>
+          <li>If <b>Local Pickup</b> is chosen as a shipping option, pickup location and date will be sent by email.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

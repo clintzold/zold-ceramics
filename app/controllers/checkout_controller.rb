@@ -18,7 +18,7 @@ class CheckoutController < ApplicationController
     if result.success?
       @session = result.payload
     else
-      redirect_to shop_path, alert: result.errors.join(", ")
+      redirect_to shop_path, warning: result.errors.join(", ")
     end
   end
 

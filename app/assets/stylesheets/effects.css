@@ -79,9 +79,12 @@
   .loading-icon.fade-out {
     opacity: 1;
   }
+
 }
 
-
+.fade-exit {
+  display: none !important;
+}
 
 @keyframes wobbleFadeOut {
   0% {

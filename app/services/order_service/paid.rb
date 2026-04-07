@@ -16,6 +16,9 @@ module OrderService
       add_details_to_paid_order
 
       save_order
+
+      handle_local_orders
+
     end
 
     private
@@ -42,6 +45,14 @@ module OrderService
     def retrieve_shipping_rate
       rate = Stripe::ShippingRate.retrieve(@checkout_details.shipping_cost.shipping_rate)
      @shipping_rate = rate.display_name
+    end
+
+    def handle_local_orders
+      if @shipping_rate == "Local Pickup(Central Alberta)"
+        @order.update!(local: true)
+      else
+        ShippoService::CreateOrder(@order.id).call
+      end
     end
 
     def save_order
