@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(:id, :filtered_status)
+    params.permit(:id, filtered_status: [])
 
   end
 end
