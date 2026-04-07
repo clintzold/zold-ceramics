@@ -27,7 +27,19 @@ class OrdersController < ApplicationController
 
   def index
     @statuses = Order.statuses.keys
-    @orders = Order.all
+    
+    case order_params[:order_type]
+    when "2"
+      @order_type = "Delivery"
+      @orders = Order.where(local: false)
+    when "3"
+      @order_type = "Pickup"
+      @orders = Order.where(local: true)
+    else
+      @order_type = "All"
+      @orders = Order.all
+    end
+
     if order_params[:filtered_status].present?
       @orders = @orders.where(status: params[:filtered_status])
     end
@@ -38,7 +50,7 @@ class OrdersController < ApplicationController
         render turbo_stream: turbo_stream.replace(
             "adminOptions",
             partial: "index",
-            locals: {orders: @orders, statuses: @statuses}
+            locals: {orders: @orders, order_type: @order_type, statuses: @statuses}
           )
       }
     end
@@ -47,7 +59,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(:id, filtered_status: [])
+    params.permit(:id, :order_type, filtered_status: [])
 
   end
 end

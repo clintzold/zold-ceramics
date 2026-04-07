@@ -1,5 +1,15 @@
 <%=
   form_with url: orders_path, method: :get, data: {turbo_stream: true, controller: "filter", action: "change->filter#filter"} do |form| %>
+  <div class="container-fluid d-flex justify-content-center py-3">
+    <div>
+      <%= form.label :order_type, "Order Type" %>
+      <%= form.select :order_type,
+        options_for_select([['All', 1], ['Delivery', 2], ['Pickup', 3]]),
+        include_blank: "Select One",
+        class: "form-select form-control"
+      %>
+    </div>
+  </div>
   <ul class="list-unstyled d-flex justify-content-around">
     <% statuses.each do |status| %>
       <li>
