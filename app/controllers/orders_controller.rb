@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   skip_before_action :require_authentication, only: [:create]
+  before_action :filter_orders, only: [:index]
 
   def create
     result = OrderService::Create.call(cart: @cart)
@@ -26,6 +27,25 @@ class OrdersController < ApplicationController
   end
 
   def index
+    respond_to do |format|
+      format.html { redirect_to admin_path }
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.replace(
+            "adminOptions",
+            partial: "index",
+            locals: {orders: @orders, order_type: @order_type, statuses: @statuses}
+          )
+      }
+    end
+  end
+
+  private
+
+  def order_params
+    params.permit(:id, :order_type, filtered_status: [])
+  end
+
+  def filter_orders
     @statuses = Order.statuses.keys
     
     case order_params[:order_type]
@@ -43,23 +63,5 @@ class OrdersController < ApplicationController
     if order_params[:filtered_status].present?
       @orders = @orders.where(status: params[:filtered_status])
     end
-
-    respond_to do |format|
-      format.html { redirect_to admin_path }
-      format.turbo_stream {
-        render turbo_stream: turbo_stream.replace(
-            "adminOptions",
-            partial: "index",
-            locals: {orders: @orders, order_type: @order_type, statuses: @statuses}
-          )
-      }
-    end
-  end
-
-  private
-
-  def order_params
-    params.permit(:id, :order_type, filtered_status: [])
-
   end
 end
