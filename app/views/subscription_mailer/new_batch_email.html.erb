@@ -1,5 +1,22 @@
-<h1>Subscription#new_batch_email</h1>
+<h1>A new batch of handmade ceramics just dropped!</h1>
 
 <p>
-  <%= @greeting %>, find me in app/views/subscription_mailer/new_batch_email.html.erb
+Hi <%= @name %>,
 </p>
+<p>
+I just released a whole new batch of my handmade, ceramic art! As a subscribing customer 
+this is your chance to get your hands on something special before it's gone - I hope you 
+find a piece or collection that you can enjoy for years to come.
+</p>
+<p>
+Thanks again for your continued support.
+</p>
+<p>
+Happy hunting!
+</p>
+<p>
+<b>Jessie Edwards</b><br>
+<small><i>Zold Ceramics</i></small><br>
+<a href="https://zoldceramics.com"><h3>Click here to see what's new!</h3></a>
+</p>
+<p><small><%= link_to "Cancel My Subscription", cancel_subscription_url(token: @token) %></small></p>

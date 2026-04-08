@@ -7,4 +7,6 @@ class Subscription < ApplicationRecord
   validates :email, uniqueness: { case_sensitive: false }
   # Format validation using a Regular Expression (Regex)
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  has_secure_token :token
 end

@@ -119,6 +119,10 @@ figure {
   font-size: 1.5rem;
 }
 
+.dongle {
+  font-family: 'Dongle', Helvetica, sans-serif;
+}
+
 .add-to-cart-btn {
   height:20px;
   display: flex;

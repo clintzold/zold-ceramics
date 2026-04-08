@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-  resources :subscriptions
   resource :session
   resources :passwords, param: :token
+
+  # Contact Forms (no database model)
   get "contacts/new"
   get "contacts/create"
+
   # Webhook resources and job trigger for Stripe activity
   post "webhooks", to: "webhooks#create"
+
   # Admin routes
   get "admin", to: "admin#dashboard"
 
@@ -24,6 +27,10 @@ Rails.application.routes.draw do
 
   # Shipments routes
   resources :shipments, only: [ :create, :index, :show ]
+
+  # Subscriptions
+  resources :subscriptions, only: [:index, :new, :create]
+  get "subscriptions/cancel", to: "subscriptions#destroy", as: :cancel_subscription
 
   # Cart routes
   resource :cart, only: [ :show ] do

@@ -1,0 +1,24 @@
+<div class="card sign-up-card forwards text-white shadow-lg p-3" data-controller="slide-out">
+  <%= link_to "#", data: {action: "click->slide-out#slide"} do %>
+    <i class="bi bi-x-square exit-button"></i>
+  <% end %>
+  <h1 class="card-title sign-up-title text-center borel display-4 mb-0">Subscribe</h1>
+  <p class="text-center mb-0 fs-5">Never miss a new batch!</p>
+  <div class="card-body pt-4 p-sm-3">
+    
+    <%= form_with model: @subscription do |form| %>
+      <div class="mb-4">
+        <%= form.text_field :first_name, class: "form-control sign-up-control-one", placeholder: "First name", required: true %>
+      </div>
+      <div class="mb-4">
+        <%= form.text_field :last_name, class: "form-control sign-up-control-two", placeholder: "Last name", required: true %>
+      </div>
+      <div class="mb-4">
+        <%= form.email_field :email, class: "form-control sign-up-control-three", placeholder: "Email", required: true  %>
+      </div>
+      <div class="">
+        <%= form.submit "Sign Up", class: "dongle btn btn-secondary sign-up-button rounded-0" %>
+      </div>
+    <% end %>
+  </div>
+</div>

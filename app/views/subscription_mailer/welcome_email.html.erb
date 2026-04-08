@@ -1,5 +1,28 @@
-<h1>Subscription#welcome_email</h1>
+<h1>Welcome!</h1>
 
 <p>
-  <%= @greeting %>, find me in app/views/subscription_mailer/welcome_email.html.erb
+Hi <%= @name %>,
 </p>
+<p>
+Congratulations on signing up to receive updates on my latest creations! 
+Since all of my ceramics are made by hand, no two batches are exactly alike 
+and many are completely unique one-offs, crafted from some whimsical fancy.
+</p>
+<p>
+Since my batches are small, they often can sell out before my customers can 
+get their hands on them - that's why I created this exclusive mailing list for 
+those who really appreciate my craft!
+</p>
+<p>
+Again, thank you for your support, interest and curiousity about what I may 
+turn out of the kiln next.
+</p>
+<p>
+Best wishes,
+</p>
+<p>
+<b>Jessie Edwards</b><br>
+<small><i>Zold Ceramics</i></small><br>
+<a href="https://zoldceramics.com"><h3>Click here to visit the shop!</h3></a>
+</p>
+<p><small><%= link_to "Cancel My Subscription", cancel_subscription_url(token: @token) %></small></p>

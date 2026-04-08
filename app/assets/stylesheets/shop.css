@@ -34,7 +34,134 @@
   top: 5px;
   font-size: 1.5rem;
 }
+.exit-button {
+  color: white;
+  position: absolute;
+  right: 5px;
+  top: 0px;
+  font-size: 1.5rem;
+}
 
-.faq-exit-button:hover {
+.exit-button:hover {
   opacity: .7;
+}
+
+.sign-up-card {
+  position: fixed;
+  width: clamp(25vw, 350px, 90vw);
+  top: 50%;
+  left: 50%;
+  z-index: 12;
+  background-color: rgba(102, 178, 178, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.forwards {
+  animation: slide-down .5s ease-out forwards;
+}
+.reverse {
+  animation: slide-down .5s ease-in reverse forwards;
+}
+
+
+.sign-up-card p {
+  font-family: 'Borel', Helvetica, sans-serif;
+}
+
+.sign-up-button {
+  padding-top: 7px;
+  line-height: 1;
+  font-size: 30px;
+  font-weight: bold;
+  width: 100%;
+  animation: slide-up .5s ease .75s forwards;
+  transform: translateY(150%);
+  opacity: 0;
+}
+
+.sign-up-control-one {
+  transform: translate(-125%);
+  animation: slide-in .5s ease 0.3s normal forwards;
+  opacity: 0;
+}
+.sign-up-control-two {
+  transform: translate(-125%);
+  animation: slide-in .5s ease 0.5s normal forwards;
+  opacity: 0;
+}
+.sign-up-control-three {
+  transform: translate(-125%);
+  animation: slide-in .5s ease 0.7s normal forwards;
+  opacity: 0;
+}
+
+.sign-up-title {
+  animation: pulsing-text 1s alternate infinite;
+}
+
+@keyframes pulsing-text {
+  0% {
+    text-shadow: 0 0 6px rgba(255, 255, 255)
+  }
+  20% {
+    text-shadow: 0 1px 6px rgba(255, 255, 255)
+  }
+  40% {
+    text-shadow: 1px 0 6px rgba(255, 255, 255)
+  }
+  60% {
+    text-shadow: 0 -1px 6px rgba(255, 255, 255)
+  }
+  80% {
+    text-shadow: -1px 0 6px rgba(255, 255, 255)
+  }
+  100% {
+    text-shadow: -1px -1px 6px rgba(255, 255, 255)
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -150%);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -43%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(150%);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translate(-125%);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(5%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0%);
+  }
 }
