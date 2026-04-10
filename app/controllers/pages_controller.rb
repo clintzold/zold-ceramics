@@ -31,7 +31,7 @@ class PagesController < ApplicationController
       # Set cookie to expire in 1 week
       cookies.signed[:modal_shown] = {
         value: 'true',
-        expires: 1.minute.from_now,
+        expires: 1.month.from_now,
         httponly: true
       }
     end
