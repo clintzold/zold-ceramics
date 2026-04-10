@@ -1,4 +1,6 @@
 class SubscriptionsController < ApplicationController
+  allow_unauthenticated_access only: [:new, :create]
+
   def new
     @subscription = Subscription.new
     respond_to do |format|
