@@ -6,7 +6,7 @@
   <p class="text-center mb-0 fs-5">Never miss a new batch!</p>
   <div class="card-body pt-4 p-sm-3">
     
-    <%= form_with model: @subscription do |form| %>
+    <%= form_with model: subscription do |form| %>
       <div class="mb-4">
         <%= form.text_field :first_name, class: "form-control sign-up-control-one", placeholder: "First name", required: true %>
       </div>

@@ -1,5 +1,5 @@
 <%= render "layouts/alert" %>
-
+<%= @show_modal %>
 <!-- Hero Image -->
 <section>
   <%= render "pages/shop_partials/hero" %>
@@ -7,6 +7,9 @@
 
 <!-- Sign Up Modal -->
 <%= turbo_frame_tag "sign_up" do %>
+  <% if @show_modal %>
+    <%= render "subscriptions/new", subscription: @subscription %>
+  <% end %>
 <% end %>
 
 <section class="py-2">
@@ -29,7 +32,7 @@
                 <% else %>
                   <div class="p-5">
                     <h1 class="text-center out-of-stock mb-3">Sorry, we're out of stock!</h1>
-                    <p>
+                    <p class="text-center">
                       <%= link_to "Subscribe",  new_subscription_path, data: { turbo_stream: true } %> to get notified when there's a new batch!
                     </p>
                   </div>
@@ -48,7 +51,7 @@
                 <% else %>
                   <div class="p-5">
                     <h1 class="text-center out-of-stock mb-3">Sorry, we're out of stock!</h1>
-                    <p>
+                    <p class="text-center">
                       <%= link_to "Subscribe",  new_subscription_path, data: { turbo_stream: true } %> to get notified when there's a new batch!
                     </p>
                   </div>
@@ -67,7 +70,7 @@
                 <% else %>
                   <div class="p-5">
                     <h1 class="text-center out-of-stock mb-3">Sorry, we're out of stock!</h1>
-                    <p>
+                    <p class="text-center">
                     <%= link_to "Subscribe",  new_subscription_path, data: { turbo_stream: true } %> to get notified when there's a new batch!
                     </p>
                   </div>
