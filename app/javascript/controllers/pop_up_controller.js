@@ -13,7 +13,7 @@ export default class extends Controller {
   }
 
   showModal() {
-    this.element.classList.remove("hidden")
+    this.element.classList.remove("d-none")
   }
 
   disconnect() {
