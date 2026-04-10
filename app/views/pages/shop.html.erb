@@ -1,5 +1,4 @@
 <%= render "layouts/alert" %>
-<%= @show_modal %>
 <!-- Hero Image -->
 <section>
   <%= render "pages/shop_partials/hero" %>
@@ -7,9 +6,9 @@
 
 <!-- Sign Up Modal -->
 <%= turbo_frame_tag "sign_up" do %>
-  <% if @show_modal %>
+  <div class="hidden" data-controller="pop-up" data-pop-up-show-value="<%= @show_modal %>">
     <%= render "subscriptions/new", subscription: @subscription %>
-  <% end %>
+  </div>
 <% end %>
 
 <section class="py-2">

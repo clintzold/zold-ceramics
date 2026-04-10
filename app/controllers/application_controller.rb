@@ -27,4 +27,5 @@ class ApplicationController < ActionController::Base
     cart_count
   end
   helper_method :cart_count
+
 end
