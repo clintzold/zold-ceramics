@@ -28,7 +28,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
-    cancel_token = params[:cancel_token]
+    cancel_token = cancel_params[:cancel_token]
     payload = Rails.application.message_verifier("subscription").verify(cancel_token)
     subscription = Subscription.find(payload[:sub_id])
 
@@ -49,5 +49,9 @@ class SubscriptionsController < ApplicationController
 
   def new_sub_params
     params.require(:subscription).permit(:first_name, :last_name, :email)
+  end
+
+  def cancel_params
+    params.permit(:cancel_token)
   end
 end

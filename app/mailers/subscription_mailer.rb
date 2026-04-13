@@ -7,8 +7,6 @@ class SubscriptionMailer < ApplicationMailer
   #
   def welcome_email
     @subscription = params[:subscription]
-
-    puts @subscription
     @email = @subscription.email
     @name = @subscription.first_name
     @token = Rails.application.message_verifier("subscription").generate({
