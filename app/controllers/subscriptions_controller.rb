@@ -12,14 +12,12 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-    @subscription = Subscription.new(sub_params)
+    @subscription = Subscription.new(new_sub_params)
 
     respond_to do |format|
       if @subscription.save
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.update(
-            "sign_up", partial: "success", locals: {subscription: @subscription}
-          )}
+        format.html { head :no_content }
+        SubscriptionMailer.with(@subscription).welcome_email.deliver_later
       else
         format.turbo_stream {
           render turbo_stream: turbo_stream.update(

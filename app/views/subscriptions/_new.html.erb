@@ -1,4 +1,10 @@
-<div class="card sign-up-card forwards text-white shadow-lg p-3" data-controller="slide-out">
+<div class="card sign-up-card forwards text-white shadow-lg p-3" data-controller="slide-out loader">
+  
+  <div class="form-overlay card border-0 text-white" data-loader-target="loadingOverlay">
+    <i class="bi bi-cup-hot-fill loading-icon mb-0" data-loader-target="loadingIcon" data-action="animationend->loader#handleLoadingEnd"></i>
+    <p class="text-center form-result-message" data-loader-target="message" data-action="animationend->loader#handleComplete">Successfully signed up!</p>
+  </div>
+
   <%= link_to "#", data: {action: "click->slide-out#slide"} do %>
     <i class="bi bi-x-square exit-button"></i>
   <% end %>
@@ -6,7 +12,18 @@
   <p class="text-center mb-0 fs-5">Never miss a new batch!</p>
   <div class="card-body pt-4 p-sm-3">
     
-    <%= form_with model: subscription do |form| %>
+    <%= form_with model: subscription, data: { "loader-target": "form", action: "turbo:submit-end->loader#show"} do |form| %>
+
+      <% if form.object.errors.any? %>
+        <div>
+          <ul>
+            <% form.object.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
       <div class="mb-4">
         <%= form.text_field :first_name, class: "form-control sign-up-control-one", placeholder: "First name", required: true %>
       </div>
@@ -17,7 +34,7 @@
         <%= form.email_field :email, class: "form-control sign-up-control-three", placeholder: "Email", required: true  %>
       </div>
       <div class="">
-        <%= form.submit "Sign Up", class: "dongle btn btn-secondary sign-up-button rounded-0" %>
+        <%= form.submit "Sign Up", data: { loader_target: "button" }, class: "dongle btn btn-secondary sign-up-button rounded-0" %>
       </div>
     <% end %>
   </div>

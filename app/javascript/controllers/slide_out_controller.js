@@ -12,6 +12,13 @@ export default class extends Controller {
     this.removeElement()
   }
 
+  success() {
+    this.element.classList.remove("forwards")
+    void this.element.offsetWidth
+    this.element.classList.add("reverse")
+    this.removeElement()
+  }
+
   removeElement() {
     this.timer = setTimeout(() => {
       this.element.remove()

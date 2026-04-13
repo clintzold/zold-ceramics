@@ -19,7 +19,11 @@ class ContactFormsController < ApplicationController
       NotifierMailer.contact_form_submission(contact_form_params.to_h).deliver_later
       format.html { head :no_content}
     else
-      format.html {render :new, status: :unprocessable_content}
+      format.turbo_stream {
+        render turbo_stream: turbo_steam.update(
+          "contact_us", partial: "new", locals: {contact_form: @contact_form}
+        )
+      }
     end
    end
   end
