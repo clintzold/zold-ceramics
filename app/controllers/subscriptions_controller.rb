@@ -30,7 +30,7 @@ class SubscriptionsController < ApplicationController
   def destroy
     cancel_token = cancel_params[:cancel_token]
     payload = Rails.application.message_verifier("subscription").verify(cancel_token)
-    subscription = Subscription.find(payload[:sub_id])
+    subscription = Subscription.find(payload["sub_id"])
 
     if subscription
       SubscriptionMailer.with(subscription: subscription).goodbye_email.deliver_later
