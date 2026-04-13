@@ -24,7 +24,7 @@ class SubscriptionMailer < ApplicationMailer
   #
   def goodbye_email(name, email)
     @email = email
-    @name = first_name
+    @name = name
 
     mail(to: @email, subject: "Subscription Cancellation" )
   end

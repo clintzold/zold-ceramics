@@ -32,9 +32,11 @@ class SubscriptionsController < ApplicationController
     cancel_token = cancel_params[:token]
     payload = Rails.application.message_verifier("subscription").verify(cancel_token)
     subscription = Subscription.find(payload["sub_id"])
+    name = subscription.first_name
+    email = subscription.email
 
     if subscription
-      SubscriptionMailer.goodbye_email(subscription.name, subscription.email).deliver_later
+      SubscriptionMailer.goodbye_email(name, email).deliver_later
       subscription.destroy
       render plain: "You have been unsubscribed."
     else
