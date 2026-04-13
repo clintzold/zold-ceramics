@@ -17,7 +17,7 @@ class SubscriptionsController < ApplicationController
     respond_to do |format|
       if @subscription.save
         format.html { head :no_content }
-        SubscriptionMailer.with(@subscription).welcome_email.deliver_later
+        SubscriptionMailer.with(subscription: @subscription).welcome_email.deliver_later
       else
         format.turbo_stream {
           render turbo_stream: turbo_stream.update(
@@ -33,7 +33,7 @@ class SubscriptionsController < ApplicationController
     subscription = Subscription.find(payload[:sub_id])
 
     if subscription
-      SubscriptionMailer.with(subscription).goodbye_email.deliver_later
+      SubscriptionMailer.with(subscription: subscription).goodbye_email.deliver_later
       subscription.destroy
       render plain: "You have been unsubscribed."
     else
