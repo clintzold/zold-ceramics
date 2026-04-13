@@ -19,11 +19,14 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
     <!-- Preload main font to avoid seeing fallback -->
-    <link rel="preload" href="<%= asset_path('GreatVibes-Regular.woff2') %>" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="<%= asset_path('GreatVibes-Regular.woff2') %>" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="high">
     <link rel="preload" href="<%= asset_path('Dongle-Regular.woff2') %>" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" href="<%= asset_path('Dongle-Bold.woff2') %>" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" href="<%= asset_path('Dongle-Light.woff2') %>" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" href="<%= asset_path('Borel-Regular.woff2') %>" as="font" type="font/woff2" crossorigin="anonymous">
+    <!-- Preload Hero and other critical images -->
+    <link rel="preload" href="<%= asset_path('1000014593.webp')%>" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" href="<%= asset_path('1000014910.webp')%>" as="image" type="image/webp" fetchpriority="high">
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
