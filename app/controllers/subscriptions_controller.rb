@@ -34,7 +34,7 @@ class SubscriptionsController < ApplicationController
     subscription = Subscription.find(payload["sub_id"])
 
     if subscription
-      SubscriptionMailer.with(subscription: subscription).goodbye_email.deliver_later
+      SubscriptionMailer.goodbye_email(subscription.name, subscription.email).deliver_later
       subscription.destroy
       render plain: "You have been unsubscribed."
     else

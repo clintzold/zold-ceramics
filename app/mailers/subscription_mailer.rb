@@ -22,10 +22,9 @@ class SubscriptionMailer < ApplicationMailer
   #
   #   en.subscription_mailer.goodbye_email.subject
   #
-  def goodbye_email
-    @subscription = params[:subscription]
-    @email = @subscription.email
-    @name = @subscription.first_name
+  def goodbye_email(name, email)
+    @email = email
+    @name = first_name
 
     mail(to: @email, subject: "Subscription Cancellation" )
   end
