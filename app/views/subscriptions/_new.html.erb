@@ -14,15 +14,8 @@
     
     <%= form_with model: subscription, data: { "loader-target": "form", action: "turbo:submit-end->loader#show"} do |form| %>
 
-      <% if form.object.errors.any? %>
-        <div>
-          <ul>
-            <% form.object.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <!-- Turbo Stream Render Errors -->
+      <%= turbo_frame_tag "subscribe_form_errors" %>
 
       <div class="mb-4">
         <%= form.text_field :first_name, class: "form-control sign-up-control-one", placeholder: "First name", required: true %>

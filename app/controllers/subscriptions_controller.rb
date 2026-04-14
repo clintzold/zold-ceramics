@@ -19,10 +19,11 @@ class SubscriptionsController < ApplicationController
         format.html { head :no_content }
         SubscriptionMailer.with(subscription: @subscription).welcome_email.deliver_later
       else
+        puts @subscription.errors
         format.turbo_stream {
           render turbo_stream: turbo_stream.update(
-            "sign_up", partial: "new", locals: {subscription: @subscription}
-          )}
+            "subscribe_form_errors", partial: "shared/form_errors", locals: {errors: @subscription.errors}
+          ), status: :unprocessable_content }
       end
     end
   end
