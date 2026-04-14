@@ -124,13 +124,12 @@ figure {
 }
 
 .add-to-cart-btn {
-  height:20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Borel', Helvetica, sans-serif;
+  font-family: 'Dongle', Helvetica, sans-serif;
   font-weight: bold;
-  margin-top: 10px;
+  font-size: 1.5rem;
+  line-height: 0.5;
+  padding-top: 5px;
+
 }
 
 .amount-to-purchase-field {
