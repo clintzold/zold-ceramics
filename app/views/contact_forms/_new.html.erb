@@ -18,15 +18,10 @@
 
               <!-- Contact Form -->
               <%= form_with model: contact_form, url: contact_forms_path, data: { "loader-target": "form", action: "turbo:submit-end->loader#show"}, method: :post, class: "text-white" do |form| %>
-                <% if form.object.errors.any? %>
-                  <div id="error_explanation">
-                    <ul>
-                      <% form.object.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                <% end %>
+
+                <!-- Turbo Stream Form Errors -->
+                <%= turbo_frame_tag "contact_form_errors" %>
+
                 <%= form.text_field :name,
                   placeholder: "Enter your name",
                   maxlength: "50",

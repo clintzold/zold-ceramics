@@ -21,8 +21,8 @@ class ContactFormsController < ApplicationController
     else
       format.turbo_stream {
         render turbo_stream: turbo_steam.update(
-          "contact_us", partial: "new", locals: {contact_form: @contact_form}
-        )
+          "contact_form_errors", partial: "shared/form_errors", locals: { errors: @contact_form.errors }
+        ), status: :unprocessable_content
       }
     end
    end
