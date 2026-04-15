@@ -110,16 +110,16 @@
 
 .hero-text-one {
   opacity: 0;
-  animation: heroFadeIn 1s ease-in forwards;
+  animation: heroFadeIn .75s ease-in 0.3s forwards;
 }
 .hero-text-two {
   opacity: 0;
-  animation: heroFadeIn 1s ease-in 0.75s forwards;
+  animation: heroFadeIn .75s ease-in .9s forwards;
 }
 
 .hero-text-three {
   opacity: 0;
-  animation: heroFadeIn 1s ease-in 1.5s forwards;
+  animation: heroFadeIn .75s ease-in 1.5s forwards;
 }
 
 @keyframes heroFadeIn {
