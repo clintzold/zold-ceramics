@@ -128,3 +128,14 @@
     opacity: 1;
   }
 }
+
+.reveal-item {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+.reveal-item.reveal-visible {
+  opacity: 1;
+  transform: translateX(0);
+}

@@ -12,21 +12,24 @@
 
 </section>
 
-<!--  About -->
-<section class="px-1 pb-3 px-md-0" id="about">
+<!-- Scroll revealing elements -->
+<div data-controller="scroll-reveal">
+  <!--  About -->
+  <section class="px-1 pb-3 px-md-0" id="about">
 
-  <%= turbo_frame_tag "about_details" do %>
-    <%= render "about_card" %>
-  <% end %>
+      <%= turbo_frame_tag "about_details" do %>
+        <%= render "about_card" %>
+      <% end %>
 
-</section>
+  </section>
 
 
-<!-- Contact -->
-<section id="contact" class="pb-3 px-1 px-md-0">
+  <!-- Contact -->
+  <section id="contact" class="pb-3 px-1 px-md-0">
 
-  <%= turbo_frame_tag "contact_us" do %>
-    <%= render "contact_card" %>
-  <% end %>
+    <%= turbo_frame_tag "contact_us" do %>
+      <%= render "contact_card" %>
+    <% end %>
 
-</section>
+  </section>
+</div>
