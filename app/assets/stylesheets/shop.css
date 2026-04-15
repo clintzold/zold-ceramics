@@ -107,6 +107,28 @@
   animation: pulsing-text 1s alternate infinite;
 }
 
+.hero-text-one {
+  opacity: 0;
+  animation: heroFadeIn 1s ease-in forwards;
+}
+.hero-text-two {
+  opacity: 0;
+  animation: heroFadeIn 1s ease-in 0.75s forwards;
+}
+
+.hero-text-three {
+  opacity: 0;
+  animation: heroFadeIn 1s ease-in 1.5s forwards;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @keyframes pulsing-text {
   0% {
     text-shadow: 0 0 6px rgba(255, 255, 255)

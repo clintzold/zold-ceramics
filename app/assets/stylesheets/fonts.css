@@ -69,7 +69,8 @@
 
 .hero-title {
   font-family: 'Great Vibes', Helvetica, sans-serif;
-  font-size: 4.5rem;
+  font-size: 5rem;
+  text-shadow: 1px 0px 5px gray;
 }
 
 .cart-summary-title {
