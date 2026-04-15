@@ -147,7 +147,7 @@ figure {
 }
 
 @media (max-width: 768px) {
-  hero-title {
+  .hero-title {
     font-size: 4.25rem;
   }
 }
