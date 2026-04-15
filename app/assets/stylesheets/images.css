@@ -47,7 +47,7 @@
 
 
 .hero-image-container {
-  height: clamp(100vh, 800px, 125vh);
+  height: 100vh;
 }
 
 .about-main-img {
