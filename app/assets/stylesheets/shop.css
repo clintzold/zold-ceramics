@@ -48,7 +48,7 @@
 
 .sign-up-card {
   position: fixed;
-  width: clamp(25vw, 350px, 90vw);
+  width: clamp(20vw, 350px, 90vw);
   top: 50%;
   left: 50%;
   z-index: 12;
@@ -104,6 +104,7 @@
 }
 
 .sign-up-title {
+  font-size: clamp(2.25rem, 30px, 3rem);
   animation: pulsing-text 1s alternate infinite;
 }
 

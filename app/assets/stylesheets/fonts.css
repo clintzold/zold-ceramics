@@ -145,3 +145,9 @@ figure {
   width: 150px;
   font-weight: 600;
 }
+
+@media (max-width: 768px) {
+  hero-title {
+    font-size: 4.25rem;
+  }
+}

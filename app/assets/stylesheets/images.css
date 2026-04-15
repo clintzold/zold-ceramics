@@ -47,7 +47,7 @@
 
 
 .hero-image-container {
-	height: 98vh;
+  height: 1080px;
 }
 
 .about-main-img {
@@ -71,6 +71,9 @@
 		width: 100%;
 		padding: 30px;
 	}
+  .hero-image-container {
+    height: 920px;
+  }
 
 
 }
