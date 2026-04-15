@@ -16,20 +16,27 @@
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
     <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <!-- Preload main font to avoid seeing fallback -->
-    <link rel="preload" href="<%= asset_path('GreatVibes-Regular.woff2') %>" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="high">
-    <link rel="preload" href="<%= asset_path('Dongle-Regular.woff2') %>" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" href="<%= asset_path('Dongle-Bold.woff2') %>" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" href="<%= asset_path('Dongle-Light.woff2') %>" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" href="<%= asset_path('Borel-Regular.woff2') %>" as="font" type="font/woff2" crossorigin="anonymous">
+    <%= preload_link_tag "GreatVibes-Regular.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" %>
+    <%= preload_link_tag "Dongle-Regular.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" %>
+    <%= preload_link_tag "Dongle-Bold.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" %>
+    <%= preload_link_tag "Dongle-Light.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" %>
+    <%= preload_link_tag "Borel-Regular.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" %>
     <!-- Preload Hero and other critical images -->
-    <link rel="preload" href="<%= asset_path('1000014593.webp')%>" as="image" type="image/webp" fetchpriority="high">
-    <link rel="preload" href="<%= asset_path('1000014910.webp')%>" as="image" type="image/webp" fetchpriority="high">
+    <%= preload_link_tag "home-hero.webp",
+      as: "image", type: "image/webp",
+      imagesrcset: "#{image_path('home-hero-small.webp')} 535w, #{image_path('home-hero-medium.webp')} 1070w",
+      imagesizes: "100vw",
+      fetchpriority: "high" %>
+    <%= preload_link_tag "shop-hero.webp",
+      as: "image", type: "image/webp",
+      imagesrcset: "#{image_path('shop-hero-small.webp')} 512w, #{image_path('shop-hero-medium.webp')} 1024w, #{image_path('shop-hero-large.webp')} 2048w",
+      imagesizes: "100vw",
+      fetchpriority: "high" %>
     <%# Allow page specific javascripts to be loaded in the head as needed %>
     <%= yield(:page_scripts) %>
   </head>

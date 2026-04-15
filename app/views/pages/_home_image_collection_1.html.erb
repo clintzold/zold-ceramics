@@ -12,7 +12,15 @@
             <%= image_tag "vase-1-resize.webp", class:"card-img rounded-0", alt: "A brown and white, handmade vase with plants." %>
           </div>
           <div class="card border-0 rounded-0 span-image">
-            <%= image_tag "1000014910.webp", class:"card-img rounded-0", alt: "A collection of designer, handmade pottery products on display at a market." %>
+            <%= image_tag "shop-hero.webp",
+              srcset: {
+                "shop-hero-small.webp" => "512w",
+                "shop-hero-medium.webp" => "1024w",
+                "shop-hero-large.webp" => "2048w"
+              },
+              sizes: "100vw",
+              class:"card-img rounded-0",
+              alt: "A collection of designer, handmade pottery products on display at a market." %>
           </div>
           <div class="card border-0 top-image rounded-0">
             <%= image_tag "IMG_1744_-resize.webp", class:"card-img rounded-0", alt: "A collection nof handmade pottery mugs." %>
