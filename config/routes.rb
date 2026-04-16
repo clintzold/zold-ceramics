@@ -33,8 +33,8 @@ Rails.application.routes.draw do
   get "subscriptions/cancel", to: "subscriptions#destroy", as: :cancel_subscription
 
   # Pickups
-  resources :pickups, only: [:new, :create]
-  get "pickups/cancel", to "pickups#destroy", as: :cancel_pickup
+  resources :pickups, only: [:new, :create, :index, :show]
+  get "pickups/cancel", to: "pickups#destroy", as: :cancel_pickup
 
   # Cart routes
   resource :cart, only: [ :show ] do
