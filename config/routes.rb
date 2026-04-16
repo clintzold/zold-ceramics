@@ -32,6 +32,10 @@ Rails.application.routes.draw do
   resources :subscriptions, only: [:index, :new, :create]
   get "subscriptions/cancel", to: "subscriptions#destroy", as: :cancel_subscription
 
+  # Pickups
+  resources :pickups, only: [:new, :create]
+  get "pickups/cancel", to "pickups#destroy", as: :cancel_pickup
+
   # Cart routes
   resource :cart, only: [ :show ] do
     post "add_item/:product_id", to: "carts#add_item", as: :add_item
