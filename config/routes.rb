@@ -18,9 +18,6 @@ Rails.application.routes.draw do
   get "shop", to: "pages#shop"
 
   # Products routes
-  resources :products, only: [ :new, :create, :edit, :index, :destroy ]
-  get "products/:id", to: "products#show"
-  patch "products/:id", to: "products#update"
 
   # Order routes
   resources :orders, only: [ :create, :index, :show ]
@@ -32,9 +29,16 @@ Rails.application.routes.draw do
   resources :subscriptions, only: [:index, :new, :create]
   get "subscriptions/cancel", to: "subscriptions#destroy", as: :cancel_subscription
 
-  # Pickups
-  resources :pickups, only: [:new, :create, :index, :show]
-  get "pickups/cancel", to: "pickups#destroy", as: :cancel_pickup
+  namespace :admin do
+    root to: "dashboard/index"
+    # Products
+    resources :products, only: [ :new, :create, :edit, :index, :destroy ]
+    get "products/:id", to: "products#show"
+    patch "products/:id", to: "products#update"
+    # Pickups
+    resources :pickups, only: [:new, :create, :index, :show]
+    get "pickups/cancel", to: "pickups#destroy", as: :cancel_pickup
+  end
 
   # Cart routes
   resource :cart, only: [ :show ] do
