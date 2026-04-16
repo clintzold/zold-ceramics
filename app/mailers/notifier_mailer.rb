@@ -10,6 +10,7 @@ class NotifierMailer < ApplicationMailer
   def pickup_email
     @pickup = params[:pickup]
     @order = params[:order]
+    @name = @order.name.split.first.capitalize
     mail(from: "contact@zoldceramics.com", to: @order.email, subject: "New Pickup Scheduled")
   end
 end

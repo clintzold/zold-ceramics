@@ -1,0 +1,26 @@
+<h1>Your order will be available for pickup</h1>
+
+<p>
+Hi <%= @name %>,
+</p>
+<p>
+Thanks for your recent purchase! This email is just to let you know
+that your order will be available for pickup on <b><i><%= @pickup.start.strftime("%b %d, %Y") %></i></b>
+at <b><%= @pickup.location %></b> from <b><%= @pickup.start.strftime("%I:%M %p") %></b> to <b><%= @pickup.end.strftime("%I:%M %p") %></b>.
+</p>
+<p>
+Click the link below for a map location of the pickup!
+</p>
+<a href="<%= @pickup.link %>"><h4>Pickup Location Link</h4></a>
+<p>
+Remember to have your Stripe receipt ready(it will be in your email inbox) from when you made your purchase. 
+If you can't make it to the pickup - don't worry! I will keep you up to date on when we can meet up next!
+</p>
+<p>
+See you soon!
+</p>
+<p>
+<b>Jessie Edwards</b><br>
+<small><i>Zold Ceramics</i></small><br>
+<a href="https://zoldceramics.com"><h3>Click here to visit the shop!</h3></a>
+</p>
