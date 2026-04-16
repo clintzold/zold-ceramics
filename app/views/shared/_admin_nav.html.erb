@@ -13,8 +13,8 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <div class="list-group list-group-flush" id="admin_options_list">
-                <%= link_to "View Products", products_path, class: "list-group-item list-group-item-action", data: { turbo_frame: "adminOptions" } %>
-                <%= link_to "Add Product", new_product_path, class: "list-group-item list-group-item-action", data: { turbo_frame: "adminOptions" } %>
+                <%= link_to "View Products", admin_products_path, class: "list-group-item list-group-item-action", data: { turbo_frame: "adminOptions" } %>
+                <%= link_to "Add Product", new_admin_product_path, class: "list-group-item list-group-item-action", data: { turbo_frame: "adminOptions" } %>
               </div>
             </div>
 

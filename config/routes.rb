@@ -9,9 +9,6 @@ Rails.application.routes.draw do
   # Webhook resources and job trigger for Stripe activity
   post "webhooks", to: "webhooks#create"
 
-  # Admin routes
-  get "admin", to: "admin#dashboard"
-
   # Visitor routes
   get "home", to: "pages#home"
   get "about", to: "pages#about"
@@ -30,7 +27,7 @@ Rails.application.routes.draw do
   get "subscriptions/cancel", to: "subscriptions#destroy", as: :cancel_subscription
 
   namespace :admin do
-    root to: "dashboard/index"
+    root to: "dashboard#index"
     # Products
     resources :products, only: [ :new, :create, :edit, :index, :destroy ]
     get "products/:id", to: "products#show"

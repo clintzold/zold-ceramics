@@ -20,36 +20,16 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <!-- Preload main font to avoid seeing fallback -->
-    <%= preload_link_tag "GreatVibes-Regular.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" %>
-    <%= preload_link_tag "Dongle-Regular.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" %>
-    <%= preload_link_tag "Dongle-Bold.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" %>
-    <%= preload_link_tag "Dongle-Light.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" %>
-    <%= preload_link_tag "Borel-Regular.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" %>
-    <!-- Preload Hero and other critical images -->
-    <%= preload_link_tag "home-hero.webp",
-      as: "image", type: "image/webp",
-      imagesrcset: "#{image_path('home-hero-small.webp')} 535w, #{image_path('home-hero-medium.webp')} 1070w",
-      imagesizes: "100vw",
-      fetchpriority: "high" %>
-    <%= preload_link_tag "shop-hero.webp",
-      as: "image", type: "image/webp",
-      imagesrcset: "#{image_path('shop-hero-small.webp')} 512w, #{image_path('shop-hero-medium.webp')} 1024w, #{image_path('shop-hero-large.webp')} 2048w",
-      imagesizes: "100vw",
-      fetchpriority: "high" %>
     <%# Allow page specific javascripts to be loaded in the head as needed %>
     <%= yield(:page_scripts) %>
   </head>
 
   <body class="d-flex flex-column justify-content-between min-vh-100 bg-light">  
       <header>
-        <%= render "shared/main_nav" %>
+        <%= render "shared/admin_nav" %>
       </header>
 
       <main>
-        <!-- Cart Summary Collapse and Button -->
-        <%= render "carts/cart_summary", show: "hidden", cart: @cart %>
-        <%= render "layouts/cart_button", animation_type: nil %>
         <!-- Page Content -->
         <%= yield %>
       </main>

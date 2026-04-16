@@ -1,0 +1,25 @@
+  <h1 class="text-center">Products</h1>
+  <div class="overflow-scroll" style="height: 800px">
+    <table class="table" id="index-table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Price</th>
+          <th scope="col">Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @products.any? %>
+          <%@products.each do |product| %>
+            <tr>
+              <th scope="row"><%= product.id %></th>
+              <td><%= link_to "#{product.title}", edit_admin_product_path(product.id) %></td>
+              <td><%= product.price %></td>
+              <td><%= product.stock %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
