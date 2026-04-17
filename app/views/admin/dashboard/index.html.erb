@@ -22,4 +22,9 @@
       </a>
     </div>
   </div>
+  <div class="row">
+    <div class="col-8">
+      <%= line_chart Order.group_by_day(:created_at).count %>
+    </div>
+  </div>
 </div>

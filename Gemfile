@@ -74,3 +74,7 @@ gem "bootstrap_icons_rails", "~> 1.113"
 
 gem "stripe", "~> 18.2"
 
+
+gem "chartkick", "~> 5.2"
+
+gem "groupdate", "~> 6.8"
