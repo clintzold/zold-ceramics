@@ -40,6 +40,9 @@ Rails.application.routes.draw do
     # Pickups
     resources :pickups, only: [:new, :create, :index, :show]
     get "pickups/cancel", to: "pickups#destroy", as: :cancel_pickup
+
+    # Charts
+    get "charts/orders_by_year", to: "charts#orders_by_year", as: :charts_orders_by_year
   end
 
   # Cart routes

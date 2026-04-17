@@ -52,7 +52,8 @@ module OrderService
       @order.order_items.new(
         product_id: @product.id,
         quantity: @desired_amount,
-        price: @product.price
+        price: @product.price,
+        category: @product.category
       )
     end
   end

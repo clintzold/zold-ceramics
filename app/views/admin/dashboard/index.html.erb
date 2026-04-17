@@ -24,7 +24,10 @@
   </div>
   <div class="row">
     <div class="col col-sm-8 col-md-6 col-lg-4">
-      <%= column_chart Order.group_by_month(:created_at, range: Time.new(2026, 1, 1, 0, 0, 0)..Time.new(2026, 12, 31, 23, 59, 0), format: "%b").sum(:total) %>
+      <%= column_chart admin_charts_orders_by_year_path %>
+    </div>
+    <div class="col col-sm-8 col-md-6 col-lg-4">
+      <%= pie_chart OrderItem.group(:category).count %>
     </div>
   </div>
 </div>
