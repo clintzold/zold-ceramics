@@ -13,7 +13,7 @@ class PickupsController < ApplicationController
    #       "pickup_form_errors", partial: "shared/form_errors", locals: { errors: @pickup.errors }
    #     ), status: :unprocessable_content
    #     }
-    end
+   # end
   end
 
   def destroy
