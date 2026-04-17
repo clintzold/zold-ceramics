@@ -1,0 +1,21 @@
+<!-- Chart Filter Controls -->
+<div class="d-flex justify-content-center align-items-center gap-4">
+  <%= link_to admin_charts_filter_path(year: year.to_i - 1), data: { turbo_stream: true } do %>
+    <i class="bi bi-arrow-left-circle-fill fs-4 chart-control"></i>
+  <% end %>
+
+  <span class="dongle fs-1 pt-1"><%= year %></span>
+
+  <%= link_to admin_charts_filter_path(year: year.to_i + 1), data: { turbo_stream: true } do %>
+    <i class="bi bi-arrow-right-circle-fill fs-4 chart-control"></i>
+  <% end %>
+</div>
+<!-- Chart Graphics -->
+<div class="row">
+  <div class="col col-sm-8 col-md-6 col-lg-4">
+    <%= column_chart admin_charts_orders_path(year: year), ytitle: "CAD", title: "Revenue" %>
+  </div>
+  <div class="col col-sm-8 col-md-6 col-lg-4">
+    <%= pie_chart admin_charts_products_path(year: year), title: "Popularity" %>
+  </div>
+</div>

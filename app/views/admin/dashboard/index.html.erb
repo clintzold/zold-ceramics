@@ -1,33 +1,35 @@
 <div class="container-fluid">
-  <div class="row justify-content-center align-items-center flex-wrap">
+  <div class="row justify-content-center align-items-center flex-wrap pb-5">
     <div class="col-8 col-sm-4">
-      <a href="https://shippo.com">
+      <a href="https://stripe.com">
         <div class="admin-nav-card">
-              <%= image_tag "shippo-logo.png", class: "img-fluid" %>
+              <%= image_tag "stripe-logo.png", class: "img-fluid mh-100" %>
         </div>
       </a>
     </div>
     <div class="col-8 col-sm-4">
-      <a href="https://stripe.com">
+      <a href="https://shippo.com">
         <div class="admin-nav-card">
-              <%= image_tag "stripe-logo.png", class: "img-fluid" %>
+              <%= image_tag "shippo-logo.png", class: "img-fluid mh-100" %>
         </div>
       </a>
     </div>
     <div class="col-8 col-sm-4">
       <a href="https://mail.hostinger.com">
         <div class="admin-nav-card">
-              <%= image_tag "hostinger-logo.png", class: "img-fluid" %>
+              <%= image_tag "hostinger-logo.png", class: "w-75 mh-100" %>
         </div>
       </a>
     </div>
   </div>
-  <div class="row">
-    <div class="col col-sm-8 col-md-6 col-lg-4">
-      <%= column_chart admin_charts_orders_by_year_path %>
-    </div>
-    <div class="col col-sm-8 col-md-6 col-lg-4">
-      <%= pie_chart OrderItem.group(:category).count %>
-    </div>
-  </div>
+
+  <!-- Border Line -->
+  <div class="w-75 border-bottom border-2 mx-auto my-5"></div>
+
+  <!-- Charts -->
+  <h1 class="text-center dongle text-body-secondary">Sales</h1>
+
+  <%= turbo_frame_tag "charts" do %>
+    <%= render "admin/charts/charts", year: Time.now.year %>
+  <% end %>
 </div>

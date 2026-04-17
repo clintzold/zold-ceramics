@@ -42,7 +42,9 @@ Rails.application.routes.draw do
     get "pickups/cancel", to: "pickups#destroy", as: :cancel_pickup
 
     # Charts
-    get "charts/orders_by_year", to: "charts#orders_by_year", as: :charts_orders_by_year
+    get "charts/orders", to: "charts#orders", as: :charts_orders
+    get "charts/products", to: "charts#products", as: :charts_products
+    get "charts/filter", to: "charts#filter", as: :charts_filter
   end
 
   # Cart routes

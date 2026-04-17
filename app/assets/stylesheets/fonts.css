@@ -99,6 +99,14 @@
   opacity: 75%;
 }
 
+.chart-control {
+  color: rgba(169, 169, 169, 0.6);
+}
+
+.chart-control:hover {
+  color: rgba(169, 169, 169, 1);
+}
+
 .product-title {
   font-family: 'Borel', Helvetica, sans-serif;
   font-weight: bold;
