@@ -3,7 +3,7 @@
     <button class="navbar-toggler my-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a href="<%= home_path %>" class="navbar-brand pb-0">Zold Ceramics</a>
+    <a href="<%= admin_root_path %>" class="navbar-brand pb-0">Zold Ceramics <span class="dongle"><b>Admin</b></span></a>
 
     <div class="collapse justify-content-end navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mb-0" data-controller="active-nav" data-active-nav-active-class="active">
@@ -26,7 +26,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <div class="list-group list-group-flush" id="admin_options_list">
-                <%= link_to "View Orders", orders_path, class: "list-group-item list-group-item-action", data: { turbo_stream: true } %>
+                <%= link_to "View Orders", admin_orders_path, class: "list-group-item list-group-item-action", data: { turbo_stream: true } %>
               </div>
             </div>
         </li>

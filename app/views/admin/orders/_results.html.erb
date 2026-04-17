@@ -9,11 +9,11 @@
       </tr>
     </thead>
     <tbody>
-      <% if @orders.any? %>
-        <%@orders.order(created_at: :desc).each do |order| %>
+      <% if orders.any? %>
+        <% orders.order(created_at: :desc).each do |order| %>
           <tr>
             <th><%= order.id %></th>
-            <td><%= link_to "View Order", order_path(order.id), data: { turbo_stream: true } %></td>
+            <td><%= link_to "View Order", admin_order_path(order.id) %></td>
             <td><%= order.status %></td>
             <td><%= number_to_currency(order.total) %></td>
           </tr>

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # Products routes
 
   # Order routes
-  resources :orders, only: [ :create, :index, :show ]
+  resources :orders, only: [ :create ]
 
   # Shipments routes
   resources :shipments, only: [ :create, :index, :show ]
@@ -32,6 +32,11 @@ Rails.application.routes.draw do
     resources :products, only: [ :new, :create, :edit, :index, :destroy ]
     get "products/:id", to: "products#show"
     patch "products/:id", to: "products#update"
+
+    #Orders
+    get "orders/filter", to: "orders#filter", as: :filter_orders
+    resources :orders, only: [:index, :show]
+
     # Pickups
     resources :pickups, only: [:new, :create, :index, :show]
     get "pickups/cancel", to: "pickups#destroy", as: :cancel_pickup
