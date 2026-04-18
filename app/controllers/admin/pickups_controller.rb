@@ -4,7 +4,7 @@ class Admin::PickupsController < ApplicationController
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: turbo_stream.update(
-          "email_modal", partial: "index", locals: { pickups: @pickups }
+          "email", partial: "index", locals: { pickups: @pickups }
         )
       }
     end
@@ -15,7 +15,7 @@ class Admin::PickupsController < ApplicationController
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: turbo_stream.update(
-          "email_modal", partial: "new", locals: { pickup: @pickup }
+          "email", partial: "new", locals: { pickup: @pickup }
         )
       }
     end
@@ -33,7 +33,7 @@ class Admin::PickupsController < ApplicationController
       else
         format.turbo_stream {
           render turbo_stream: turbo_stream.update(
-            "email_modal", partial: "show", locals: { pickup: @pickup }
+            "email", partial: "show", locals: { pickup: @pickup }
           )
         }
       end

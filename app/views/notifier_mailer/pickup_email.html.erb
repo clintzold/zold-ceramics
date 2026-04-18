@@ -5,16 +5,19 @@ Hi <%= @name %>,
 </p>
 <p>
 Thanks for your recent purchase! This email is just to let you know
-that your order will be available for pickup on <b><i><%= @pickup.start.strftime("%b %d, %Y") %></i></b>
-at <b><%= @pickup.location %></b> from <b><%= @pickup.start.strftime("%I:%M %p") %></b> to <b><%= @pickup.end.strftime("%I:%M %p") %></b>.
+that your order will be available for pickup at <b><%= @pickup.location %></b> 
+on <b><i><%= @pickup.date.strftime("%b %d, %Y") %></i></b> 
+from <b><%= @pickup.start.strftime("%I:%M %p") %></b> to <b><%= @pickup.end.strftime("%I:%M %p") %></b>.
 </p>
 <p>
-Click the link below for a map location of the pickup!
-</p>
-<a href="<%= @pickup.link %>"><h4>Pickup Location Link</h4></a>
-<p>
-Remember to have your Stripe receipt ready(it will be in your email inbox) from when you made your purchase. 
+Remember to have your Stripe receipt ready from when you made your purchase(it will be in your email inbox). 
 If you can't make it to the pickup - don't worry! I will keep you up to date on when we can meet up next!
+</p>
+<% if @pickup.details %>
+  <p><b>Additional Details:<br></b><%= @pickup.details %></p>
+<% end %>
+<p>
+Click the link for a map location of the pickup: <a href="<%= @pickup.link %>"><h4>Pickup Location Link</h4></a>
 </p>
 <p>
 See you soon!

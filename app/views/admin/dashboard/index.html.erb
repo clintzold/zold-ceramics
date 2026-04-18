@@ -40,27 +40,31 @@
 
   <!-- Emails -->
   <section id="email">
-    <h1 class="text-center display-3 mb-5"><i class="bi bi-envelope-heart text-info"></i></h1>
-    <div class="row justify-content-center pt-5">
-      <div class="col-12 col-sm-8 col-md-6 col-lg-4 mb-5">
-        <div class="card email-card bg-secondary p-2 shadow border-0">
-          <h1 class="dongle card-title text-center text-white">New Batch <i class="bi bi-basket2"></i></h1>
-          <div class="card-body bg-white rounded-bottom d-flex flex-column align-items-center gap-4">
-            <%= link_to "View Subscribers", subscriptions_path, class: "btn btn-lg btn-info text-white border-2 rounded-0 w-75 opacity-75" %>
-            <%= link_to "Send Now", subscriptions_path, class: "btn btn-lg btn-secondary border-2 rounded-0 w-75 opacity-75" %>
+    <%= turbo_frame_tag "email" do %>
+      <h1 class="text-center display-3 mb-5"><i class="bi bi-envelope-heart text-info"></i></h1>
+      <div class="row justify-content-center pt-5">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4 mb-5">
+          <div class="card email-card bg-secondary p-2 shadow border-0">
+            <h1 class="dongle card-title text-center text-white">New Batch <i class="bi bi-basket2"></i></h1>
+            <div class="card-body bg-white rounded-bottom d-flex flex-column align-items-center gap-4">
+              <%= link_to "View Subscribers", subscriptions_path, class: "btn btn-lg btn-info text-white border-2 rounded-0 w-75 opacity-75" %>
+              <%= link_to "Send Now", subscriptions_path, class: "btn btn-lg btn-secondary border-2 rounded-0 w-75 opacity-75" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+          <div class="card email-card bg-secondary p-2 shadow border-0">
+            <h1 class="dongle card-title text-center text-white">Pickups <i class="bi bi-calendar-event"></i></h1>
+            <div class="card-body bg-white rounded-bottom d-flex flex-column align-items-center gap-4">
+              <%= link_to "View Pickups", admin_pickups_path, class: "btn btn-lg btn-info text-white border-2 rounded-0 w-75 opacity-75" %>
+              <%= link_to "Schedule New", new_admin_pickup_path,
+                class: "btn btn-lg btn-secondary text-white border-2 rounded-0 w-75 opacity-75",
+                data: { turbo_stream: true }
+              %>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-        <div class="card email-card bg-secondary p-2 shadow border-0">
-          <h1 class="dongle card-title text-center text-white">Pickups <i class="bi bi-calendar-event"></i></h1>
-          <div class="card-body bg-white rounded-bottom d-flex flex-column align-items-center gap-4">
-            <%= link_to "View Pickups", admin_pickups_path, class: "btn btn-lg btn-info text-white border-2 rounded-0 w-75 opacity-75" %>
-            <%= link_to "Schedule New", new_admin_pickup_path, class: "btn btn-lg btn-secondary text-white border-2 rounded-0 w-75 opacity-75" %>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
+    <% end %>
   </section>
 </div>
