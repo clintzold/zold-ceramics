@@ -14,7 +14,7 @@ class Pickup < ApplicationRecord
 
   def send_notification_email
     self.orders.each do |order|
-      NotifierMailer.with(pickup: self, order: order).pickup_email.deliver_now
+      NotifierMailer.with(pickup: self, order: order).new_pickup_email.deliver_now
     end
   end
 

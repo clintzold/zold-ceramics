@@ -7,7 +7,7 @@ class NotifierMailer < ApplicationMailer
     mail(from: "contact_form@zoldceramics.com", to: "contact@zoldceramics.com", subject: "Zold Ceramics - Contact Form Submission", reply_to: @email, template_name: "simple_message")
   end
 
-  def pickup_email
+  def new_pickup_email
     @pickup = params[:pickup]
     @order = params[:order]
     @name = @order.name.split.first.capitalize
