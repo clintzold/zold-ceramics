@@ -51,6 +51,6 @@ class Admin::PickupsController < ApplicationController
   private
 
   def pickup_params
-    params.require(:pickup).permit(:start, :end, :location, :link)
+    params.require(:pickup).permit(:date, :details, :start, :end, :location, :link)
   end
 end
