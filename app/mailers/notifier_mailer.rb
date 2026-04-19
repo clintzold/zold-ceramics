@@ -23,7 +23,7 @@ class NotifierMailer < ApplicationMailer
   end
 
   def pickup_canceled_email
-    @pickup = params[:pickup]
+    @date = params[:pickup]
     @order = params[:order]
     @name = @order.name.split.first.capitalize
     mail(to: @order.email, subject: "Pickup Canceled")

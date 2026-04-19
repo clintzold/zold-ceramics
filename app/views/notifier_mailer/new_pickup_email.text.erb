@@ -1,0 +1,22 @@
+Hi <%= @name %>,
+
+Thank you for your recent purchase! This email is just to let you know
+that your order will be available for pickup at <%= @pickup.location %>
+on <%= @pickup.date.strftime("%b %d, %Y") %>
+from <%= @pickup.start.strftime("%I:%M %p") %> to <%= @pickup.end.strftime("%I:%M %p") %>.
+
+Remember to have your Stripe receipt ready from when you made your purchase(it will be in your email inbox). 
+If you can't make it to the pickup - don't worry! I will keep you up to date on when we can meet up next!
+
+<% if @pickup.details %>
+  Additional Details: 
+  <%= @pickup.details %>
+<% end %>
+
+Paste the link in your browser for a map location of the pickup: <%= @pickup.link %>
+
+See you soon!
+
+Jessie Edwards
+Zold Ceramics
+https://zoldceramics.com

@@ -1,0 +1,29 @@
+<h1>Pickup has been rescheduled</h1>
+
+<p>
+Hi <%= @name %>,
+</p>
+<p>
+I've had some things come up! This email is just to let you know
+that your order will now be available for pickup at <b><%= @pickup.location %></b> 
+on <b><i><%= @pickup.date.strftime("%b %d, %Y") %></i></b> 
+from <b><%= @pickup.start.strftime("%I:%M %p") %></b> to <b><%= @pickup.end.strftime("%I:%M %p") %></b>.
+</p>
+<p>
+Remember to have your Stripe receipt ready from when you made your purchase(it will be in your email inbox). 
+If you can't make it to the pickup - don't worry! I will keep you up to date on when we can meet up next!
+</p>
+<% if @pickup.details %>
+  <p><b>Additional Details:<br></b><%= @pickup.details %></p>
+<% end %>
+<p>
+Click the link for a map location of the pickup: <a href="<%= @pickup.link %>"><h4>Pickup Location Link</h4></a>
+</p>
+<p>
+Sorry for the change of plans!
+</p>
+<p>
+<b>Jessie Edwards</b><br>
+<small><i>Zold Ceramics</i></small><br>
+<a href="https://zoldceramics.com"><h3>Click here to visit the shop!</h3></a>
+</p>
