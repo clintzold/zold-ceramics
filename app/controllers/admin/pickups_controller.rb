@@ -51,6 +51,18 @@ class Admin::PickupsController < Admin::BaseController
     )
   end
 
+  def update
+    @pickup = Pickup.find(params[:id])
+    if @pickup.update(pickup_params)
+      render turbo_stream: turbo_stream.update(
+        "pickups", partial: "show", locals: { pickup: @pickup }
+      )
+    else
+      render turbo_stream: turbo_stream.update(
+        "pickup_form_errors", partial: "shared/form_errors", locals: { errors: @pickup.errors }
+      ), status: :unprocessable_content
+  end
+
   def show
     @pickup = Pickup.find(params[:id])
     render turbo_stream: turbo_stream.update(
