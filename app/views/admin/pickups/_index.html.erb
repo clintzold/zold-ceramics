@@ -1,0 +1,49 @@
+<!-- Pickup Details Card -->
+<div class="card bg-secondary position-relative fade-card px-xxl-3" data-controller="list-navigator" style="--bs-bg-opacity: .5">
+
+  <!-- Exit Button -->
+  <%= link_to admin_pickups_partial_path,
+    data: {turbo_stream: true} do
+  %>
+    <i class="bi bi-x-square text-white exit-button"></i>
+  <% end %>
+
+
+  <!-- Modal Section -->
+  <div class="form-modal d-none" data-controller="modal" data-list-navigator-target="modal">
+    <%= turbo_frame_tag "modal" do %>
+    <% end %>
+  </div>
+
+  <h1 class="card-title sign-up-title text-white borel display-5 text-center mb-0 mt-2">Pickup Details</h1>
+  <div class="card-body">
+    <!-- Pickup Details -->
+    <table class="w-100 bg-white modal-scroll-section">
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Date</th>
+          <th>Start</th>
+          <th>End</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if pickups.any? %>
+          <% pickups.each do |pickup| %>
+            <tr 
+              data-action="click->list-navigator#performRequest"
+              data-list-navigator-url-param="<%= admin_pickup_path(pickup) %>"
+              class="hover-item"
+              >
+              <td><%= pickup.location %></td>
+              <td><%= pickup.date.strftime("%B %d, %Y") %></td>
+              <td><%= pickup.start.strftime("%I:%M %p") %></td>
+              <td><%= pickup.end.strftime("%I:%M %p") %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>

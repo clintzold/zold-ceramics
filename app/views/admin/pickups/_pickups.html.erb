@@ -1,0 +1,13 @@
+<div class="card email-card bg-secondary p-2 shadow border-0">
+  <h1 class="dongle card-title text-center text-white">Pickups <i class="bi bi-calendar-event"></i></h1>
+  <div class="card-body bg-white rounded-bottom d-flex flex-column align-items-center gap-4">
+    <%= link_to "View Pickups", admin_pickups_path,
+      class: "btn btn-lg btn-info text-white border-2 rounded-0 w-75 opacity-75",
+      data: { turbo_stream: true }
+    %>
+    <%= link_to "Schedule New", new_admin_pickup_path,
+      class: "btn btn-lg btn-secondary text-white border-2 rounded-0 w-75 opacity-75",
+      data: { turbo_stream: true }
+    %>
+  </div>
+</div>

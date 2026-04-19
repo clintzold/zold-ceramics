@@ -4,3 +4,50 @@
 
 #index-table {
 }
+
+.form-modal {
+  position: fixed;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-card {
+  width: clamp(20vw, 400px, 100vw);
+}
+
+.modal-scroll-section {
+  background-color: white;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.modal-exit-button {
+  position: absolute;
+  z-index: 10001;
+  top: 0;
+  right: 5px;
+  font-size: 20px;
+}
+
+.modal-exit-button:hover {
+  cursor: pointer;
+}
+
+.exit-button {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  right: 5px;
+  font-size: 20px;
+}
+
+.hover-item:hover {
+  cursor: pointer;
+  background-color: rgba(0,128,128, 0.2);
+}
+
+.hover-item:active {
+  cursor: pointer;
+  background-color: rgba(0,128,128, 0.3);
+}

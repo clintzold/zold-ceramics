@@ -4,7 +4,7 @@ class Pickup < ApplicationRecord
   validates_presence_of :start, :end, :location, :link
 
   before_create :add_orders
-  after_create_commit :send_notification_email
+  # after_create_commit :send_notification_email
 
   private
 

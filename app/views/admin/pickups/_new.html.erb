@@ -1,21 +1,12 @@
-<div class="container-fluid">
-  <div class="row justify-content-center">
-    <div class="px-1 col col-sm-8 col-md-6 col-lg-5 col-xxl-4">
-
       <!-- Contact Form Card -->
       <div class="card bg-secondary contact-us-card px-xxl-3" data-controller="loader" style="--bs-bg-opacity: .5">
-
-        <div class="form-overlay card border-0 text-white" data-loader-target="loadingOverlay">
-          <i class="bi bi-cup-hot-fill loading-icon mb-0" data-loader-target="loadingIcon" data-action="animationend->loader#handleLoadingEnd"></i>
-          <p class="text-center form-result-message" data-loader-target="message" data-action="animationend->loader#handleComplete">Email has been sent.</p>
-        </div>
 
         <h1 class="card-title sign-up-title text-white borel display-5 text-center mb-0 mt-2">New Pickup</h1>
         <div class="card-body text-start" style="text-shadow: 1px 1px 3px gray">
 
 
             <!-- Contact Form -->
-            <%= form_with model: pickup, url: admin_pickups_path, data: { "loader-target": "form", action: "turbo:submit-end->loader#show"}, method: :post, class: "text-white" do |form| %>
+            <%= form_with model: pickup, url: admin_pickups_path, method: :post, class: "text-white" do |form| %>
 
               <!-- Turbo Stream Form Errors -->
               <%= turbo_frame_tag "pickup_form_errors" %>
@@ -51,9 +42,10 @@
                 class: "form-control mb-4"
                 %>
 
-              <%= form.submit "Send Email", data: {loader_target: "button"}, class: "btn btn-secondary dongle submit-message-button rounded-0 opacity-75 text-white" %>
-              <%= turbo_frame_tag "contact_form" do %>
-              <% end %>
+              <%= form.submit "Send Email",
+                data: {loader_target: "button"},
+                class: "btn btn-secondary dongle submit-message-button rounded-0 opacity-75 text-white"
+              %>
             <% end %>
 
         </div>

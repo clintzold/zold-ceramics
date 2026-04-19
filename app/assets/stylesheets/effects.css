@@ -19,6 +19,14 @@
 	opacity: 0;
 }
 
+.fade-card {
+	opacity: 0;
+	animation-name: card-fade-in;
+	animation-duration: 1s;
+	animation-timing-function: ease-in-out;
+	animation-direction: forwards;
+	animation-fill-mode: forwards;
+}
 /*
 * Make Bootstrap collapsables smoother
 */

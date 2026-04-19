@@ -38,8 +38,9 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show]
 
     # Pickups
-    resources :pickups, only: [:new, :create, :index, :show]
+    get "pickups/partial", to: "pickups#partial"
     get "pickups/cancel", to: "pickups#destroy", as: :cancel_pickup
+    resources :pickups, only: [:new, :create, :index, :show, :edit]
 
     # Charts
     get "charts/orders", to: "charts#orders", as: :charts_orders

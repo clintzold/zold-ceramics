@@ -1,10 +1,10 @@
-class Admin::PickupsController < ApplicationController
+class Admin::PickupsController < Admin::BaseController
   def index
     @pickups = Pickup.all
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: turbo_stream.update(
-          "email", partial: "index", locals: { pickups: @pickups }
+          "pickups", partial: "index", locals: { pickups: @pickups }
         )
       }
     end
@@ -15,7 +15,7 @@ class Admin::PickupsController < ApplicationController
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: turbo_stream.update(
-          "email", partial: "new", locals: { pickup: @pickup }
+          "pickups", partial: "new", locals: { pickup: @pickup }
         )
       }
     end
@@ -33,15 +33,29 @@ class Admin::PickupsController < ApplicationController
       else
         format.turbo_stream {
           render turbo_stream: turbo_stream.update(
-            "email", partial: "show", locals: { pickup: @pickup }
+            "pickups", partial: "show", locals: { pickup: @pickup }
           )
         }
       end
     end
   end
 
+  def partial
+    render turbo_stream: turbo_stream.update("pickups", partial: "pickups")
+  end
+
+  def edit
+    @pickup = Pickup.find(params[:id])
+    render turbo_stream: turbo_stream.update(
+      "pickups", partial: "new", locals: { pickup: @pickup }
+    )
+  end
+
   def show
     @pickup = Pickup.find(params[:id])
+    render turbo_stream: turbo_stream.update(
+      "pickups", partial: "show", locals: { pickup: @pickup }
+    )
   end
 
   def destroy

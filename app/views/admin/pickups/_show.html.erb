@@ -1,0 +1,69 @@
+<!-- Pickup Details Card -->
+<div class="card bg-secondary position-relative fade-card px-xxl-3" data-controller="list-navigator" style="--bs-bg-opacity: .5">
+
+  <!-- Exit Button -->
+  <%= link_to admin_pickups_partial_path,
+    data: {turbo_stream: true} do
+  %>
+    <i class="bi bi-x-square text-white exit-button"></i>
+  <% end %>
+
+
+  <!-- Modal Section -->
+  <div class="form-modal d-none" data-controller="modal" data-list-navigator-target="modal">
+    <%= turbo_frame_tag "modal" do %>
+    <% end %>
+  </div>
+
+  <h1 class="card-title sign-up-title text-white borel display-5 text-center mb-0 mt-2">Pickup Details</h1>
+  <div class="card-body">
+    <!-- Pickup Details -->
+    <table class="w-100 bg-white">
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Start</th>
+          <th>End</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= pickup.location %></td>
+          <td><%= pickup.start.strftime("%I:%M %p") %></td>
+          <td><%= pickup.end.strftime("%I:%M %p") %></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+      <!-- Pickup Orders -->
+      <p class="text-center text-white mb-0 mt-3"><b>Orders</b></p>
+      <ul class="list-group modal-scroll-section list-group-flush">
+        <% pickup.orders.each do |order| %>
+          <li 
+            class="list-group-item hover-item" 
+            data-action="click->list-navigator#performRequest"
+            data-list-navigator-url-param="<%= admin_order_path(order.id) %>"
+          >
+            <div class="d-flex justify-content-between">
+              <%= order.name.titleize %>
+              <div>
+                No. of items: <%= order.order_items.count %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class="d-flex flex-column align-items-center gap-2 pt-3">
+        <%= link_to "Reschedule", edit_admin_pickup_path(pickup),
+          class: "btn btn-secondary opacity-75 w-75 text-white rounded-0",
+          data: {turbo_stream: true}
+        %>
+        <%= link_to "Cancel", admin_cancel_pickup_path(pickup),
+          class: "btn btn-danger w-75 opacity-75 rounded-0",
+          data: {turbo_stream: true}
+        %>
+      </div>
+  </div>
+</div>

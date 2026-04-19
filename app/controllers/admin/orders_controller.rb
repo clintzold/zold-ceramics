@@ -3,6 +3,14 @@ class Admin::OrdersController < Admin::BaseController
 
   def show
     @order = Order.find(order_params[:id])
+    respond_to do |format|
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.update(
+          "modal", partial: "order_modal", locals: { order: @order }
+        )
+      }
+      format.html
+    end
   end
 
   def index
