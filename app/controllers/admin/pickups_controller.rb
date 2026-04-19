@@ -1,6 +1,6 @@
 class Admin::PickupsController < Admin::BaseController
   def index
-    @pickups = Pickup.where(created_at: Time.current..)
+    @pickups = Pickup.where(created_at: Date.current..)
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: turbo_stream.update(
