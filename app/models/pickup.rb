@@ -16,19 +16,20 @@ class Pickup < ApplicationRecord
 
   def send_new_email
     self.orders.each do |order|
-      NotifierMailer.with(pickup: self, order: order).new_pickup_email.deliver_now
+      NotifierMailer.with(pickup: self, order: order).new_pickup_email.deliver_later
     end
   end
 
   def send_rescheduled_email
     self.orders.each do |order|
-      NotifierMailer.with(pickup: self, order: order).pickup_rescheduled_email.deliver_now
+      NotifierMailer.with(pickup: self, order: order).pickup_rescheduled_email.deliver_later
     end
   end
 
   def send_canceled_email
     self.orders.each do |order|
-      NotifierMailer.with(date: self.date, order: order).pickup_rescheduled_email.deliver_now
+      date = self.date
+      NotifierMailer.with(date: date, order: order).pickup_canceled_email.deliver_later
     end
   end
 end

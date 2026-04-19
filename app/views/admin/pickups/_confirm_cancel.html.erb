@@ -1,11 +1,11 @@
-<div class="card bg-info modal-card pt-2 fade-card shadow">
+<div class="card bg-secondary modal-card pt-2 fade-card shadow">
   <!-- Exit button -->
   <h1 class="card-title text-center dongle text-white">Cancel Pickup</h1>
 
   <div class="card-body p-2">
     <p class="text-center text-white dongle fs-2">Are you sure you want to cancel?</p>
     <div class="d-flex justify-content-between pt-2 px-5">
-      <div class="btn btn-secondary opacity-75" style="width: 100px" data-action="click->modal#visible">Back</div>
+      <div class="btn btn-info opacity-75" style="width: 100px" data-action="click->modal#visible">Back</div>
       <%= link_to "Confirm",
         admin_cancel_pickup_path(pickup),
         class: "btn btn-danger opacity-75",

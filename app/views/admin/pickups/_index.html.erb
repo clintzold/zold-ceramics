@@ -34,6 +34,10 @@
               <td><%= pickup.end.strftime("%I:%M %p") %></td>
             </tr>
           <% end %>
+        <% else %>
+        <tr>
+          <td colspan="4" class="text-center fs-5">Nothing to show</td>
+        </tr>
         <% end %>
       </tbody>
     </table>

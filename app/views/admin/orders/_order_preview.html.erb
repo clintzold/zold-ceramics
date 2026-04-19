@@ -31,10 +31,10 @@
       <% end %>
     </ul>
     <div class="d-flex justify-content-center pt-2">
-      <% opacity = "opacity-0" if order.status == "delivered" %>
+      <% order.status == "delivered" ? opacity = "opacity-0" : opacity = "" %>
       <%= link_to "Mark Received",
         admin_order_delivered_path(order),
-        class: "btn btn-sm btn-outline-light ",
+        class: "btn btn-sm btn-outline-light " + opacity,
         data: { turbo_stream: true }
       %>
     </div>
