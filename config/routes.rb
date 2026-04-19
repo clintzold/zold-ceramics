@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     # Pickups
     get "pickups/partial", to: "pickups#partial"
     get "pickups/cancel", to: "pickups#destroy", as: :cancel_pickup
-    resources :pickups, only: [:new, :create, :index, :show, :edit]
+    resources :pickups, only: [:new, :create, :index, :show, :edit, :update]
 
     # Charts
     get "charts/orders", to: "charts#orders", as: :charts_orders
