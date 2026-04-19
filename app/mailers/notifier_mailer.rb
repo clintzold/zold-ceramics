@@ -1,4 +1,5 @@
 class NotifierMailer < ApplicationMailer
+  default from: email_address_with_name("pickups@zoldceramics.com", "Pickups - Zold Ceramics")
 
   def contact_form_submission(params)
     @name = params[:name]
@@ -11,6 +12,20 @@ class NotifierMailer < ApplicationMailer
     @pickup = params[:pickup]
     @order = params[:order]
     @name = @order.name.split.first.capitalize
-    mail(from: "contact@zoldceramics.com", to: @order.email, subject: "New Pickup Scheduled")
+    mail(to: @order.email, subject: "New Pickup Scheduled")
+  end
+
+  def pickup_rescheduled_email
+    @pickup = params[:pickup]
+    @order = params[:order]
+    @name = @order.name.split.first.capitalize
+    mail(to: @order.email, subject: "Pickup Rescheduled")
+  end
+
+  def pickup_canceled_email
+    @pickup = params[:pickup]
+    @order = params[:order]
+    @name = @order.name.split.first.capitalize
+    mail(to: @order.email, subject: "Pickup Canceled")
   end
 end
