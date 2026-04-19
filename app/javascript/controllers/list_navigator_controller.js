@@ -3,12 +3,9 @@ import { Turbo } from "@hotwired/turbo-rails"
 
 // Connects to data-controller="list-navigator"
 export default class extends Controller {
-  static targets = ["modal"]
 
   connect() {
-    console.log(this.modalTarget)
     this.abortController = new AbortController()
-
   }
 
   async performRequest(event) {
@@ -22,8 +19,6 @@ export default class extends Controller {
 
     if (response.ok) {
       const html = await response.text()
-      this.modalTarget.classList.remove("d-none");
-      console.log(this.modalTarget.classList)
       Turbo.renderStreamMessage(html)
     }
   }

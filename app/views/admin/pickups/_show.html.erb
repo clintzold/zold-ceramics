@@ -1,49 +1,52 @@
 <!-- Pickup Details Card -->
-<div class="card bg-secondary position-relative fade-card px-xxl-3" data-controller="list-navigator" style="--bs-bg-opacity: .5">
+<div class="card bg-info position-relative fade-card px-xxl-3" data-controller="list-navigator modal">
 
   <!-- Exit Button -->
-  <%= link_to admin_pickups_partial_path,
+  <%= link_to admin_pickups_path,
     data: {turbo_stream: true} do
   %>
-    <i class="bi bi-x-square text-white exit-button"></i>
+    <i class="bi bi-arrow-left-square text-white exit-button"></i>
   <% end %>
 
 
   <!-- Modal Section -->
-  <div class="form-modal d-none" data-controller="modal" data-list-navigator-target="modal">
+  <div class="form-modal d-none" data-modal-target="modal">
     <%= turbo_frame_tag "modal" do %>
+      <%= render "confirm_cancel", pickup: pickup %>
     <% end %>
   </div>
 
-  <h1 class="card-title sign-up-title text-white borel display-5 text-center mb-0 mt-2">Pickup Details</h1>
-  <div class="card-body">
+  <h1 class="card-title text-white dongle text-center mb-0 mt-2">Pickup Details</h1>
+  <div class="card-body p-2">
     <!-- Pickup Details -->
-    <table class="w-100 bg-white">
-      <thead>
+    <table class="w-100 bg-white text-center">
         <tr>
-          <th>Location</th>
+          <th colspan="3">Location</th>
+        </tr>
+        <tr>
+          <td colspan="3"><%= pickup.location %></td>
+        </tr>
+        <tr>
+          <th>Date</th>
           <th>Start</th>
           <th>End</th>
         </tr>
-      </thead>
-      <tbody>
         <tr>
-          <td><%= pickup.location %></td>
-          <td><%= pickup.start.strftime("%I:%M %p") %></td>
-          <td><%= pickup.end.strftime("%I:%M %p") %></td>
+          <td style="width: 33%"><%= pickup.date.strftime("%B %d, %Y") %></td>
+          <td style="width: 33%"><%= pickup.start.strftime("%I:%M %p") %></td>
+          <td style="width: 33%"><%= pickup.end.strftime("%I:%M %p") %></td>
         </tr>
-      </tbody>
     </table>
 
 
       <!-- Pickup Orders -->
-      <p class="text-center text-white mb-0 mt-3"><b>Orders</b></p>
+      <h1 class="text-center text-white mb-0 dongle mt-3">Orders</h1>
       <ul class="list-group modal-scroll-section list-group-flush">
         <% pickup.orders.each do |order| %>
           <li 
             class="list-group-item hover-item" 
             data-action="click->list-navigator#performRequest"
-            data-list-navigator-url-param="<%= admin_order_path(order.id) %>"
+            data-list-navigator-url-param="<%= admin_order_path(order.id, pickup_id: pickup.id) %>"
           >
             <div class="d-flex justify-content-between">
               <%= order.name.titleize %>
@@ -60,9 +63,9 @@
           class: "btn btn-secondary opacity-75 w-75 text-white rounded-0",
           data: {turbo_stream: true}
         %>
-        <%= link_to "Cancel", admin_cancel_pickup_path(pickup),
+        <%= link_to "Cancel", admin_pickup_confirm_cancel_path(pickup),
           class: "btn btn-danger w-75 opacity-75 rounded-0",
-          data: {turbo_stream: true}
+          data: {turbo_stream: true, action: "click->modal#visible"}
         %>
       </div>
   </div>

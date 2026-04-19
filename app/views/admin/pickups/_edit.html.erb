@@ -1,8 +1,15 @@
 <!-- Edit Form Card -->
-<div class="card bg-secondary contact-us-card px-xxl-3" data-controller="loader" style="--bs-bg-opacity: .5">
+<div class="card bg-info position-relative contact-us-card px-xxl-3" data-controller="loader">
 
-  <h1 class="card-title sign-up-title text-white borel display-5 text-center mb-0 mt-2">New Pickup</h1>
-  <div class="card-body">
+  <!-- Exit Button -->
+  <%= link_to admin_pickup_path(pickup),
+    data: {turbo_stream: true} do
+  %>
+    <i class="bi bi-arrow-left-square text-white exit-button"></i>
+  <% end %>
+
+  <h1 class="card-title text-white dongle text-center mb-0 mt-2">New Pickup</h1>
+  <div class="card-body p-2">
 
     <!-- Edit Form -->
     <%= form_with model: pickup, url: admin_pickup_path, method: :patch, class: "text-white" do |form| %>
@@ -43,7 +50,7 @@
 
       <%= form.submit "Reschedule",
         data: {loader_target: "button"},
-        class: "btn btn-secondary dongle submit-message-button rounded-0 opacity-75 text-white"
+        class: "btn btn-info dongle submit-message-button rounded-0 text-white"
       %>
     <% end %>
 

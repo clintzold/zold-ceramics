@@ -34,12 +34,14 @@ Rails.application.routes.draw do
     patch "products/:id", to: "products#update"
 
     #Orders
+    get "orders/delivered/:id", to: "orders#delivered", as: :order_delivered
     get "orders/filter", to: "orders#filter", as: :filter_orders
     resources :orders, only: [:index, :show]
 
     # Pickups
     get "pickups/partial", to: "pickups#partial"
-    get "pickups/cancel", to: "pickups#destroy", as: :cancel_pickup
+    get "pickups/confirm_cancel/:id", to: "pickups#confirm_cancel", as: :pickup_confirm_cancel
+    get "pickups/cancel/:id", to: "pickups#destroy", as: :cancel_pickup
     resources :pickups, only: [:new, :create, :index, :show, :edit, :update]
 
     # Charts

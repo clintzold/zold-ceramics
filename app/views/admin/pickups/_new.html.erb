@@ -1,55 +1,59 @@
-      <!-- Contact Form Card -->
-      <div class="card bg-secondary contact-us-card px-xxl-3" data-controller="loader" style="--bs-bg-opacity: .5">
-
-        <h1 class="card-title sign-up-title text-white borel display-5 text-center mb-0 mt-2">New Pickup</h1>
-        <div class="card-body text-start" style="text-shadow: 1px 1px 3px gray">
+<!-- New Pickup Form Card -->
+<div class="card bg-info contact-us-card px-xxl-3 position-relative" data-controller="loader">
 
 
-            <!-- Contact Form -->
-            <%= form_with model: pickup, url: admin_pickups_path, method: :post, class: "text-white" do |form| %>
+  <!-- Exit Button -->
+  <%= link_to admin_pickups_partial_path,
+    data: {turbo_stream: true} do
+  %>
+    <i class="bi bi-arrow-left-square text-white exit-button"></i>
+  <% end %>
 
-              <!-- Turbo Stream Form Errors -->
-              <%= turbo_frame_tag "pickup_form_errors" %>
+  <h1 class="card-title text-white dongle text-center mb-0 mt-2">New Pickup</h1>
+  <div class="card-body text-start" style="text-shadow: 1px 1px 3px gray">
 
-              <%= form.text_field :location,
-                placeholder: "Enter location name",
-                class: "form-control mb-4",
-                required: true %>
+    <!-- New Pickup Form -->
+    <%= form_with model: pickup, url: admin_pickups_path, method: :post, class: "text-white" do |form| %>
 
-              <%= form.date_field :date,
-                placeholder: "Choose a date",
-                class: "form-control mb-4",
-                required: true %>
+      <!-- Turbo Stream Form Errors -->
+      <%= turbo_frame_tag "pickup_form_errors" %>
 
-              <%= form.time_field :start,
-                class: "form-control mb-4",
-                required: true %>
+      <%= form.text_field :location,
+        placeholder: "Enter location name",
+        class: "form-control mb-4",
+        required: true %>
 
-              <%= form.time_field :end,
-                placeholder: "End time",
-                class: "form-control mb-4",
-                required: true %>
+      <%= form.date_field :date,
+        placeholder: "Choose a date",
+        class: "form-control mb-4",
+        required: true %>
 
-              <%= form.text_field :link,
-                placeholder: "Paste Google Maps link...",
-                class: "form-control mb-4",
-                required: true %>
+      <%= form.time_field :start,
+        class: "form-control mb-4",
+        required: true %>
 
-              <%= form.text_area :details,
-                rows: 5,
-                placeholder: "Enter any further details...",
-                maxlength: "750",
-                class: "form-control mb-4"
-                %>
+      <%= form.time_field :end,
+        placeholder: "End time",
+        class: "form-control mb-4",
+        required: true %>
 
-              <%= form.submit "Send Email",
-                data: {loader_target: "button"},
-                class: "btn btn-secondary dongle submit-message-button rounded-0 opacity-75 text-white"
-              %>
-            <% end %>
+      <%= form.text_field :link,
+        placeholder: "Paste Google Maps link...",
+        class: "form-control mb-4",
+        required: true %>
 
-        </div>
-      </div>
-    </div>
+      <%= form.text_area :details,
+        rows: 5,
+        placeholder: "Enter any further details...",
+        maxlength: "750",
+        class: "form-control mb-4"
+        %>
+
+      <%= form.submit "Send Email",
+        data: {loader_target: "button"},
+        class: "btn btn-secondary dongle submit-message-button rounded-0 opacity-75 text-white"
+      %>
+    <% end %>
+
   </div>
 </div>

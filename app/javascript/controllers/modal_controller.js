@@ -2,10 +2,12 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="modal"
 export default class extends Controller {
+  static targets = ["modal"]
   connect() {
+    console.log("Connected to ", this.modalTarget)
   }
 
-  hide() {
-    this.element.classList.toggle("d-none")
+  visible() {
+    this.modalTarget.classList.toggle("d-none")
   }
 }

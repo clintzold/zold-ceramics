@@ -9,7 +9,7 @@ class Pickup < ApplicationRecord
   private
 
   def add_orders
-    self.orders << Order.where(local: true)
+    self.orders << Order.where(local: true, status: "paid")
   end
 
   def send_notification_email

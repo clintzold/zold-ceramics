@@ -1,7 +1,7 @@
 <div class="card bg-info pt-2 fade-card shadow position-relative">
   <!-- Exit button -->
   <%= link_to admin_pickup_path(pickup) do %>
-    <i class="bi bi-x-square text-white exit-button"></i>
+    <i class="bi bi-arrow-left-square text-white exit-button"></i>
   <% end %>
   <h2 class="card-title text-center dongle text-white">Order Preview</h2>
   <!-- Mark order as delivered button -->
@@ -34,7 +34,7 @@
       <% opacity = "opacity-0" if order.status == "delivered" %>
       <%= link_to "Mark Received",
         admin_order_delivered_path(order),
-        class: "btn btn-sm btn-outline-light " + opacity,
+        class: "btn btn-sm btn-outline-light ",
         data: { turbo_stream: true }
       %>
     </div>

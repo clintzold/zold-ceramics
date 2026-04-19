@@ -10,7 +10,7 @@
   z-index: 1000;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%)
 }
 
 .modal-card {
@@ -32,6 +32,12 @@
 
 .modal-exit-button:hover {
   cursor: pointer;
+}
+
+.delivered-status {
+  position: absolute;
+  left: 20px;
+  top: 45px;
 }
 
 .exit-button {

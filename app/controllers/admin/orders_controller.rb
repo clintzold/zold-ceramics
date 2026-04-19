@@ -2,11 +2,12 @@ class Admin::OrdersController < Admin::BaseController
   before_action :filter_orders, only: [:filter]
 
   def show
-    @order = Order.find(order_params[:id])
+    @pickup = Pickup.find(params[:pickup_id])
+    @order = Order.find(params[:id])
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: turbo_stream.update(
-          "modal", partial: "order_modal", locals: { order: @order }
+          "pickups", partial: "order_preview", locals: { order: @order, pickup: @pickup }
         )
       }
       format.html
@@ -16,6 +17,12 @@ class Admin::OrdersController < Admin::BaseController
   def index
     @orders = Order.all
     @statuses = Order.statuses.keys
+  end
+
+  def delivered
+    order = Order.find(params[:id])
+    order.update(status: "delivered")
+    render turbo_stream: turbo_stream.update("order_status", partial: "status", locals: { order: order })
   end
 
   def filter
