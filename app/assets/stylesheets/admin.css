@@ -30,6 +30,10 @@
   font-size: 20px;
 }
 
+th, td {
+  padding: 5px;
+}
+
 .modal-exit-button:hover {
   cursor: pointer;
 }
