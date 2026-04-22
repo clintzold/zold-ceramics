@@ -32,9 +32,7 @@ class Admin::PickupsController < Admin::BaseController
         }
       else
         format.turbo_stream {
-          render turbo_stream: turbo_stream.update(
-            "pickups", partial: "show", locals: { pickup: @pickup }
-          )
+          head :no_content
         }
       end
     end

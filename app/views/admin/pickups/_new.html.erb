@@ -1,6 +1,15 @@
 <!-- New Pickup Form Card -->
 <div class="card bg-info contact-us-card px-xxl-3 position-relative" data-controller="loader">
 
+  <!-- Animation Overlay -->
+  <div class="form-overlay card border-0 text-white" data-loader-target="loadingOverlay">
+    <i class="bi bi-cup-hot-fill loading-icon mb-0" data-loader-target="loadingIcon" data-action="animationend->loader#handleLoadingEnd"></i>
+    <p class="text-center form-result-message"
+       data-loader-target="message"
+       data-action="animationend->loader#handleComplete">
+       New pickup has been scheduled.
+    </p>
+  </div>
 
   <!-- Exit Button -->
   <%= link_to admin_pickups_partial_path,
@@ -13,7 +22,11 @@
   <div class="card-body text-start" style="text-shadow: 1px 1px 3px gray">
 
     <!-- New Pickup Form -->
-    <%= form_with model: pickup, url: admin_pickups_path, method: :post, class: "text-white" do |form| %>
+    <%= form_with model: pickup,
+      url: admin_pickups_path,
+      data: { "loader-target": "form", action: "turbo:submit-end->loader#show"},
+      method: :post, 
+      class: "text-white" do |form| %>
 
       <!-- Turbo Stream Form Errors -->
       <%= turbo_frame_tag "pickup_form_errors" %>
