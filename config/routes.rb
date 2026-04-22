@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   resources :shipments, only: [ :create, :index, :show ]
 
   # Subscriptions
+  get "subscriptions/new_batch", to: "subscriptions#new_batch", as: :new_batch_email
+  get "subscriptions/partial", to: "subscriptions#render_partial", as: :new_batch_partial
   resources :subscriptions, only: [:index, :new, :create]
   get "subscriptions/cancel", to: "subscriptions#destroy", as: :cancel_subscription
 

@@ -1,0 +1,27 @@
+<div class="card email-card bg-secondary p-2 shadow border-0" data-controller="email-loader">
+
+  <div class="form-overlay card border-0 text-white" data-email-loader-target="loadingOverlay">
+    <i class="bi bi-cup-hot-fill loading-icon mb-0"
+       data-email-loader-target="loadingIcon"
+       data-action="animationend->email-loader#handleLoadingEnd"></i>
+    <p class="text-center form-result-message mb-0 pt-4"
+       data-email-loader-target="message"
+       data-action="animationend->email-loader#handleComplete">
+       New batch notifications have been sent!
+    </p>
+  </div>
+
+  <h1 class="dongle card-title text-center text-white">New Batch <i class="bi bi-basket2"></i></h1>
+  <div class="card-body bg-white rounded-bottom d-flex flex-column align-items-center gap-4">
+    <%= link_to "View Subscribers",
+      subscriptions_path,
+      class: "btn btn-lg btn-info text-white border-2 rounded-0 w-75 opacity-75",
+      data: { turbo_stream: true }
+    %>
+  <%= link_to "Send Now",
+    new_batch_email_path,
+    class: "btn btn-lg btn-secondary border-2 rounded-0 w-75 opacity-75",
+    data: { turbo: false, action: "click->email-loader#show" }
+  %>
+  </div>
+</div>

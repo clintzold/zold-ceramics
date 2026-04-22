@@ -47,6 +47,20 @@ class SubscriptionsController < ApplicationController
 
   def index
     @subscriptions = Subscription.all
+    render turbo_stream: turbo_stream.update(
+      "new_batch", partial: "index", locals: { subscriptions: @subscriptions }
+    )
+  end
+
+  def new_batch
+    SendNewBatchEmailJob.perform_later
+    head :no_content
+  end
+
+  def render_partial
+    render turbo_stream: turbo_stream.update(
+      "new_batch", partial: "new_batch"
+    )
   end
 
   private

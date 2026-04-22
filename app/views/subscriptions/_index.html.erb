@@ -1,0 +1,40 @@
+<!-- Subscriptions Card -->
+<div class="card bg-info position-relative fade-card px-xxl-3">
+
+  <!-- Exit Button -->
+  <%= link_to new_batch_partial_path,
+    data: {turbo_stream: true} do
+  %>
+    <i class="bi bi-arrow-left-square text-white exit-button"></i>
+  <% end %>
+
+  <h1 class="card-title text-white dongle text-center mb-0 mt-2">Subscribers</h1>
+  <div class="card-body p-2">
+    <!-- Subscriptions Details -->
+    <table class="w-100 bg-white modal-scroll-section">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Subscribed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if subscriptions.any? %>
+          <% subscriptions.each do |sub| %>
+            <tr>
+              <td><%= sub.first_name.capitalize + " " + sub.last_name.capitalize %></td>
+              <td><%= sub.email %></td>
+              <td><%= sub.created_at.strftime("%B %d, %Y") %></td>
+            </tr>
+          <% end %>
+        <% else %>
+        <tr>
+          <td colspan="4" class="text-center fs-5">Nothing to show</td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>

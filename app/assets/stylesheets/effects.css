@@ -46,7 +46,7 @@
 }
 
 .form-overlay {
-
+  padding: 10px;
   display: none;
   transition: opacity .75s ease, display .75s allow-discrete;
   position: absolute;
