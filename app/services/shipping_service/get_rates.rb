@@ -3,7 +3,6 @@ module ShippingService
   class GetRates < ApplicationService
     def initialize(province:, order_value:)
       @province = province.downcase
-      @order_value = order_value
       @base_cost = nil
       @value_rate = (order_value * 0.05).round(2)
       @packaging_cost = 5
@@ -11,13 +10,6 @@ module ShippingService
     end
 
     def call
-      # Call Shippo with shipment until rates are returned
-      #
-      # service object can be found at app/services/shippo_api_service.rb
-      #
-      # ***will need to modify this to avoid sending too many requests
-      # during OAuth errors with carriers***
-      #
       set_base_cost
 
       create_rates
@@ -73,7 +65,7 @@ module ShippingService
         },
         {
           "service_level" => "Local Pickup(Central Alberta)",
-          "amount" => @packaging_cost,
+          "amount" => 0,
           "delivery_estimate" => {
             "maximum" => {
               unit: "day",
