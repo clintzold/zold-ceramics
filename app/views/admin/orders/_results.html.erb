@@ -1,5 +1,5 @@
 <div class="scroll-list wide-list" id="filtered_results">
-  <table class="table text-nowrap" id="index-table">
+  <table class="table-hover table text-nowrap" id="index-table" data-controller="list-navigator">
     <thead>
       <tr>
         <th >#</th>
@@ -13,9 +13,9 @@
     <tbody>
       <% if orders.any? %>
         <% orders.order(created_at: :desc).each do |order| %>
-          <tr class="small">
+          <tr class="small hover-item" data-action="click->list-navigator#performNormalRequest" data-list-navigator-url-param="<%= admin_order_path(order.id) %>">
             <th><%= order.id %></th>
-            <td><%= link_to "#{order.name.titleize}", admin_order_path(order.id), data: { turbo_frame: "_top" } %></td>
+            <td><%= order.name.titleize %></td>
             <td><%= order.email %></td>
             <td><%= order.created_at.strftime("%B %d, %y") %></td>
             <td><%= order.status %></td>

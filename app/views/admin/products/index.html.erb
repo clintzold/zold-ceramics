@@ -1,10 +1,11 @@
   <h1 class="text-center">Products</h1>
   <div class="scroll-list">
-    <table class="table" id="index-table">
+    <table class="table table-hover" id="index-table" data-controller="list-navigator">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Title</th>
+          <th scope="col">Category</th>
           <th scope="col">Price</th>
           <th scope="col">Stock</th>
         </tr>
@@ -12,9 +13,10 @@
       <tbody>
         <% if @products.any? %>
           <%@products.each do |product| %>
-            <tr>
+            <tr class="hover-item" data-action="click->list-navigator#performNormalRequest" data-list-navigator-url-param="<%= edit_admin_product_path(product.id) %>">
               <th scope="row"><%= product.id %></th>
-              <td><%= link_to "#{product.title}", edit_admin_product_path(product.id) %></td>
+              <td><%= product.title %></td>
+              <td><%= product.category.upcase %></td>
               <td><%= product.price %></td>
               <td><%= product.stock %></td>
             </tr>

@@ -23,6 +23,21 @@ export default class extends Controller {
     }
   }
 
+  performNormalRequest(event) {
+    const selectedUrl = event.params.url;
+    fetch(selectedUrl, {
+      method: "GET",
+      headers: {
+        "Accept": "text/html"
+      }
+    }).then(response => {
+
+    if (response.ok) {
+      window.location.href = response.url
+    }
+      })
+  }
+
   disconnect() {
     this.abortController.abort()
   }
