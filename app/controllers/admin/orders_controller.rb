@@ -2,10 +2,11 @@ class Admin::OrdersController < Admin::BaseController
   before_action :filter_orders, only: [:filter]
 
   def show
-    @pickup = Pickup.find(params[:pickup_id])
     @order = Order.find(params[:id])
     respond_to do |format|
       format.turbo_stream {
+        @pickup = Pickup.find(params[:pickup_id])
+
         render turbo_stream: turbo_stream.update(
           "pickups", partial: "order_preview", locals: { order: @order, pickup: @pickup }
         )

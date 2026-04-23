@@ -13,8 +13,8 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <div class="list-group list-group-flush" id="admin_options_list">
-                <%= link_to "View Products", admin_products_path, class: "list-group-item list-group-item-action", data: { turbo_frame: "adminOptions" } %>
-                <%= link_to "Add Product", new_admin_product_path, class: "list-group-item list-group-item-action", data: { turbo_frame: "adminOptions" } %>
+                <%= link_to "View Products", admin_products_path, class: "list-group-item list-group-item-action" %>
+                <%= link_to "Add Product", new_admin_product_path, class: "list-group-item list-group-item-action" %>
               </div>
             </div>
 
@@ -31,20 +31,8 @@
             </div>
         </li>
 
-        <li class="nav-item dropdown mx-2">
-            <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Shipments
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <div class="list-group list-group-flush" id="admin_options_list">
-                <a href="#" class="list-group-item list-group-item-action">View All</a>
-                <a href="#" class="list-group-item list-group-item-action">Purchase Labels</a>
-              </div>
-            </div>
-        </li>
-
-        <li class="nav-item dropdown mx-2 py-2 py-md-0">
-          <%= link_to "Sign Out", session_path, class: "btn btn-danger", data: { turbo_method: :delete } %>
+        <li class="nav-item dropdown mx-2 py-2 pt-md-1">
+          <%= link_to "Sign Out", session_path, class: "btn btn-sm btn-danger", data: { turbo_method: :delete } %>
         </li>
       </ul>
     </div>

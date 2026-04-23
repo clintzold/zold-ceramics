@@ -2,10 +2,19 @@
 
 <div class="container-fluid px-0 px-md-3 d-flex flex-column justify-content-center align-items-center">
   <div class="card bg-white col-md-10 col-xl-6">
+    <div class="position-relative">
+      <% if @order.local %>
+        <div class="local-marker bg-warning rounded-top dongle fs-1 pt-1 text-center">
+          Local
+        </div>
+      <% else %>
+        <div class="local-marker bg-info rounded-top dongle fs-1 text-center">
+          Delivery
+        </div>
+      <% end %>
+    </div>
     <div class="card-body">
-      <div class="container-fluid d-flex justify-content-between">
-        <h2 class="card-title text-center">Order #<%= @order.id %></h2>
-      </div>
+      <h2 class="card-title text-center">Order #<%= @order.id %></h2>
       <div class="card bg-white border-0">
         <div class="card-body px-0 px-md-3">
           <% if @order.status != "paid" %>
@@ -14,10 +23,10 @@
           <% else %>
             <div class="container">
               <div class="row">
-                <div class="col-md-6">
-                  <p class="card-text"><b>Name:</b> <%= @order.name %></p>
+                <div class="col-md-6 text-center">
+                  <p class="card-text"><b>Name:</b> <%= @order.name.titleize %></p>
                   <p class="card-text"><b>Email:</b> <%= @order.email %></p>
-                  <p class="card-text"><b>Address:</b></p>
+                  <p class="card-text mb-1"><b>Address:</b></p>
                   <p class="card-text mb-0"><%= @order.shipping_address["line1"] %></p>
                   <p class="card-text mb-0"><%= @order.shipping_address["line2"] %></p>
                   <p class="card-text mb-0">
@@ -26,8 +35,8 @@
                   <p class="card-text mb-0"><%= @order.shipping_address["postal_code"] %></p>
                   <p class="card-text mb-2"><%= @order.shipping_address["country"] %></p>
                 </div>
-                <div class="col-md-6 py-3 py-md-0">
-                  <p class="card-text"><b>Date: </b><%= @order.created_at %></p>
+                <div class="col-md-6 py-3 py-md-0 text-center">
+                  <p class="card-text"><b>Date: </b><%= @order.created_at.strftime("%B %d, %Y") %></p>
                   <p class="card-text"><b>Status: </b><%= @order.status.upcase %></p>
                   <p class="card-text"><b>Sub-total: </b><%= number_to_currency(@order.sub_total) %></p>
                   <p class="card-text"><b>Total: </b><%= number_to_currency(@order.total)%></p>
@@ -49,11 +58,11 @@
                         <div class="card-body pt-0 col-md-8 d-flex flex-column justify-content-between">
                           <h6 class="card-title text-center mt-2"><b><%= item.product.title %></b></h6>
                           <div class="container d-flex justify-content-between">
-                            <p class="card-text mb-0 lh-1">
-                              <small>Price: <%= number_to_currency(item.price) %></small> <br>
+                            <p class="card-text lh-1">
+                              <small>Price: <%= number_to_currency(item.price) %></small>
                             </p>
-                            <p class="card-text mb-0 lh-1">
-                              <small>Quantity: <%= item.quantity %></small> <br>
+                            <p class="card-text lh-1">
+                              <small>Quantity: <%= item.quantity %></small>
                             </p>
                           </div>
                           <p class="card-text text-end mb-0 lh-1">
