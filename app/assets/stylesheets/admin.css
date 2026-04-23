@@ -34,10 +34,12 @@ th, td {
   padding: 5px;
 }
 
+
 .scroll-list {
   max-height: 800px;
   width: 100%;
   overflow: auto;
+  table-layout: fixed;
 }
 
 .modal-exit-button:hover {

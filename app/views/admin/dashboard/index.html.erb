@@ -42,12 +42,12 @@
   <section id="email">
       <h1 class="text-center display-3 mb-5"><i class="bi bi-envelope-heart text-info"></i></h1>
       <div class="row justify-content-center pt-5">
-        <div class="col-12 col-sm-8 col-md-6 col-lg-4 mb-5">
+        <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4 mb-5">
           <%= turbo_frame_tag "new_batch" do %>
             <%= render "subscriptions/new_batch" %>
           <% end %>
         </div>
-        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+        <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4">
           <%= turbo_frame_tag "pickups" do %>
             <%= render "admin/pickups/pickups" %>
           <% end %>
