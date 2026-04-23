@@ -13,12 +13,12 @@
 <!-- Chart Graphics -->
 <div class="row justify-content-center">
   <div class="col col-sm-8 col-lg-5 pb-4">
-    <%= column_chart admin_charts_orders_path(year: year), ytitle: "CAD", title: "Revenue", height: "450px" %>
+    <%= column_chart admin_charts_orders_path(year: year), title: "Revenue", height: "450px" %>
   </div>
-  <div class="col col-sm-8 col-lg-5 pb-4">
-    <%= pie_chart admin_charts_products_path(year: year), title: "Popularity" %>
+  <div class="col col-sm-8 col-lg-5">
+    <%= pie_chart admin_charts_products_path(year: year), title: "Popularity", height: "450px" %>
   </div>
-  <div class="col col-sm-8 col-xl-6">
-    <%= line_chart admin_charts_monthly_path, title: "30 days", ytitle: "CAD", height: "450px" %>
+  <div class="col col-sm-8 col-xl-6 pt-4">
+    <%= line_chart admin_charts_monthly_path, title: "30 days", height: "450px" %>
   </div>
 </div>
