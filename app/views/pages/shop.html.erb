@@ -24,7 +24,7 @@
             <button class="btn rounded-0 card-img product-category-card w-100 btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               <div class="display-1 text-white" id="headingOne" >Drinkware</div>
             </button>
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
               <div class="card-body">
                 <% if @products.where(category: "drinkware").any? %>
                   <%= render "pages/shop_partials/product_card", products: @products.where(category: "drinkware") %>
