@@ -6,9 +6,9 @@ module OrderService
     end
 
     def call
-      cancel_order
-
       restock_products
+
+      cancel_order
     end
 
     private
@@ -24,7 +24,7 @@ module OrderService
     end
 
     def cancel_order
-      @order.update!(status: 2)
+      @order.destroy
     end
   end
 end
