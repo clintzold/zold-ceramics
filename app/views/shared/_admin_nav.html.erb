@@ -7,7 +7,7 @@
 
     <div class="collapse justify-content-end navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mb-0" data-controller="active-nav" data-active-nav-active-class="active">
-        <li class="nav-item dropdown mx-2">
+        <li class="nav-item dropdown mx-2 mt-3 mt-md-0 py-1 py-md-0">
             <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Products
             </a>
@@ -20,7 +20,7 @@
 
         </li>
 
-        <li class="nav-item dropdown mx-2">
+        <li class="nav-item dropdown mx-2 pb-1 py-md-0">
             <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Orders
             </a>
@@ -31,7 +31,7 @@
             </div>
         </li>
 
-        <li class="nav-item dropdown mx-2 py-2 pt-md-1">
+        <li class="nav-item dropdown mx-2 py-2 pb-md-0 pt-md-1">
           <%= link_to "Sign Out", session_path, class: "btn btn-sm btn-danger", data: { turbo_method: :delete } %>
         </li>
       </ul>
