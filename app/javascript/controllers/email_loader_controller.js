@@ -4,7 +4,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["loadingOverlay", "loadingIcon", "message"]
   connect() {
-    console.log(this.messageTarget)
   }
 
   show() {

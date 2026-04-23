@@ -11,12 +11,11 @@
   <h1 class="card-title text-white dongle text-center mb-0 mt-2">Subscribers</h1>
   <div class="card-body p-2">
     <!-- Subscriptions Details -->
-    <table class="w-100 bg-white modal-scroll-section">
+    <table class="w-100 bg-white scroll-list">
       <thead>
         <tr>
           <th>Name</th>
           <th>Email</th>
-          <th>Subscribed</th>
         </tr>
       </thead>
       <tbody>
@@ -25,7 +24,6 @@
             <tr class="small">
               <td><%= sub.first_name.capitalize + " " + sub.last_name.capitalize %></td>
               <td><%= sub.email %></td>
-              <td><%= sub.created_at.strftime("%B %d, %Y") %></td>
             </tr>
           <% end %>
         <% else %>
