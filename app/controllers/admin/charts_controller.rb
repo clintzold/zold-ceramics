@@ -10,6 +10,10 @@ class Admin::ChartsController < ApplicationController
     render json: OrderItem.where(created_at: range).group(:category).count
   end
 
+  def monthly
+    render json: Order.where(created_at: 1.month.ago..Time.current).group_by_day(:created_at).sum(:total)
+  end
+
   def filter
     render turbo_stream: turbo_stream.update("charts", partial: "charts", locals: { year: @year})
   end

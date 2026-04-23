@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     get "charts/orders", to: "charts#orders", as: :charts_orders
     get "charts/products", to: "charts#products", as: :charts_products
     get "charts/filter", to: "charts#filter", as: :charts_filter
+    get "charts/monthly", to: "charts#monthly", as: :charts_monthly
   end
 
   # Cart routes

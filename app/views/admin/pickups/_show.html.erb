@@ -48,10 +48,13 @@
             data-action="click->list-navigator#performRequest"
             data-list-navigator-url-param="<%= admin_order_path(order.id, pickup_id: pickup.id) %>"
           >
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between small">
               <%= order.name.titleize %>
               <div>
-                No. of items: <%= order.order_items.count %>
+                <%= order.email %>
+              </div>
+              <div>
+                <%= order.order_items.count %> items
               </div>
             </div>
           </li>

@@ -1,6 +1,6 @@
 <div class="card bg-info pt-2 fade-card shadow position-relative">
   <!-- Exit button -->
-  <%= link_to admin_pickup_path(pickup) do %>
+  <%= link_to admin_pickup_path(pickup), data: { turbo_stream: true } do %>
     <i class="bi bi-arrow-left-square text-white exit-button"></i>
   <% end %>
   <h2 class="card-title text-center dongle text-white">Order Preview</h2>
@@ -11,7 +11,9 @@
     <% end %>
   </div>
 
-  <p class="text-center text-white m-0"><%= order.name.titleize %></p>
+  <p class="text-center text-white m-0">
+  <%= order.name.titleize %> - <%= order.email %>
+  </p>
   <div class="card-body p-2">
     <ul class="list-group modal-scroll-section list-group-flush">
       <% order.order_items.each do |item| %>

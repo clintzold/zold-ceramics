@@ -22,7 +22,7 @@
       <tbody>
         <% if subscriptions.any? %>
           <% subscriptions.each do |sub| %>
-            <tr>
+            <tr class="small">
               <td><%= sub.first_name.capitalize + " " + sub.last_name.capitalize %></td>
               <td><%= sub.email %></td>
               <td><%= sub.created_at.strftime("%B %d, %Y") %></td>
