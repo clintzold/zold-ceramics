@@ -37,7 +37,7 @@ module ShippoService
         zip: details["postal_code"],
         country: details["country"],
         email: @order.email,
-        name: @order.name
+        name: @order.name.titleize
       }
     end
 
