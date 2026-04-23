@@ -44,7 +44,7 @@ module OrderService
       if @shipping_rate == "Local Pickup(Central Alberta)"
         @order.update!(local: true)
       else
-        ShippoService::CreateOrder(@order.token).call
+        ShippoService::CreateOrder.call(@order.token)
       end
     end
 
