@@ -16,5 +16,6 @@ class ShipmentsController < ApplicationController
     request_token = params[:token]
     unless ActiveSupport::SecurityUtils.secure_compare(request_token, server_token)
       head :unauthorized
+    end
   end
 end
