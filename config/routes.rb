@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :orders, only: [ :create ]
 
   # Shipments routes
-  resources :shipments, only: [ :create, :index, :show ]
+  post "shipments", to: "shipments#process_webhook"
 
   # Subscriptions
   get "subscriptions/new_batch", to: "subscriptions#new_batch", as: :new_batch_email
