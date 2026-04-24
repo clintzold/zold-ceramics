@@ -1,11 +1,13 @@
 class ShipmentsController < ApplicationController
-  allow_unauthenticated_access
-  skip_before_action :verify_authenticity_token
   before_action :verify_token
 
   def process_webhook
-    @event = params
-    WebhookEvent.create(payload: @event)
+    order_id = params[:data][:metadata].split(" ").last
+    updated_status = params[:tracking_status][:status].downcase
+    puts order_id
+    puts updated_status
+    # @order = Order.find(order_id)
+    # @order.update(status: updated_status)
     head :ok
   end
 
