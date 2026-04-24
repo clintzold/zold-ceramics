@@ -97,7 +97,14 @@
 .about-blog {
   line-height: 2;
   opacity: 75%;
+  width: clamp(50vw, 750px, 90vw);
 }
+
+
+.about-quote {
+  width: clamp(30vw, 450px, 80vw);
+}
+
 
 .chart-control {
   color: rgba(169, 169, 169, 0.6);

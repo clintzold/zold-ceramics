@@ -55,11 +55,11 @@
 
 
 .hero-image-container {
-  height: 96vh;
+  height: 98vh;
 }
 
 .about-main-img {
-	width:50%;
+	width: clamp(25vw, 350px, 80vw);
 	padding: 10px;
 }
 
@@ -79,10 +79,6 @@
 	.image-link-card {
 		height:350px;
 	}
-	.about-main-img {
-		width: 100%;
-		padding: 30px;
-	}
 
   .image-grid-collection {
     grid-template-rows: 350px;
@@ -93,6 +89,6 @@
 @media (max-width: 480px) {
 
   .image-grid-collection {
-    grid-template-rows: 250px 250px;
+    grid-template-rows: 230px 230px;
   }
 }
