@@ -241,6 +241,13 @@
   background-color: rgba(186,200,177,0.7);
 }
 
-.subscribe-card {
-  padding-top: 50px;
+nav {
+  background-color: rgba(30, 52, 46, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.blur {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }

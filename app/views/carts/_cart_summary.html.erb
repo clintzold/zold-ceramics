@@ -5,11 +5,11 @@
     <!-- Fixed-Width Container for smooth slide-in transition -->
     <div class="cart-summary-container d-inline-flex align-items-end">
       <div class="collapse collapse-horizontal <%= show %> mb-5" id="cartDetails">
-        <div class="card rounded-end-0 border-end-0 shadow-lg cart-preview-card">
-          <p class="cart-summary-title text-center text-white mt-2 mb-0">Cart Summary</p>
+        <div class="card rounded-end-0 border-end-0 shadow-lg blur cart-preview-card">
+          <p class="cart-summary-title text-center text-white mt-3 mb-0">Cart Summary</p>
           <!-- Cart Items List -->
           <div class="container rounded-start bg-white">
-            <ul class="list-group list-group-flush cart-summary-list">
+            <ul class="list-group bg-transparent list-group-flush cart-summary-list">
               <!-- Calculate total --> 
               <% cart_total = 0 %>
               <% @cart.cart_items.each do |item| %>
@@ -44,7 +44,7 @@
                 aria-controls="cartDetails">
                 Hide Cart
               </button>
-              <%= button_to "Checkout", orders_path, data: {turbo: false}, class: "btn border-3 btn-secondary text-white" %>
+              <%= button_to "Checkout", orders_path, data: {turbo: false}, class: "btn btn-secondary text-white" %>
             </div>
           </div>
         </div>
