@@ -231,3 +231,16 @@
 .info-text {
   animation: pulsing-text 1s alternate infinite;
 }
+
+.category-button {
+  background-color: rgba(186,200,177,0.8);
+}
+
+.category-button:hover {
+
+  background-color: rgba(186,200,177,0.7);
+}
+
+.subscribe-card {
+  padding-top: 50px;
+}

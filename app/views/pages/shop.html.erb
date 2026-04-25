@@ -34,8 +34,8 @@
         </div>
 
         <div id="accordion">
-          <div class="card product-category-body mb-1 border-0">
-            <button class="btn rounded-0 card-img product-category-card w-100 btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <div class="card product-category-body mb-1 border-0 rounded-0">
+            <button class="category-button rounded-0 product-category-card w-100" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               <div class="display-1 text-white" id="headingOne" >Drinkware</div>
             </button>
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
@@ -43,18 +43,24 @@
                 <% if @products.where(category: "drinkware").any? %>
                   <%= render "pages/shop_partials/product_card", products: @products.where(category: "drinkware") %>
                 <% else %>
-                  <div class="p-5">
-                    <h1 class="text-center out-of-stock mb-3">Sorry, we're out of stock!</h1>
-                    <p class="text-center">
-                      <%= link_to "Subscribe",  new_subscription_path, data: { turbo_stream: true } %> to get notified when there's a new batch!
-                    </p>
+                  <div class="d-flex justify-content-center">
+                    <div class="py-5 rounded d-flex flex-column gap-3 align-items-center">
+                      <h1 class="text-center out-of-stock mb-3">Sorry, we're out of stock!</h1>
+                      <p class="text-center dongle lh-1 fs-3">
+                      Sign-up to get notified when there's a new batch!
+                      </p>
+                      <%= link_to "Subscribe",
+                        new_subscription_path,
+                        data: { turbo_stream: true },
+                        class: "btn fs-2 w-75 dongle pb-0  rounded-0 lh-base btn-secondary" %>
+                    </div>
                   </div>
                 <% end %>
               </div>
             </div>
           </div>
-          <div class="card my-1 border-0">
-            <button class="btn rounded-0 card-img product-category-card w-100 btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <div class="card product-category-body my-1 border-0 rounded-0">
+            <button class="category-button rounded-0 product-category-card w-100" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
               <div class="display-1 text-white" id="headingTwo">Dinnerware</div>
             </button>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
@@ -62,18 +68,24 @@
                 <% if @products.where(category: "dinnerware").any? %>
                   <%= render "pages/shop_partials/product_card", products: @products.where(category: "dinnerware") %>
                 <% else %>
-                  <div class="p-5">
-                    <h1 class="text-center out-of-stock mb-3">Sorry, we're out of stock!</h1>
-                    <p class="text-center">
-                      <%= link_to "Subscribe",  new_subscription_path, data: { turbo_stream: true } %> to get notified when there's a new batch!
-                    </p>
+                  <div class="d-flex justify-content-center">
+                    <div class="py-5 rounded d-flex flex-column gap-3 align-items-center">
+                      <h1 class="text-center out-of-stock mb-3">Sorry, we're out of stock!</h1>
+                      <p class="text-center dongle lh-1 fs-3">
+                      Sign-up to get notified when there's a new batch!
+                      </p>
+                      <%= link_to "Subscribe",
+                        new_subscription_path,
+                        data: { turbo_stream: true },
+                        class: "btn fs-2 w-75 dongle pb-0  rounded-0 lh-base btn-secondary" %>
+                    </div>
                   </div>
                 <% end %>
               </div>
             </div>
           </div>
-          <div class="card my-1 border-0">
-            <button class="btn rounded-0 card-img product-category-card w-100 btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <div class="card product-category-body my-1 border-0 rounded-0">
+            <button class="rounded-0 category-button product-category-card w-100" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
               <div class="display-1 text-white" id="headingThree" >Decorative</div>
             </button>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
@@ -81,11 +93,17 @@
                 <% if @products.where(category: "decorative").any? %>
                   <%= render "pages/shop_partials/product_card", products: @products.where(category: "decorative") %>
                 <% else %>
-                  <div class="p-5">
-                    <h1 class="text-center out-of-stock mb-3">Sorry, we're out of stock!</h1>
-                    <p class="text-center">
-                    <%= link_to "Subscribe",  new_subscription_path, data: { turbo_stream: true } %> to get notified when there's a new batch!
-                    </p>
+                  <div class="d-flex justify-content-center">
+                    <div class="py-5 rounded d-flex flex-column gap-3 align-items-center">
+                      <h1 class="text-center out-of-stock mb-3">Sorry, we're out of stock!</h1>
+                      <p class="text-center dongle lh-1 fs-3">
+                      Sign-up to get notified when there's a new batch!
+                      </p>
+                      <%= link_to "Subscribe",
+                        new_subscription_path,
+                        data: { turbo_stream: true },
+                        class: "btn fs-2 w-75 dongle pb-0  rounded-0 lh-base btn-secondary" %>
+                    </div>
                   </div>
                 <% end %>
               </div>
