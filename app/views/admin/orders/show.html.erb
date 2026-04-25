@@ -4,7 +4,7 @@
   <div class="card bg-white col-md-10 col-xl-6">
     <div class="position-relative">
       <% if @order.local %>
-        <div class="local-marker bg-warning rounded-top dongle fs-1 pt-1 text-center">
+        <div class="local-marker bg-info rounded-top dongle fs-1 pt-1 text-center">
           Local
         </div>
       <% else %>
@@ -12,15 +12,25 @@
           Delivery
         </div>
       <% end %>
+      <% if @order.status == "delivered" %>
+        <%= link_to "Mark Paid",
+          admin_order_paid_path(@order),
+          class: "btn btn-sm btn-secondary mark-delivered-button rounded-0",
+          data: { turbo: false }
+        %>
+
+      <% else %>
+        <%= link_to "Mark Delivered",
+          admin_order_delivered_path(@order),
+          class: "btn btn-sm btn-secondary mark-delivered-button rounded-0",
+          data: { turbo: false }
+        %>
+      <% end %>
     </div>
     <div class="card-body">
       <h2 class="card-title text-center">Order #<%= @order.id %></h2>
       <div class="card bg-white border-0">
         <div class="card-body px-0 px-md-3">
-          <% if @order.status != "paid" %>
-            <p class="card-text"><b>Date: </b><%= @order.created_at %></p>
-            <p class="card-text"><b>Status: </b><%= @order.status %></p>
-          <% else %>
             <div class="container">
               <div class="row">
                 <div class="col-md-6 text-center">
@@ -43,7 +53,6 @@
                 </div>
               </div>
             </div>
-          <% end %>
           <div class="container mx-0 p-0">
             <div class="bg-light card">
               <div class="card-body px-1 px-md-3">

@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
     #Orders
     get "orders/delivered/:id", to: "orders#delivered", as: :order_delivered
+    get "orders/paid/:id", to: "orders#paid", as: :order_paid
     get "orders/filter", to: "orders#filter", as: :filter_orders
     resources :orders, only: [:index, :show]
 

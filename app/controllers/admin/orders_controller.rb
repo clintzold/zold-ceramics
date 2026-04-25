@@ -23,7 +23,21 @@ class Admin::OrdersController < Admin::BaseController
   def delivered
     order = Order.find(params[:id])
     order.update(status: "delivered")
-    render turbo_stream: turbo_stream.update("order_status", partial: "status", locals: { order: order })
+    respond_to do |format|
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.update("order_status", partial: "status", locals: { order: order })
+      }
+      format.html {
+        redirect_to admin_order_path(order)
+      }
+    end
+  end
+
+  def paid
+    order = Order.find(params[:id])
+    order.update(status: "paid")
+
+    redirect_to admin_order_path(order)
   end
 
   def filter

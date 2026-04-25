@@ -36,7 +36,7 @@
       <% order.status == "delivered" ? opacity = "opacity-0" : opacity = "" %>
       <%= link_to "Mark Received",
         admin_order_delivered_path(order),
-        class: "btn btn-sm btn-outline-light " + opacity,
+        class: "btn btn-sm btn-outline-light rounded-0" + opacity,
         data: { turbo_stream: true }
       %>
     </div>

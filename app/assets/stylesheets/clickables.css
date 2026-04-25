@@ -6,3 +6,9 @@
 .clickable-row:hover * {
 	background-color: inherit;
 }
+
+.mark-delivered-button {
+  position: absolute;
+  top: 18%;
+  right: 20px;
+}
