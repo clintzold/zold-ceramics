@@ -78,3 +78,5 @@ gem "stripe", "~> 18.2"
 gem "chartkick", "~> 5.2"
 
 gem "groupdate", "~> 6.8"
+
+gem "inline_svg", "~> 1.10"

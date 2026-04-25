@@ -195,3 +195,32 @@
     transform: translate(0%);
   }
 }
+
+body {
+  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.3)),
+              url('shop-hero-large.webp');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.product-category-body {
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.info-section {
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.info-card {
+  width: 250px;
+}
+
+.info-text {
+  animation: pulsing-text 1s alternate infinite;
+}
