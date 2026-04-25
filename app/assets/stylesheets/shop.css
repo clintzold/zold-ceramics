@@ -200,7 +200,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 110%;
+  height: 900px;
   z-index: -1;
   position: fixed;
   background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.3)),
