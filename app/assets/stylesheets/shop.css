@@ -57,6 +57,10 @@
   -webkit-backdrop-filter: blur(10px);
 }
 
+.success-card {
+  background-color: rgba(102, 178, 178, 0.5);
+}
+
 .forwards {
   animation: slide-down .5s ease-out forwards;
 }
@@ -196,7 +200,7 @@
   }
 }
 
-.mobile-friendly-bg {
+.shop-bg {
   top: 0;
   left: 0;
   width: 100vw;
@@ -208,6 +212,22 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.home-bg {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100lvh;
+  z-index: -1;
+  position: fixed;
+  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.3)),
+              url('home-hero.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
 }

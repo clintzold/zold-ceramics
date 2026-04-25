@@ -71,8 +71,6 @@
 }
 
 .cart-preview-card {
-  /*#66b2b2;*/
-  /*#f6b89e;*/
   width: 375px;
   max-width: 100vw;
   background-color: rgba(67, 156, 156, 0.6);
@@ -82,16 +80,12 @@
 }
 
 .cart-summary-title {
-  /*#66b2b2;*/
   animation: pulsing-text 1s alternate infinite;
 }
 
 .cart-button {
   border: 3px solid #4da6a6;
-  /*#66b2b2;*/
-  /*#f47f6a;*/
   background-color: rgba(195, 216, 225, 0.7);
-  /*#f6b89e;*/
   z-index: 2;
   position: fixed;
   bottom: 10px;
@@ -108,7 +102,6 @@
 }
 
 @keyframes bounce {
-
   /* At these points, the element is at its resting position (bottom) */
   0%,
   20%,

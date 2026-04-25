@@ -2,14 +2,7 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col p-0">
-      <div class="card hero-image-container border-0 d-flex">
-        <%= image_tag "home-hero.webp", srcset: {
-          "home-hero-small.webp" => "535w",
-          "home-hero-medium.webp" => "1070w"
-        },
-        sizes: "100vw",
-        class: "card-img hero-image rounded-0 img-fluid opacity-75",
-        alt: "Background image with three handmade cermaic mugs" %>
+      <div class="card hero-image-container bg-transparent border-0 d-flex">
         <div class="card-img-overlay heroOverlay d-flex flex-column justify-content-center gap-5 align-items-center p-lg-5">
           <div class="heroText">
             <p class="hero-title text-center text-light">
@@ -19,7 +12,7 @@
               Timeless, handcrafted pottery.
             </p>
           </div>
-          <%= button_to "Shop Now", shop_path, method: :get, class: "btn btn-lg border-2 btn-outline-light mt-md-5 shadow-lg" %>
+          <%= button_to "Shop Now", shop_path, method: :get, class: "btn btn-lg border-2 btn-outline-light mt-md-3 shadow-lg" %>
         </div>
       </div>
     </div>

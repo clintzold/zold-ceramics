@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="scroll-reveal"
 export default class extends Controller {
-  static targets = ["section"]
+  static targets = ["section", "text"]
   connect() {
     this.observer = new IntersectionObserver(this.onIntersection.bind(this), {
       threshold: 0.1
@@ -13,7 +13,9 @@ export default class extends Controller {
   onIntersection(entries) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        const text = entry.target.querySelector(".slide-up")
         entry.target.firstElementChild.classList.add("reveal-visible")
+        text.classList.remove("d-none")
       }
     })
   }

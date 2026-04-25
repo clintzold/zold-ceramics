@@ -6,7 +6,7 @@ export default class extends Controller {
     console.log("Timed Navigation Connected")
     this.timeout = setTimeout(() => {
       this.navigate()
-    }, 3000);
+    }, 5000);
   }
 
   disconnect() {

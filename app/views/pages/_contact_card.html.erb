@@ -9,18 +9,14 @@
 
       <!-- Card Overlay -->
       <div class="card-img-overlay d-flex text-center flex-column align-items-center justify-content-center p-5-sm text-light">
-
-
-        <h1 class="card-title display-1 home-card-title" style="text-shadow: 1px 0px 5px black">Contact us</h1>
-        <div class="d-flex justify-content-center p-2">
-          <%= link_to "Contact Form", new_contact_form_path, data: { turbo_stream: true }, class: "btn btn-outline-light btn-lg border-2 shadow-lg" %>
+        <div class="d-none slide-up" data-scroll-reveal-target="text">
+          <h1 class="card-title display-1 home-card-title" style="text-shadow: 1px 0px 5px black">Contact us</h1>
+          <div class="d-flex justify-content-center p-2">
+            <%= link_to "Contact Form", new_contact_form_path, data: { turbo_stream: true }, class: "btn btn-outline-light btn-lg border-2 shadow-lg" %>
+          </div>
         </div>
-        </div>
-
-      <!-- End Card Overlay -->
+      </div>
 
     </div>
-    <!-- End Card -->
-
   </div>
 </div>

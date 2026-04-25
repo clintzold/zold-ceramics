@@ -1,9 +1,18 @@
+<!-- Scrolling Background -->
+<% content_for :background_image do %>
+  <div class="shop-bg"></div>
+<% end %>
+<!-- Payment Successs Message -->
 <div class="container-fluid d-flex flex-column justify-content-center" data-controller="timed-navigation" style="height:50vh">
   <div class="row d-flex justify-content-center">
     <div class="col-md-8 text-center">
-      <h1 class="text-center mb-4">Order Confirmed</h1>
-      <p>Your order has been placed!</p>
-      <p>You will receive a confirmation email containing order details shortly.</p>
+      <div class="card success-card blur text-center text-white">
+        <h1 class="card-title borel info-text mt-2 mb-4">Order Confirmed</h1>
+        <div class="card-body dongle lh-1 fs-1">
+          <p>Your order has been placed!</p>
+          <p>You will receive a confirmation email containing order details shortly.</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

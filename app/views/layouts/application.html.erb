@@ -41,8 +41,8 @@
     <%= yield(:page_scripts) %>
   </head>
 
-  <body class="d-flex flex-column justify-content-between min-vh-100">  
-    <div class="mobile-friendly-bg"></div>
+  <body class="d-flex flex-column justify-content-between min-vh-100">
+    <%= yield(:background_image) %>
       <header>
         <%= render "shared/main_nav" %>
       </header>
