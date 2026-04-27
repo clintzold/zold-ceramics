@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["section", "text"]
   connect() {
     this.observer = new IntersectionObserver(this.onIntersection.bind(this), {
-      threshold: 0.1
+      threshold: 0.2
     })
     this.sectionTargets.forEach(target => this.observer.observe(target))
   }

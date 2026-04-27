@@ -136,6 +136,9 @@
     grid-template-rows: 220px 220px;
   }
 
+  .image-link-card {
+    height: 350px;
+  }
   .spacer-sm {
     height: 0px;
   }
