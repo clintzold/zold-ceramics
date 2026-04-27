@@ -17,9 +17,6 @@
 
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="apple-touch-icon" href="/icon.png">
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
     <!-- Preload main font to avoid seeing fallback -->
     <%= preload_link_tag "GreatVibes-Regular.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" %>
     <%= preload_link_tag "Dongle-Regular.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" %>
@@ -37,6 +34,9 @@
       imagesrcset: "#{image_path('shop-hero-small.webp')} 512w, #{image_path('shop-hero-medium.webp')} 1024w, #{image_path('shop-hero-large.webp')} 2048w",
       imagesizes: "100vw",
       fetchpriority: "high" %>
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
     <%# Allow page specific javascripts to be loaded in the head as needed %>
     <%= yield(:page_scripts) %>
   </head>
