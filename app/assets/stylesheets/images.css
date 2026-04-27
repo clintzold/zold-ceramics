@@ -81,7 +81,7 @@
 }
 
 .spacer-sm {
-  height: 100px;
+  height: 250px;
 }
 
 .hero-image-container {
@@ -136,11 +136,4 @@
     grid-template-rows: 220px 220px;
   }
 
-  .spacer {
-    height: 100px;
-  }
-
-  .spacer-sm {
-    height: 0px;
-  }
 }
