@@ -9,7 +9,7 @@
 .image-link-card {
 	opacity: 1;
 	transition: opacity 0.3s ease-in-out;
-	height: 650px;
+	height: 600px;
 }
 
 .about-details-card {
@@ -81,7 +81,7 @@
 }
 
 .spacer-sm {
-  height: 250px;
+  height: 50px;
 }
 
 .hero-image-container {
@@ -102,7 +102,7 @@
 @media (max-width: 992px) {
 
 	.image-link-card {
-		height:550px;
+		height:500px;
 	}
 
   .image-grid-collection {
