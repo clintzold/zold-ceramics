@@ -9,6 +9,8 @@
   <%= render "pages/shop_partials/hero" %>
 </section>
 
+<div class="spacer"></div>
+
 <!-- Sign Up Modal -->
 <%= turbo_frame_tag "sign_up" do %>
   <div class="d-none" data-controller="pop-up" data-pop-up-show-value="<%= @show_modal %>">
