@@ -124,6 +124,10 @@
     height: 50px;
   }
 
+  .spacer {
+    height: 200px;
+  }
+
 }
 
 @media (max-width: 480px) {
