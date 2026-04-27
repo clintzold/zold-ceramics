@@ -20,6 +20,7 @@ module StripeService
           customer_creation: "always",
           automatic_tax: { enabled: true },
           shipping_address_collection: { allowed_countries: [ "CA" ] },
+          billing_address_collection: "required",
           shipping_options: [ {
             shipping_rate_data: {
               display_name: "Dummy shipping",

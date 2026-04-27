@@ -1,14 +1,14 @@
-<div class="card sign-up-card forwards text-white shadow-lg p-3" data-controller="slide-out loader">
+<div class="card sign-up-card forwards text-white shadow-lg p-3" data-controller="slide-out loader apple-detect">
   
   <div class="form-overlay card border-0 text-white" data-loader-target="loadingOverlay">
     <i class="bi bi-cup-hot-fill loading-icon mb-0" data-loader-target="loadingIcon" data-action="animationend->loader#handleLoadingEnd"></i>
-    <p class="text-center form-result-message" data-loader-target="message" data-action="animationend->loader#handleComplete">Successfully signed up!</p>
+    <p class="text-center form-result-message" data-loader-target="message" data-apple-detect-target="text" data-action="animationend->loader#handleComplete">Successfully signed up!</p>
   </div>
 
   <%= link_to "#", data: {action: "click->slide-out#slide"} do %>
     <i class="bi bi-x-square exit-button"></i>
   <% end %>
-  <h1 class="card-title sign-up-title text-center borel mb-0">Subscribe</h1>
+  <h1 class="card-title sign-up-title text-center borel mb-0" data-apple-detect-target="text">Subscribe</h1>
   <p class="text-center mb-0 fs-5">Never miss a new batch!</p>
   <div class="card-body pt-4 p-sm-3">
     
