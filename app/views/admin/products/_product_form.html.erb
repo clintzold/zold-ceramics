@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-10">
-      <%= form_with model: [ :admin, product] do |form| %>
+      <%= form_with model: [ :admin, product], data: { controller: "form-category" } do |form| %>
         <% if product.errors.any? %>
           <% product.errors.full_messages.each do |message| %>
             <p class="text-danger"><%= message %></p>
@@ -14,34 +14,48 @@
             <%= form.label :title, class: "form-label" %>
             <%= form.text_field :title, class: "form-control", required: true %>
           </div>
-
-          <div>
-            <%= form.label :category, class: "form-label" %>
-            <%= form.select :category, [["Drinkware", "drinkware"], ["Dinnerware", "dinnerware"], ["Decorative", "decorative"]], {}, { class: "form-select bg-white", required: true } %>
-          </div>
-
         </div>
-        <div class="mb-3 d-flex gap-4">
 
-          <div>
+        <div class="mb-3 d-flex gap-4">
+          <div style="width: 40%">
             <%= form.label :weight, class: "form-label" %>
             <%= form.number_field :weight, class: "form-control", placeholder: "g", required: true %>
           </div>
-
+          <div style="width: 40%">
+            <%= form.label :category, class: "form-label" %>
+            <%= form.select :category,
+              [["Drinkware", "drinkware"], ["Dinnerware", "dinnerware"],
+               ["Decorative", "decorative"]],
+            {},
+            { class: "form-select bg-white", data: { action: "change->form-category#changeOptions"}, required: true } %>
+          </div>
+        </div>
+        <div class="mb-3 d-flex gap-4" style="width: 40%" data-form-category-target="ounces">
           <div>
-            <%= form.label :width, class: "form-label" %>
-            <%= form.number_field :width, class: "form-control", placeholder: "in", step: :any, required: true %>
+            <%= form.label :ounces, "Capacity", class: "form-label" %>
+            <%= form.number_field :ounces, class: "form-control", placeholder: "oz", step: :any %>
+          </div>
+        </div>
+
+        <div class="mb-3 d-flex gap-4 d-none" data-form-category-target="dimensions">
+          <div>
+            <%= form.label :weight, class: "form-label" %>
+            <%= form.number_field :weight, class: "form-control", placeholder: "g" %>
           </div>
           <div>
             <%= form.label :length, class: "form-label" %>
-            <%= form.number_field :length, class: "form-control", placeholder: "in", step: :any, required: true %>
+            <%= form.number_field :length, class: "form-control", placeholder: "in", step: :any %>
+          </div>
+          <div>
+            <%= form.label :width, class: "form-label" %>
+            <%= form.number_field :width, class: "form-control", placeholder: "in", step: :any %>
           </div>
           <div>
             <%= form.label :height, class: "form-label" %>
-            <%= form.number_field :height, class: "form-control", placeholder: "in", step: :any, required: true %>
+            <%= form.number_field :height, class: "form-control", placeholder: "in", step: :any %>
           </div>
-
         </div>
+
         <div class="mb-3">
           <%= form.label :description, class: "form-label" %>
           <%= form.text_area :description, class: "form-control", rows: "5", required: true, maxlength: 150 %>
