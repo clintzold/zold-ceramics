@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "dashboard#index"
     # Products
+    get "product/:product_id/images/:id", to: "products#remove_image", as: :remove_product_image
     resources :products, only: [ :new, :create, :edit, :index, :destroy ]
     get "products/:id", to: "products#show"
     patch "products/:id", to: "products#update"

@@ -20,11 +20,9 @@
   <%= form.label :images, class: "form-label" %>
   <%= form.file_field :images, multiple: true, class: "form-control", data: { previews_target: "input", action: "change->previews#preview" } %>
 
-  <div class="container mt-2" data-previews-target="preview">
-    <% if product.images.attached? %>
-      <% product.images.each do |image| %>
-        <%= image_tag image.variant(:thumb), data: { previews_target: "preview" } %>
-      <% end %>
+  <div class="container d-flex gap-2 mt-2" data-previews-target="preview">
+    <%= turbo_frame_tag "images" do %>
+      <%= render "images", product: product %>
     <% end %>
   </div>
 </div>

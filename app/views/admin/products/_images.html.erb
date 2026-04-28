@@ -1,0 +1,14 @@
+<div class="container d-flex gap-2 mt-2" data-previews-target="preview">
+  <% if product.images.attached? %>
+    <% product.images.each do |image| %>
+      <div class="image-container">
+        <%= link_to admin_remove_product_image_path(product, image),
+          class: "remove-image-button text-danger opacity-75",
+          data: { turbo_stream: true } do %>
+          <i class="bi bi-x-square-fill"></i>
+        <% end %>
+        <%= image_tag image.variant(:thumb), data: { previews_target: "preview" } %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -55,10 +55,30 @@
           <%= form.number_field :stock, class: "form-control", required: true %>
         </div>
         <!-- Image upload section -->
-        <%= render "images_preview", form: form, product: product %>
+        <div class="mb-3" data-controller="previews">
+          <%= form.label :main_image, class: "form-label" %>
+          <%= form.file_field :main_image, class: "form-control",
+                direct_upload: true,
+                data: { previews_target: "input", action: "change->previews#preview" } %>
+
+          <div class="container mt-2" data-previews-target="preview">
+            <% if product.main_image.attached? %>
+              <%= image_tag product.main_image.variant(:thumb) %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="mb-3" data-controller="previews">
+          <%= form.label :images, class: "form-label" %>
+          <%= form.file_field :images, multiple: true, class: "form-control", data: { previews_target: "input", action: "change->previews#preview" } %>
+
+          <%= turbo_frame_tag "images" do %>
+            <%= render "images", product: product %>
+          <% end %>
+        </div>
 
         <div class="d-flex justify-content-between mb-5">
-          <%= form.submit class: "btn btn-warning" %>
+          <%= form.submit class: "btn btn-warning", data: {turbo: false} %>
       <% end %>
         <% if !product.id.nil? %>
           <%= button_to "Delete Product", admin_product_path(product.id), class: "btn btn-danger", method: :delete %>

@@ -32,11 +32,23 @@ class Admin::ProductsController < Admin::BaseController
 
   def update
     @product = Product.find(params[:id])
+    puts images_params
+    @product.images.attach images_params[:images].compact_blank!
     if @product.update(product_params)
       redirect_to admin_products_path, notice: "Product #{@product.title} was updated."
     else
       render :edit, status: :unprocessable_content
     end
+  end
+
+  def remove_image
+    @form = params[:form]
+    @product = Product.find(params[:product_id])
+    @image = ActiveStorage::Attachment.find(params[:id])
+    @image.purge
+    render turbo_stream: turbo_stream.update(
+      "images", partial: "images", locals: { product: @product}
+    )
   end
 
   def destroy
@@ -51,6 +63,10 @@ class Admin::ProductsController < Admin::BaseController
   private
 
   def product_params
-    params.expect(product: [ :title, :category, :description, :price, :stock, :weight, :height, :length, :width, :main_image, images: [] ])
+    params.expect(product: [ :title, :category, :description, :price, :stock, :weight, :height, :length, :width, :main_image ])
+  end
+
+  def images_params
+    params.expect(product: [images: []])
   end
 end

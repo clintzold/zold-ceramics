@@ -144,3 +144,14 @@
   }
 
 }
+
+.image-container {
+  position: relative;
+}
+
+.remove-image-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 20;
+}
