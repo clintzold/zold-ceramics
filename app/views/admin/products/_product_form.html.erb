@@ -72,9 +72,26 @@
           <%= form.label :images, class: "form-label" %>
           <%= form.file_field :images, multiple: true, class: "form-control", data: { previews_target: "input", action: "change->previews#preview" } %>
 
-          <%= turbo_frame_tag "images" do %>
-            <%= render "images", product: product %>
-          <% end %>
+          <div class="d-flex mt-2 gap-2">
+            <div class="d-flex gap-2" data-previews-target="preview">
+            </div>
+              <%= turbo_frame_tag "images" do %>
+                <div class="d-flex gap-2">
+                <% if product.images.attached? %>
+                    <% product.images.each do |image| %>
+                      <div class="image-container">
+                        <%= link_to admin_remove_product_image_path(product, image),
+                          class: "remove-image-button text-white fs-5 opacity-75",
+                          data: { turbo_stream: true } do %>
+                          <i class="bi bi-x-square-fill"></i>
+                        <% end %>
+                        <%= image_tag image.variant(:thumb), data: { previews_target: "preview" } %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+          </div>
         </div>
 
         <div class="d-flex justify-content-between mb-5">

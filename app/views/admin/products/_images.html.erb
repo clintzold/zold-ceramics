@@ -1,9 +1,9 @@
-<div class="container d-flex gap-2 mt-2" data-previews-target="preview">
+<div class="d-flex gap-2"">
   <% if product.images.attached? %>
     <% product.images.each do |image| %>
       <div class="image-container">
         <%= link_to admin_remove_product_image_path(product, image),
-          class: "remove-image-button text-danger opacity-75",
+          class: "remove-image-button text-white opacity-75",
           data: { turbo_stream: true } do %>
           <i class="bi bi-x-square-fill"></i>
         <% end %>

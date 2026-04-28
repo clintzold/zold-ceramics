@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     get "products/:id", to: "products#show"
     patch "products/:id", to: "products#update"
 
+    # Attachments
+    get "blobs/:name", to: "products#destroy_orphan"
     #Orders
     get "orders/delivered/:id", to: "orders#delivered", as: :order_delivered
     get "orders/paid/:id", to: "orders#paid", as: :order_paid

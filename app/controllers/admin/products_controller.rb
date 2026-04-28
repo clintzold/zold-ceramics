@@ -51,6 +51,12 @@ class Admin::ProductsController < Admin::BaseController
     )
   end
 
+  def destroy_orphan
+    @orphan = ActiveStorage::Blob.find_by(filename: params[:name] + "." + params[:format])
+    @orphan.purge
+    head :no_content
+  end
+
   def destroy
     @product = Product.find(params[:id])
     if @product.destroy!
