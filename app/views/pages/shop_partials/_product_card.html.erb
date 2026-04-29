@@ -1,65 +1,61 @@
-  <div class="container-fluid p-0">
-    <div class="row flex-wrap">
 
-      <% if products.any? %>
-        <% carousel_counter_number = 0 %> <!-- Allow each control to have different id -->
-        <% products.each do |product| %>
-          <!-- CAROUSEL -->
-          <div class="card my-1 rounded-0 my-sm-0 p-0 shadow d-flex justify-content-between col-12 col-sm-6 col-xl-4">
-            <div class="card-img rounded-0">
+<% if products.any? %>
+  <% carousel_counter_number = 0 %> <!-- Allow each control to have different id -->
+  <% products.each do |product| %>
+    <!-- CAROUSEL -->
+    <div class="card my-1 rounded-0 my-sm-0 p-0 shadow d-flex justify-content-between col-12 col-sm-6 col-xl-4">
+      <div class="card-img rounded-0">
 
-              <%= render "pages/shop_partials/product_image_carousel", carousel_counter_number: carousel_counter_number, product: product %>
+        <%= render "pages/shop_partials/product_image_carousel", carousel_counter_number: carousel_counter_number, product: product %>
 
-            </div>
-            <!-- Product Info -->
-            <div class="card-body d-flex flex-column product-description justify-content-between pb-2 pb-lg-3">
-              <div>
-                <h5 class="card-title product-title"><%= product.title %></h5>
-                <p class="card-text mb-auto product-details"><%= product.description %></p>
-              </div>
-              <div>
-              <!-- Product Dimensions -->
-              <div class="d-flex gap-3 product-dimensions-text mt-3">
-                <p>
-                  <small>
-                    <% if product.category == "drinkware" %>
-                      <b><%= product.ounces.to_s + "oz" %></b>
-                    <% else %>
-                      <b>
-                      <%= number_with_precision(product.length, precision: 2, strip_insignificant_zeros: true ) %>
-                      x
-                      <%= number_with_precision(product.width, precision: 2, strip_insignificant_zeros: true ) %>
-                      x
-                      <%= number_with_precision(product.height, precision: 2, strip_insignificant_zeros: true ) %>
-                      </b>
-                    <% end %>
-                  </small>
-                </p>
-              </div>
-              <!-- Product Price -->
-              <div class="d-flex justify-content-between">
-                <p>
-                  <%= number_to_currency(product.price).to_s %>
-                </p>
-                <p class="opacity-50">
-                  <small><%= product.stock %> in stock</small>
-                </p>
-              </div>
-              <!-- Add To Cart Form -->
-              <%= form_with url: add_item_cart_path(product_id: product.id), class: "d-flex justify-content-between", method: :post do |form| %>
-                <div class="container w-100 d-flex justify-content-between">
-                  <%= button_tag(type: 'submit', class: "btn btn-warning") do %>
-                    <div class="add-to-cart-btn">Add to Cart</div>
-                  <% end %>
-                  <%= form.number_field :num_of_items, class: "form-control amount-to-purchase-field", value: 1, min: 1, max: product.stock, step: 1, id: "product_stock" %>
-                </div>
+      </div>
+      <!-- Product Info -->
+      <div class="card-body d-flex flex-column product-description justify-content-between pb-2 pb-lg-3">
+        <div>
+          <h5 class="card-title product-title"><%= product.title %></h5>
+          <p class="card-text mb-auto product-details"><%= product.description %></p>
+        </div>
+        <div>
+        <!-- Product Dimensions -->
+        <div class="d-flex gap-3 product-dimensions-text mt-3">
+          <p>
+            <small>
+              <% if product.category == "drinkware" %>
+                <b><%= product.ounces.to_s + "oz" %></b>
+              <% else %>
+                <b>
+                <%= number_with_precision(product.length, precision: 2, strip_insignificant_zeros: true ) %>
+                x
+                <%= number_with_precision(product.width, precision: 2, strip_insignificant_zeros: true ) %>
+                x
+                <%= number_with_precision(product.height, precision: 2, strip_insignificant_zeros: true ) %>
+                </b>
               <% end %>
-              </div>
-            </div>
+            </small>
+          </p>
+        </div>
+        <!-- Product Price -->
+        <div class="d-flex justify-content-between">
+          <p>
+            <%= number_to_currency(product.price).to_s %>
+          </p>
+          <p class="opacity-50">
+            <small><%= product.stock %> in stock</small>
+          </p>
+        </div>
+        <!-- Add To Cart Form -->
+        <%= form_with url: add_item_cart_path(product_id: product.id), class: "d-flex justify-content-between", method: :post do |form| %>
+          <div class="container w-100 d-flex justify-content-between">
+            <%= button_tag(type: 'submit', class: "btn btn-warning") do %>
+              <div class="add-to-cart-btn">Add to Cart</div>
+            <% end %>
+            <%= form.number_field :num_of_items, class: "form-control amount-to-purchase-field", value: 1, min: 1, max: product.stock, step: 1, id: "product_stock" %>
           </div>
-          <!-- Increment the ID of the carousel controls so buttons control unique product card -->
-          <% carousel_counter_number += 1 %>
         <% end %>
-      <% end %>
+        </div>
+      </div>
     </div>
-  </div>
+    <!-- Increment the ID of the carousel controls so buttons control unique product card -->
+    <% carousel_counter_number += 1 %>
+  <% end %>
+<% end %>
