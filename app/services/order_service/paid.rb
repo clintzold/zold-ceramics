@@ -16,6 +16,7 @@ module OrderService
 
       handle_local_orders
 
+      send_confirmation_email
     end
 
     private
