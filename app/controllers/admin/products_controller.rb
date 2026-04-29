@@ -68,6 +68,8 @@ class Admin::ProductsController < Admin::BaseController
 
   private
 
+  # Separate params for actions to stop overwriting of attachment associations on edit submission
+  #
   def product_params
     params.expect(product: [ :title, :category, :description, :price, :stock, :ounces, :weight, :height, :length, :width, :main_image, images: [] ])
   end

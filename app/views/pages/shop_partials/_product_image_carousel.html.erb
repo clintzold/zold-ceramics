@@ -5,7 +5,8 @@
     <% if !product.main_image.attached? %>
       <% main_image_url = "1000014596.jpg" %>
     <% else %>
-      <% main_image_url = product.main_image %>
+      <% main_image_url = product.main_image.variant(:card_image) %>
+    <%= image_tag product.main_image_url, class: "d-block w-100", alt: product.description %>
     <% end %>
     <%= image_tag main_image_url.variant(:card_image), class: "d-block w-100", alt: product.description %>
   </div>
