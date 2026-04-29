@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  # allow_unauthenticated_access
+  allow_unauthenticated_access
   before_action :set_subscribe_modal_status, only: [:shop]
 
   def home
@@ -14,11 +14,12 @@ class PagesController < ApplicationController
 
   def shop
     @subscription = Subscription.new
-    @products = Product.with_attached_images.includes(
-      images_attachments: { blob: :variant_records }, 
-    ).with_attached_main_image.includes(
-      main_image_attachment:{blob: :variant_records}
-    ).where(out_of_stock: false)
+    @products = Product.where(title: nil)
+   # @products = Product.with_attached_images.includes(
+   #   images_attachments: { blob: :variant_records }, 
+   # ).with_attached_main_image.includes(
+   #   main_image_attachment:{blob: :variant_records}
+   # ).where(out_of_stock: false)
   end
 
   private
