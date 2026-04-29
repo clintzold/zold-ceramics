@@ -28,4 +28,10 @@ class NotifierMailer < ApplicationMailer
     @name = @order.name.split.first.capitalize
     mail(to: @order.email, subject: "Pickup Canceled")
   end
+
+  def confirmation_email
+    @order = params[:order]
+    @name = @order.name.split.first.capitalize
+    mail(from: email_address_with_name("contact@zoldceramics.com", "Jessie - Zold Ceramics"), to: @order.email, subject: "Purchase Confirmation")
+  end
 end

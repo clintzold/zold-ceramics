@@ -51,5 +51,9 @@ module OrderService
     def save_order
       @order.save!
     end
+
+    def send_confirmation_email
+      NotifierMailer.with(order: @order).confirmation_email.deliver_later
+    end
   end
 end
