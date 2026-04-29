@@ -1,3 +1,9 @@
+<!-- Preload Content -->
+<% content_for :preload_links do %>
+    <%= preload_link_tag image_path("shop-hero-large.webp"),
+      as: "image", type: "image/webp",
+      fetchpriority: "high" %>
+<% end %>
 <!-- Scroll-Over Background Image -->
 <% content_for :background_image do %>
   <div class="shop-bg"></div>

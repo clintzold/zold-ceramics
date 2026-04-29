@@ -23,18 +23,8 @@
     <link rel="apple-touch-icon" href="/icon.png">
     <!-- Preload main font to avoid seeing fallback -->
     <%= preload_link_tag "GreatVibes-Regular.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" %>
-    <%= preload_link_tag "Borel-Regular.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" %>
     <!-- Preload Hero and other critical images -->
-    <%= preload_link_tag "home-hero.webp",
-      as: "image", type: "image/webp",
-      imagesrcset: "#{image_path('home-hero-small.webp')} 535w, #{image_path('home-hero-medium.webp')} 1070w",
-      imagesizes: "100vw",
-      fetchpriority: "high" %>
-    <%= preload_link_tag "shop-hero.webp",
-      as: "image", type: "image/webp",
-      imagesrcset: "#{image_path('shop-hero-small.webp')} 512w, #{image_path('shop-hero-medium.webp')} 1024w, #{image_path('shop-hero-large.webp')} 2048w",
-      imagesizes: "100vw",
-      fetchpriority: "high" %>
+    <%= yield(:preload_links) %>
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>

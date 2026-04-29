@@ -1,3 +1,10 @@
+<!-- Preload Links -->
+<% content_for :preload_links do %>
+    <%= preload_link_tag image_path("home-hero-medium.webp"),
+      as: "image", type: "image/webp",
+      fetchpriority: "high" %>
+<% end %>
+
 <!-- Scroll-Over Background Image -->
 <% content_for :background_image do %>
   <div class="home-bg"></div>
