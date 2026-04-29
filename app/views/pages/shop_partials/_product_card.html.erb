@@ -21,17 +21,18 @@
               <!-- Product Dimensions -->
               <div class="d-flex gap-3 product-dimensions-text mt-3">
                 <p>
-                  <small><b><%= product.weight %>g</b></small>
-                </p>
-                <p>
                   <small>
-                    <b>
-                    <%= number_with_precision(product.length, precision: 2, strip_insignificant_zeros: true ) %>
-                    x
-                    <%= number_with_precision(product.width, precision: 2, strip_insignificant_zeros: true ) %>
-                    x
-                    <%= number_with_precision(product.height, precision: 2, strip_insignificant_zeros: true ) %>
-                    </b>
+                    <% if product.category == "drinkware" %>
+                      <b><%= product.ounces.to_s + "oz" %></b>
+                    <% else %>
+                      <b>
+                      <%= number_with_precision(product.length, precision: 2, strip_insignificant_zeros: true ) %>
+                      x
+                      <%= number_with_precision(product.width, precision: 2, strip_insignificant_zeros: true ) %>
+                      x
+                      <%= number_with_precision(product.height, precision: 2, strip_insignificant_zeros: true ) %>
+                      </b>
+                    <% end %>
                   </small>
                 </p>
               </div>

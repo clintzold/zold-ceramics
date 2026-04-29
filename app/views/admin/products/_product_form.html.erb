@@ -27,7 +27,7 @@
               [["Drinkware", "drinkware"], ["Dinnerware", "dinnerware"],
                ["Decorative", "decorative"]],
             {},
-            { class: "form-select bg-white", data: { action: "change->form-category#changeOptions"}, required: true } %>
+            { class: "form-select bg-white", selected: "Drinkware", data: { action: "change->form-category#changeOptions"} } %>
           </div>
         </div>
         <div class="mb-3 d-flex gap-4" style="width: 40%" data-form-category-target="ounces">
@@ -38,10 +38,6 @@
         </div>
 
         <div class="mb-3 d-flex gap-4 d-none" data-form-category-target="dimensions">
-          <div>
-            <%= form.label :weight, class: "form-label" %>
-            <%= form.number_field :weight, class: "form-control", placeholder: "g" %>
-          </div>
           <div>
             <%= form.label :length, class: "form-label" %>
             <%= form.number_field :length, class: "form-control", placeholder: "in", step: :any %>
