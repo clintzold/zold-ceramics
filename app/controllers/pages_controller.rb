@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-  # allow_unauthenticated_access
   before_action :set_subscribe_modal_status, only: [:shop]
 
   def home
