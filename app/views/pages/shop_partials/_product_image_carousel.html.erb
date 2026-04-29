@@ -7,13 +7,13 @@
     <% else %>
       <% main_image_url = product.main_image.variant(:card_image) %>
     <% end %>
-    <%= image_tag main_image_url, class: "d-block w-100", alt: product.description %>
+    <%= image_tag main_image_url, class: "d-block w-100", width: 500, height: 500, alt: product.description %>
   </div>
 
   <% if product.images.any? %>
     <% product.images.each do |image| %>
       <div class="carousel-item">
-        <%= image_tag image.variant(:card_image), class: "d-block w-100", loading: "lazy", alt: product.description %>
+        <%= image_tag image.variant(:card_image), class: "d-block w-100", width: 500, height: 500, loading: "lazy", alt: product.description %>
       </div>
     <% end %>
   <% end %>
