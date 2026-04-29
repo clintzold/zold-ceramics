@@ -69,7 +69,7 @@ class Admin::ProductsController < Admin::BaseController
   private
 
   def product_params
-    params.expect(product: [ :title, :category, :description, :price, :stock, :weight, :height, :length, :width, :main_image ])
+    params.expect(product: [ :title, :category, :description, :price, :stock, :ounces, :weight, :height, :length, :width, :main_image ])
   end
 
   def images_params
