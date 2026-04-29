@@ -18,10 +18,10 @@ class Admin::ProductsController < Admin::BaseController
 
     result = ProductService::Create.call(@product)
     if result.success?
-      flash[:success] = "Product was successfully created."  # FLASH NOT WORKING IN TURBO FRAME
+      flash[:success] = "Product was successfully created."
       redirect_to new_admin_product_path
     else
-      flash.now[:danger] = result.errors.join(", ") # FLASH NOT WORKING IN TURBO FRAME
+      flash.now[:danger] = result.errors.join(", ")
       render :new, status: :unprocessable_content
     end
   end
@@ -34,7 +34,7 @@ class Admin::ProductsController < Admin::BaseController
     @product = Product.find(params[:id])
     puts images_params
     @product.images.attach images_params[:images].compact_blank!
-    if @product.update(product_params)
+    if @product.update(update_params)
       redirect_to admin_products_path, notice: "Product #{@product.title} was updated."
     else
       render :edit, status: :unprocessable_content
@@ -69,10 +69,15 @@ class Admin::ProductsController < Admin::BaseController
   private
 
   def product_params
+    params.expect(product: [ :title, :category, :description, :price, :stock, :ounces, :weight, :height, :length, :width, :main_image, images: [] ])
+  end
+
+  def update_params
     params.expect(product: [ :title, :category, :description, :price, :stock, :ounces, :weight, :height, :length, :width, :main_image ])
   end
 
   def images_params
     params.expect(product: [images: []])
   end
+
 end
