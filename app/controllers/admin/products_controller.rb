@@ -53,7 +53,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def destroy_orphan
     @orphan = ActiveStorage::Blob.find_by(filename: params[:name] + "." + params[:format])
-    @orphan.purge
+    @orphan.purge if @orphan
     head :no_content
   end
 
