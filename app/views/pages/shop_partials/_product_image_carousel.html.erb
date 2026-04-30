@@ -13,7 +13,7 @@
   <% if product.images.any? %>
     <% product.images.each do |image| %>
       <div class="carousel-item">
-        <%= image_tag image.variant(:card_image), class: "img-fluid", width: 450, height: 450, loading: "lazy", alt: product.description %>
+        <%= image_tag image.variant(:card_image), class: "img-fluid", width: 450, height: 450, fetchpriority: "low", alt: product.description %>
       </div>
     <% end %>
   <% end %>
