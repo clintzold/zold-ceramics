@@ -7,7 +7,7 @@
     <% else %>
       <% main_image_url = product.main_image.variant(:card_image) %>
     <% end %>
-    <%= image_tag main_image_url, class: "img-fluid", width: 450, height: 450, alt: product.description %>
+    <%= image_tag main_image_url, class: "img-fluid", width: 450, height: 450, fetchpriority: "high", alt: product.description %>
   </div>
 
   <% if product.images.any? %>
