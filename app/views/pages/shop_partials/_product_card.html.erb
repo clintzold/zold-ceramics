@@ -6,7 +6,7 @@
     <div class="card my-1 rounded-0 my-sm-0 p-0 shadow d-flex justify-content-between col-12 col-sm-6 col-xl-4">
       <div class="card-img rounded-0">
 
-        <%= render "pages/shop_partials/product_image_carousel", carousel_counter_number: carousel_counter_number, product: product %>
+        <%= render "pages/shop_partials/product_image_carousel", carousel_counter_number: carousel_type + carousel_counter_number.to_s, product: product %>
 
       </div>
       <!-- Product Info -->

@@ -58,7 +58,7 @@
                 <% if @products.where(category: "drinkware").any? %>
                   <div class="container-fluid p-0">
                     <div class="row flex-wrap">
-                      <%= render "pages/shop_partials/product_card", products: @products.where(category: "drinkware") %>
+                      <%= render "pages/shop_partials/product_card", carousel_type: "drinkware", products: @products.where(category: "drinkware") %>
                     </div>
                   </div>
                 <% else %>
@@ -85,7 +85,7 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
               <div class="card-body">
                 <% if @products.where(category: "dinnerware").any? %>
-                  <%= render "pages/shop_partials/product_card", products: @products.where(category: "dinnerware") %>
+                  <%= render "pages/shop_partials/product_card", carousel_type: "dinnerware", products: @products.where(category: "dinnerware") %>
                 <% else %>
                   <div class="d-flex justify-content-center">
                     <div class="py-5 rounded d-flex flex-column gap-3 align-items-center">
@@ -110,7 +110,7 @@
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
               <div class="card-body">
                 <% if @products.where(category: "decorative").any? %>
-                  <%= render "pages/shop_partials/product_card", products: @products.where(category: "decorative") %>
+                  <%= render "pages/shop_partials/product_card", carousel_type: "decorative", products: @products.where(category: "decorative") %>
                 <% else %>
                   <div class="d-flex justify-content-center">
                     <div class="py-5 rounded d-flex flex-column gap-3 align-items-center">
