@@ -4,8 +4,8 @@ module ShippingService
     def initialize(province:, order_value:)
       @province = province.downcase
       @base_cost = nil
-      @value_rate = (order_value * 0.05).round(2)
-      @packaging_cost = 5
+      @value_rate = 0
+      @packaging_cost = 0
       @rates = nil
     end
 
