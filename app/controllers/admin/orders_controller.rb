@@ -16,8 +16,8 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def index
-    @orders = Order.all
-    @statuses = Order.statuses.keys
+    @orders = Order.where.not(status: "pending")
+    @statuses = ["paid", "delivered"]
   end
 
   def delivered
@@ -59,18 +59,18 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def filter_orders
-    @statuses = Order.statuses.keys
+    @statuses = ["paid", "delivered"]
     
     case order_params[:order_type]
     when "2"
       @order_type = "Delivery"
-      @orders = Order.where(local: false)
+      @orders = Order.where.not(status: "pending").where(local: false)
     when "3"
       @order_type = "Pickup"
-      @orders = Order.where(local: true)
+      @orders = Order.where.not(status: "pending").where(local: true)
     else
       @order_type = "All"
-      @orders = Order.all
+      @orders = Order.where.not(status: "pending")
     end
 
     if order_params[:filtered_status].present?
