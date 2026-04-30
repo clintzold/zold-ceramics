@@ -16,8 +16,8 @@ class SubscriptionsController < ApplicationController
 
     respond_to do |format|
       if @subscription.save
-        format.html { head :no_content }
         SubscriptionMailer.with(subscription: @subscription).welcome_email.deliver_later
+        format.html { head :no_content }
       else
         puts @subscription.errors
         format.turbo_stream {

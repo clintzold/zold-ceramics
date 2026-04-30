@@ -18,7 +18,7 @@ module OrderService
         product = Product.find(item.product_id)
           product.with_lock do
             product.reload
-            product.increment!(:stock, item.quantity)
+            product.update(:stock, item.quantity)
         end
       end
     end
