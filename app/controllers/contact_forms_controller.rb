@@ -20,7 +20,7 @@ class ContactFormsController < ApplicationController
       format.html { head :no_content}
     else
       format.turbo_stream {
-        render turbo_stream: turbo_steam.update(
+        render turbo_stream: turbo_stream.update(
           "contact_form_errors", partial: "shared/form_errors", locals: { errors: @contact_form.errors }
         ), status: :unprocessable_content
       }
