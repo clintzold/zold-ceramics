@@ -14,11 +14,11 @@ class PagesController < ApplicationController
 
   def shop
     @subscription = Subscription.new
-    @products = Product.with_attached_images.includes(
-      images_attachments: { blob: :variant_records }, 
-    ).with_attached_main_image.includes(
-      main_image_attachment:{blob: :variant_records}
-    ).where(out_of_stock: false)
+   
+    # Query for all in stock products, along with attachments and
+    # their variants to avoid N+1 queries.
+    #
+    @products = Product.includes(main_image_attachment: {blob: :variant_records}, images_attachments: { blob: :variant_records }).where(out_of_stock: false)
   end
 
   private
@@ -31,7 +31,7 @@ class PagesController < ApplicationController
       # Set cookie to expire in 1 week
       cookies.signed[:modal_shown] = {
         value: 'true',
-        expires: 1.month.from_now,
+        expires: 1.week.from_now,
         httponly: true
       }
     end

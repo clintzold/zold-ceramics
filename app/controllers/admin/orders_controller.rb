@@ -15,6 +15,12 @@ class Admin::OrdersController < Admin::BaseController
     end
   end
 
+  # Orders that are pending have no name or email attached and must
+  # be excluded or index view will break by attempting to serve nil
+  # values to elements.
+  #
+  # Filter actions require the same restrictions
+  #
   def index
     @orders = Order.where.not(status: "pending")
     @statuses = ["paid", "delivered"]
