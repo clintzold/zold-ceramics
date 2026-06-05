@@ -72,7 +72,7 @@ end
 
 gem "bootstrap_icons_rails", "~> 1.113"
 
-gem "stripe", "~> 18.2"
+gem "stripe", "~> 18.4"
 
 
 gem "chartkick", "~> 5.2"
