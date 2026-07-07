@@ -1,27 +1,19 @@
 # README
 
-An e-commerce webapp for a handmade, artisanal pottery shop. 
+An e-commerce Rails app for a handmade, artisanal pottery shop. 
 
+Specs:
+  
+  Ruby Version: 4.0.3
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  DB: postgreSQL 15
 
-Things you may want to cover:
+  Auth:
+    - Default Rails 8 authentication for admin purposes(product creation, order management, pickup scheduling, etc...)
 
-* Ruby version
+  SCSS:
+    Bootstrap 5.3
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  3rd Party API's:
+    - Stripe for payments/ordering(Stripe SDK ~18)
+    - Shippo for shipment creation/tracking(used Ruby http request methods as SDK gem is no longer maintained)
