@@ -1,12 +1,12 @@
 class SubscriptionsController < ApplicationController
-  allow_unauthenticated_access only: [:new, :create]
+  allow_unauthenticated_access only: [ :new, :create ]
 
   def new
     @subscription = Subscription.new
     respond_to do |format|
-      format.turbo_stream { 
+      format.turbo_stream {
         render turbo_stream: turbo_stream.update(
-          "sign_up", partial: "new", locals: {subscription: @subscription}
+          "sign_up", partial: "new", locals: { subscription: @subscription }
         )}
     end
   end
@@ -22,7 +22,7 @@ class SubscriptionsController < ApplicationController
         puts @subscription.errors
         format.turbo_stream {
           render turbo_stream: turbo_stream.update(
-            "subscribe_form_errors", partial: "shared/form_errors", locals: {errors: @subscription.errors}
+            "subscribe_form_errors", partial: "shared/form_errors", locals: { errors: @subscription.errors }
           ), status: :unprocessable_content }
       end
     end

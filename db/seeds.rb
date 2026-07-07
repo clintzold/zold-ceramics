@@ -19,4 +19,3 @@ if Rails.env.development?
     { title: "Vase", description: "Coffee in the woods. A light glaze over over ivory and green rim with earth speckling.", price: 23.99, stock: 4, category: "decorative" }
   ])
 end
-

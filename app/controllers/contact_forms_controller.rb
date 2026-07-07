@@ -3,11 +3,11 @@ class ContactFormsController < ApplicationController
   def new
     @contact_form = ContactForm.new
     respond_to do |format|
-      format.turbo_stream { 
+      format.turbo_stream {
         render turbo_stream: turbo_stream.replace(
-          "contact_us", partial: "new", locals: {contact_form: @contact_form}
+          "contact_us", partial: "new", locals: { contact_form: @contact_form }
         )}
-      format.html { redirect_to home_path( anchor: "contact" )}
+      format.html { redirect_to home_path(anchor: "contact") }
     end
   end
 
@@ -17,7 +17,7 @@ class ContactFormsController < ApplicationController
    respond_to do |format|
     if @contact_form.valid?
       NotifierMailer.contact_form_submission(contact_form_params.to_h).deliver_later
-      format.html { head :no_content}
+      format.html { head :no_content }
     else
       format.turbo_stream {
         render turbo_stream: turbo_stream.update(

@@ -15,7 +15,6 @@ module ShippingService
       create_rates
 
       @rates
-      
     end
 
     private
@@ -51,7 +50,7 @@ module ShippingService
         },
         {
           "service_level" => "Express",
-          "amount" => @base_cost + @value_rate + @packaging_cost + 15, 
+          "amount" => @base_cost + @value_rate + @packaging_cost + 15,
           "delivery_estimate" => {
             "maximum" => {
               unit: "day",
@@ -79,6 +78,5 @@ module ShippingService
         }
       ]
     end
-
   end
 end

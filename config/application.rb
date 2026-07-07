@@ -12,7 +12,7 @@ module ZoldCeramics
     config.load_defaults 8.1
 
     # Configure local time zone
-    config.time_zone = 'America/Edmonton'
+    config.time_zone = "America/Edmonton"
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.

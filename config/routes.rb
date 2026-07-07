@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   # Subscriptions
   get "subscriptions/new_batch", to: "subscriptions#new_batch", as: :new_batch_email
   get "subscriptions/partial", to: "subscriptions#render_partial", as: :new_batch_partial
-  resources :subscriptions, only: [:index, :new, :create]
+  resources :subscriptions, only: [ :index, :new, :create ]
   get "subscriptions/cancel", to: "subscriptions#destroy", as: :cancel_subscription
 
   namespace :admin do
@@ -38,17 +38,17 @@ Rails.application.routes.draw do
 
     # Attachments
     get "blobs/:name", to: "products#destroy_orphan"
-    #Orders
+    # Orders
     get "orders/delivered/:id", to: "orders#delivered", as: :order_delivered
     get "orders/paid/:id", to: "orders#paid", as: :order_paid
     get "orders/filter", to: "orders#filter", as: :filter_orders
-    resources :orders, only: [:index, :show]
+    resources :orders, only: [ :index, :show ]
 
     # Pickups
     get "pickups/partial", to: "pickups#partial"
     get "pickups/confirm_cancel/:id", to: "pickups#confirm_cancel", as: :pickup_confirm_cancel
     get "pickups/cancel/:id", to: "pickups#destroy", as: :cancel_pickup
-    resources :pickups, only: [:new, :create, :index, :show, :edit, :update]
+    resources :pickups, only: [ :new, :create, :index, :show, :edit, :update ]
 
     # Charts
     get "charts/orders", to: "charts#orders", as: :charts_orders

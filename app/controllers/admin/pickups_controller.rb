@@ -79,9 +79,9 @@ class Admin::PickupsController < Admin::BaseController
   def destroy
     @pickup = Pickup.find(params[:id])
     @recipients = []
-    @pickup.orders.each {|order| @recipients << { email: order.email, name: order.name } }
+    @pickup.orders.each { |order| @recipients << { email: order.email, name: order.name } }
     @pickup.destroy
-    
+
     render turbo_stream: turbo_stream.update("pickups", partial: "pickups")
   end
 

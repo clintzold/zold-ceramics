@@ -14,7 +14,7 @@ class SubscriptionMailer < ApplicationMailer
       expires: 2.weeks.from_now
     })
 
-    mail(to: @email, subject: "New Subscription" )
+    mail(to: @email, subject: "New Subscription")
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -26,7 +26,7 @@ class SubscriptionMailer < ApplicationMailer
     @email = email
     @name = name
 
-    mail(to: @email, subject: "Subscription Cancellation" )
+    mail(to: @email, subject: "Subscription Cancellation")
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -43,6 +43,6 @@ class SubscriptionMailer < ApplicationMailer
       expires: 2.weeks.from_now
     })
 
-    mail(to: @email, subject: "New Ceramics Available" )
+    mail(to: @email, subject: "New Ceramics Available")
   end
 end

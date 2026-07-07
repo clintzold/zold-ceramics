@@ -58,21 +58,21 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "zoldceramics.com", protocol: 'https' }
-  config.action_controller.asset_host = 'https://zoldceramics.com'
-  config.action_mailer.asset_host = 'https://zoldceramics.com'
+  config.action_mailer.default_url_options = { host: "zoldceramics.com", protocol: "https" }
+  config.action_controller.asset_host = "https://zoldceramics.com"
+  config.action_mailer.asset_host = "https://zoldceramics.com"
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
 
   # Point to Hostinger Mailbox and provide credentials
   config.action_mailer.smtp_settings = {
-    address:              'smtp.hostinger.com',
+    address:              "smtp.hostinger.com",
     port:                 587, # Use 587 if you prefer TLS/STARTTLS
-    domain:               'zoldceramics.com',
+    domain:               "zoldceramics.com",
     user_name:            Rails.application.credentials.dig(:smtp, :user_name),
     password:             Rails.application.credentials.dig(:smtp, :password),
-    authentication:       'plain',
+    authentication:       "plain",
     enable_starttls_auto: false,
     enable_starttls: true # Must force encryption to avoid spam filter
   }

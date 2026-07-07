@@ -26,7 +26,7 @@ class ShippingOptionsController < ApplicationController
 
   def shipping_params
     params.permit(
-      :checkout_session_id, 
+      :checkout_session_id,
       shipping_details: [
         :name,
         address: [
@@ -34,7 +34,7 @@ class ShippingOptionsController < ApplicationController
           :line2, :city,
           :postal_code, :state
         ]
-        
+
       ]
     )
   end

@@ -25,7 +25,7 @@ module ShippingService
 
     def get_rates
       order_value = 0
-      @order_items.each { |item| order_value += item.price}
+      @order_items.each { |item| order_value += item.price }
 
       @rates = ShippingService::GetRates.call(
         province: @shipping_details["address"]["state"],

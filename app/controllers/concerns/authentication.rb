@@ -36,7 +36,7 @@ module Authentication
     end
 
     def require_admin
-      redirect_to home_path, alert: "Not authorized", data: { turbo_frame: "_top"} unless Current.user&.admin?
+      redirect_to home_path, alert: "Not authorized", data: { turbo_frame: "_top" } unless Current.user&.admin?
     end
 
     def after_authentication_url

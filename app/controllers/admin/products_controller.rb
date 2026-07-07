@@ -32,7 +32,6 @@ class Admin::ProductsController < Admin::BaseController
 
   def update
     @product = Product.find(params[:id])
-    puts images_params
     @product.images.attach images_params[:images].compact_blank!
     if @product.update(update_params)
       redirect_to admin_products_path, notice: "Product #{@product.title} was updated."
@@ -47,7 +46,7 @@ class Admin::ProductsController < Admin::BaseController
     @image = ActiveStorage::Attachment.find(params[:id])
     @image.purge
     render turbo_stream: turbo_stream.update(
-      "images", partial: "images", locals: { product: @product}
+      "images", partial: "images", locals: { product: @product }
     )
   end
 
@@ -79,7 +78,6 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def images_params
-    params.expect(product: [images: []])
+    params.expect(product: [ images: [] ])
   end
-
 end

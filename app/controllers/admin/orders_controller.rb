@@ -1,5 +1,5 @@
 class Admin::OrdersController < Admin::BaseController
-  before_action :filter_orders, only: [:filter]
+  before_action :filter_orders, only: [ :filter ]
 
   def show
     @order = Order.find(params[:id])
@@ -23,7 +23,7 @@ class Admin::OrdersController < Admin::BaseController
   #
   def index
     @orders = Order.where.not(status: "pending")
-    @statuses = ["paid", "delivered"]
+    @statuses = [ "paid", "delivered" ]
   end
 
   def delivered
@@ -65,8 +65,8 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def filter_orders
-    @statuses = ["paid", "delivered"]
-    
+    @statuses = [ "paid", "delivered" ]
+
     case order_params[:order_type]
     when "2"
       @order_type = "Delivery"

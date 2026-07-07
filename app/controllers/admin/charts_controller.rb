@@ -15,7 +15,7 @@ class Admin::ChartsController < ApplicationController
   end
 
   def filter
-    render turbo_stream: turbo_stream.update("charts", partial: "charts", locals: { year: @year})
+    render turbo_stream: turbo_stream.update("charts", partial: "charts", locals: { year: @year })
   end
 
   private
