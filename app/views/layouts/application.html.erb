@@ -10,6 +10,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Zold Ceramics">
     <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="<%= content_for?(:og_title) ? yield(:og_title) : 'Zold Ceramics | Artisanal pottery maker' %>">
+    <meta property="og:description" content="<%= content_for?(:og_description) ? yield(:og_description) : 'Handmade pottery crafted by local artisan, Jessie Zold Edwards, in the foothills of Central Alberta.' %>">
+    <meta property="og:image" content="<%= content_for?(:og_image) ? yield(:og_image) : image_url('og-image-final.png') %>">
+    <meta property="og:url" content="<%= content_for?(:og_url) ? yield(:og_url) : request.original_url %>">
+    <meta property="og:type" content="website">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag 'favicon-1-c1.png', type: 'image/png' %>
