@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Zold Ceramics" %></title>
+    <title><%= content_for(:title) || "Handcrafted pottery from the foothills of Central Alberta." %></title>
     <meta
         name="description"
-        content="Artisanal pottery shop based in central Alberta | Zold Ceramics"
+        content="Handmade, artisanal pottery created by local artist, Jessie Zold Edwards. Shipping Canada-wide."
     >
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,8 +12,8 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="<%= content_for?(:og_title) ? yield(:og_title) : 'Zold Ceramics | Artisanal, handcrafted pottery' %>">
-    <meta property="og:description" content="<%= content_for?(:og_description) ? yield(:og_description) : 'Handmade pottery crafted by local artisan, Jessie Zold Edwards, in the foothills of Central Alberta.' %>">
+    <meta property="og:title" content="<%= content_for?(:og_title) ? yield(:og_title) : 'Zold Ceramics | Artisanal, handcrafted pottery.' %>">
+    <meta property="og:description" content="<%= content_for?(:og_description) ? yield(:og_description) : 'Handmade pottery crafted in the foothills of Central Alberta.' %>">
     <meta property="og:image" content="<%= content_for?(:og_image) ? yield(:og_image) : image_url('og-image-final.png') %>">
     <meta property="og:url" content="<%= content_for?(:og_url) ? yield(:og_url) : request.original_url %>">
     <meta property="og:type" content="website">
